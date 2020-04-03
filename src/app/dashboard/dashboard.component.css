@@ -17,3 +17,8 @@
 #about{
     font-size: larger;
 }
+
+.btn{
+    background-color: rgb(228, 86, 86);
+    color: white;
+}
