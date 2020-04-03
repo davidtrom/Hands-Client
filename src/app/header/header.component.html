@@ -5,7 +5,7 @@
             <span class="navbar-brand"><img src="../../assets/logoHeader.png" id="logo"></span>
                 
             
-            <div id="title">Helping Hands Delaware
+            <div id="title">Delaware Helping Hands 
                 <br>
                 "Many hands make light work"
                 </div>
@@ -18,20 +18,26 @@
             <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item" ngbDropdown>
+                        <a class="nav-link" a [routerLink]="['']" routerLinkActive="router-link-active" style="color:white" role="button">
+                        Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item" ngbDropdown>
                         <a class="nav-link" a [routerLink]="['/about']" routerLinkActive="router-link-active" style="color:white" role="button">
                         About
                         </a>
                     </li>
 
                     <li class="nav-item" ngbDropdown>
-                        <a class="nav-link" a [routerLink]="['/specialties']" routerLinkActive="router-link-active" style="color:white"  role="button">
-                            Specializations 
+                        <a class="nav-link" a [routerLink]="['/volunteer-login']" routerLinkActive="router-link-active" style="color:white"  role="button">
+                            Volunteers 
                         </a>
                     </li>
 
                     <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
-                        <a class="nav-link" a [routerLink]="['/process']" routerLinkActive="router-link-active" style="color:white"  role="button">
-                        Process  
+                        <a class="nav-link" a [routerLink]="['/client-login']" routerLinkActive="router-link-active" style="color:white"  role="button">
+                        Requests  
                         </a>
                     </li>
                 </ul>

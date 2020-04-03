@@ -1,1 +1,35 @@
-<p>dashboard works!</p>
+
+<div class="flex-container">
+    <div class="row">
+        <div class="col-md-6">
+            I want to be a Volunteer
+            <br>
+            <a class="btn btn-primary btn-lg" [routerLink]="['/new-volunteer']" role="button">Register as a Volunteer</a>
+        </div>
+
+        <div class="col-md-6">
+            I'd like to register to make a Request for Help
+            <br>
+            <a class="btn btn-primary btn-lg" [routerLink]="['/new-client']" role="button">Request Help</a>
+        </div>
+    </div>
+
+    <div class="row" id="row2">
+        <div class="col-md-6">
+            I'm already a registered Volunteer
+            <br>
+            <a class="btn btn-primary btn-lg" [routerLink]="['/volunteer-login']" role="button">Volunteer Sign-in</a>
+        </div>
+
+        <div class="col-md-6">
+            I need to update a Request for Help
+            <br>
+            <a class="btn btn-primary btn-lg" [routerLink]="['/client-login']" role="button">Requester Sign-in</a>
+        </div>
+    </div>
+
+    <div id="more-info">
+        For more information about our website and what it means to be a Volunteer, or to make a request for help click <a [routerLink]="['/about']" id="about"><u>HERE</u></a>.
+    </div>
+
+</div>

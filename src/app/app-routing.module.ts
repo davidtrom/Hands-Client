@@ -1,12 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { VolunteerLoginComponent } from './volunteer-login/volunteer-login.component';
+import { NewVolunteerComponent } from './new-volunteer/new-volunteer.component';
+import { RecipientLoginComponent } from './recipient-login/recipient-login.component';
+import { NewRecipientComponent } from './new-recipient/new-recipient.component';
 
 
 const routes: Routes = [
-  { path: '', component: LoginComponent},
+  { path: '', component: DashboardComponent},
   { path: 'about', component: AboutComponent},
+  { path: 'volunteer-login', component: VolunteerLoginComponent},
+  { path: 'new-volunteer', component: NewVolunteerComponent},
+  { path: 'client-login', component: RecipientLoginComponent},
+  { path: 'new-client', component: NewRecipientComponent},
   
   // if no route, redirect to home
   { path: '**', redirectTo: '' }
