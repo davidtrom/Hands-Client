@@ -1,0 +1,51 @@
+<p>new-volunteer works!</p>
+
+<div class="flex-container">
+    <div class="container">
+        <!-- <form [formGroup]="contactForm" (ngSubmit="onSubmit()" class="form-horizontal")> -->
+        <form>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="firstName">First Name:</label>
+                <input type="text" class="form-control" id="firstName" placeholder="First Name">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="lastName">Last Name:</label>
+                <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+              </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail">Email Address:</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="someone@email.com">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPhone">Phone Number:</label>
+                    <input type="text" class="form-control" id="inputPhone" placeholder="123-456-7890">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputDate">Date of Birth:</label>
+                    <input type="date" class="form-control" id="inputDate">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputReason">Reason for Contact:</label>
+                    <input type="text" class="form-control" id="inputReason" placeholder="Reason for Contact">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputAppt">Preferred Appointment Time:</label>
+                    <input type="text" class="form-control" id="inputApptTime" placeholder="Preferred Appointment Time">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputMessage">Additional Information:</label>
+                    <textarea type="text" class="form-control" id="inputMessage" placeholder="Message"></textarea>
+                </div>
+            </div>
+        
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    
+</div>
