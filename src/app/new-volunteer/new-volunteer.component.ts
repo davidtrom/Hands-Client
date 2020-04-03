@@ -21,7 +21,8 @@ export class NewVolunteerComponent implements OnInit {
       email: new FormControl(),
       password: new FormControl(),
       link: new FormControl(),
-    })
+    });
+  }
 
   //   this.volunteerForm = this.fb.group({
   //     firstName: [''],
@@ -31,6 +32,10 @@ export class NewVolunteerComponent implements OnInit {
   //     password: [''],
   //     link: ['']
   //   });
+  
+  onSubmit(): void{
+    console.log(this.volunteerForm.value);
+    this.volunteerForm.reset();
   }
 
 }
