@@ -41,6 +41,7 @@ export class VolunteerLoginComponent implements OnInit {
     this.password = this.volLoginForm.controls.volPassword.value;
      console.log(this.volLoginForm);
     //  console.log(this.volPassword);
+    this.router.navigate(['/display-requests']);
   }
 
 }

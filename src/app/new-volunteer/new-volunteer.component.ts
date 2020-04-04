@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class NewVolunteerComponent implements OnInit {
   submitted : boolean = false;
   emailAlreadyTaken: boolean = false;
   
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.volunteerForm = this.fb.group({
@@ -27,16 +28,6 @@ export class NewVolunteerComponent implements OnInit {
   }
 
   get form() { return this.volunteerForm.controls; }
-
-  // Validators.minLength, Validators.maxLength
-  // this.volunteerForm = new FormGroup({
-  //   firstName: new FormControl(),
-  //   lastName: new FormControl(),
-  //   phoneNum: new FormControl(),
-  //   email: new FormControl(),
-  //   password: new FormControl(),
-  //   link: new FormControl(),
-  // });
   
   onSubmit(): void{
     this.submitted = true;
@@ -46,7 +37,10 @@ export class NewVolunteerComponent implements OnInit {
       return;
   }
     console.log(this.volunteerForm.value);
+    this.router.navigate(['/volunteer-login']);
     this.volunteerForm.reset();
+    alert('You are now successfully registered!')
+    
   }
 
 }

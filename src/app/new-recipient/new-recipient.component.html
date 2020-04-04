@@ -1,10 +1,10 @@
-<p>new-recipient works!</p>
+
 <div class="flex-container">
     <div class="container">
-        <form [formGroup]="volunteerForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="recipientForm" (ngSubmit)="onSubmit()">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h2 class="panel-title">Register as a Volunteer</h2>
+                    <h2 class="panel-title">Register as a new Requestor</h2>
                 </div>
                 <div class="panel-body">
                     <div class="form-row">
@@ -60,6 +60,7 @@
                             <input type="text" formControlName="link" class="form-control" id="link" placeholder="Social Media Link">
                         </div>
                     </div>
+
                 </div>
                 <div class="form-group" id="btnSubmit">                 
                     <button type="submit" class="btn btn-primary">Register</button>

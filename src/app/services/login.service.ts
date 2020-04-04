@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Volunteer } from '../models/Volunteer';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
+import { Recipient } from '../models/Recipient';
 
 
 @Injectable({
@@ -12,6 +13,10 @@ import { map, catchError, tap } from 'rxjs/operators';
 export class LoginService {
 
   baseUrl = environment.baseUrl;
+  volunteer: Volunteer;
+  recipient: Recipient;
+  volunteerLoggedIn: boolean = false;
+  recipientLoggedIn: boolean = false;
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type' : 'application/json'})
@@ -19,7 +24,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  verifyUser(email:string, password:string) : Observable<Volunteer>{
+  verifyVolunteer(email:string, password:string) : Observable<Volunteer>{
     let reqData: Object = {"email": email, "password": password};
     return this.http.post<Volunteer>(this.baseUrl+"/volunteers/verify", reqData, this.httpOptions)
     .pipe(tap(data => {console.log(data);}),
@@ -27,6 +32,13 @@ export class LoginService {
     )
   }
 
+  verifyRecipient(email:string, password:string) : Observable<Volunteer>{
+    let reqData: Object = {"email": email, "password": password};
+    return this.http.post<Volunteer>(this.baseUrl+"/volunteers/verify", reqData, this.httpOptions)
+    .pipe(tap(data => {console.log(data);}),
+    catchError(this.handleError<Volunteer>('verification', null))
+    )
+  }
 
 
 

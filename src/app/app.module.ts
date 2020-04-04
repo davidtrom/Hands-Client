@@ -13,6 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { VolunteerLoginComponent } from './volunteer-login/volunteer-login.component';
 import { RecipientLoginComponent } from './recipient-login/recipient-login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DisplayRequestsComponent } from './display-requests/display-requests.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     NewRecipientComponent,
     DashboardComponent,
     VolunteerLoginComponent,
-    RecipientLoginComponent
+    RecipientLoginComponent,
+    DisplayRequestsComponent
   ],
   imports: [
     BrowserModule,
