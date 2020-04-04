@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from '../services/login.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class NewVolunteerComponent implements OnInit {
   submitted : boolean = false;
   emailAlreadyTaken: boolean = false;
   
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router, private loginService: LoginService) { }
 
   ngOnInit() {
     this.volunteerForm = this.fb.group({
@@ -35,11 +36,14 @@ export class NewVolunteerComponent implements OnInit {
     // stop here if form is invalid
     if (this.volunteerForm.invalid) {
       return;
-  }
+    }
+
+    this.loginService.checkVolunteerEmailAvailability(this.volunteerForm.controls.email.value)
+
     console.log(this.volunteerForm.value);
     this.router.navigate(['/volunteer-login']);
     this.volunteerForm.reset();
-    alert('You are now successfully registered!')
+    alert('You are now successfully registered! \nProceeding to Login...')
     
   }
 
