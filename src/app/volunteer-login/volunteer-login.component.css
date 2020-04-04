@@ -1,0 +1,23 @@
+.flex-container{
+    padding-top: 2%;
+    padding-bottom: 2%;
+    
+}
+
+a{
+    font-size: larger;
+}
+
+#noAcct{
+    padding-top: 5%;
+}
+
+.container{
+    align-items: center;
+    max-width: 40vw;
+    font-size: 13pt;
+}
+
+#btnSubmit{
+    padding-top: 4%;
+}

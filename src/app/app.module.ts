@@ -12,6 +12,7 @@ import { NewRecipientComponent } from './new-recipient/new-recipient.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { VolunteerLoginComponent } from './volunteer-login/volunteer-login.component';
 import { RecipientLoginComponent } from './recipient-login/recipient-login.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { RecipientLoginComponent } from './recipient-login/recipient-login.compo
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule
   ],

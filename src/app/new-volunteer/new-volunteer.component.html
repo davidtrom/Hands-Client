@@ -8,29 +8,54 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-6" [ngClass]="{'has-error' : volunteerForm.get('firstName').errors && 
+                        (volunteerForm.get('firstName').touched || volunteerForm.get('firstName').dirty)}">
                             <label for="firstName">First Name:</label>
-                            <input id="firstName" formControlName="firstName" type="text" class="form-control"  placeholder="First Name">
+                            <input id="firstName" formControlName="firstName" type="text" class="form-control" placeholder="First Name">
+                            <div class="alert alert-danger" *ngIf="volunteerForm.get('firstName').errors && 
+                            (volunteerForm.get('firstName').touched || volunteerForm.get('firstName').dirty)">
+                                <div *ngIf="volunteerForm.get('firstName').errors.pattern">First name not valid</div>
+                                <div *ngIf="volunteerForm.get('firstName').errors.required">First name is required</div>
+                    </div>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-6" [ngClass]="{'has-error' : volunteerForm.get('lastName').errors && 
+                        (volunteerForm.get('lastName').touched || volunteerForm.get('lastName').dirty)}">
                             <label for="lastName">Last Name:</label>
-                            <input id="lastName" formControlName="lastName" type="text" class="form-control"  placeholder="Last Name">
+                            <input id="lastName" formControlName="lastName" type="text" class="form-control" placeholder="Last Name">
+                            <span class="help-block" *ngIf="volunteerForm.get('lastName').errors && 
+                            (volunteerForm.get('lastName').touched || volunteerForm.get('lastName').dirty)">
+                                <div *ngIf="volunteerForm.get('lastName').errors.pattern">Last name is not valid</div>
+                                <div *ngIf="volunteerForm.get('lastName').errors.required">Last name is required</div>
+                            </span>
                         </div>
-                        </div>
+                    </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <!-- <div class="form-group col-md-6" [ngClass]="{'has-error' : volunteerForm.get('phoneNum').errors && 
+                        (volunteerForm.get('phoneNum').touched || volunteerForm.get('phoneNum').dirty)}">
                             <label for="phoneNum">Phone Number:</label>
                             <input type="text" formControlName="phoneNum" class="form-control" id="phoneNum" placeholder="302-555-7890">
-                        </div>
+                            <span class="help-block" *ngIf="volunteerForm.get('phoneNum').errors && 
+                            (volunteerForm.get('phoneNum').touched || volunteerForm.get('phoneNum').dirty)}">
+                                <div *ngIf="volunteerForm.get('phoneNum').errors.pattern">Phone number is not valid</div>
+                                <div *ngIf="volunteerForm.get('phoneNum').errors.required">Phone number is required</div>
+                            </span>
+                        </div> -->
                         <div class="form-group col-md-6">
                             <label for="email">Email Address:</label>
                             <input type="email" formControlName="email" class="form-control" id="email" placeholder="yourAddress@email.com">
+                            <div *ngIf="email.errors?.email">Enter a valid email address</div>
+                            <div *ngIf="email.errors?.required">Email address required</div>
+                        </div>
+                        <div *ngIf="emailAlreadyTaken" class="alert alert-danger"> 
+                            *This username already exists!
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="password">Password:</label>
                             <input type="password" formControlName="password" class="form-control" id="password" placeholder="Password">
+                            <!-- <div *ngIf="password.errors?.required">Password required</div>
+                            <div *ngIf="password.errors?.pattern">Password needs lowercase, uppercase, number, and symbol: 8 characters minimum</div> -->
                         </div>
                         <div class="form-group col-md-6">
                             <label for="link">A link to a social media account for identification purposes:</label>
