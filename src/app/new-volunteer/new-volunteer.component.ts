@@ -10,23 +10,23 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class NewVolunteerComponent implements OnInit {
 
   volunteerForm: FormGroup;
+  submitted : boolean = false;
+  emailAlreadyTaken: boolean = false;
   
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.volunteerForm = this.fb.group({
-      firstName: ['', Validators.required, Validators.pattern('^[a-zA-Z]+$')],
-      lastName: ['', Validators.required, Validators.pattern('^[a-zA-Z]+$')],
-      phoneNum: ['', Validators.required],
-      email: ['', Validators.required, Validators.pattern('^[a-zA-Z0-9._%$!#+\-]+@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$')],
-      password: ['', Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!_.@$%^&*-]).{8,}$')],
+      firstName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+      lastName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+      phoneNum: ['', [Validators.required, Validators.minLength(10)]],
+      email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%$!#+\-]+@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$')]],
+      password: ['', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!_.@$%^&*-]).{8,}$')]],
       link: ['']
     });
   }
 
-  get email() {
-    return this.volunteerForm.get('email');
-  } 
+  get form() { return this.volunteerForm.controls; }
 
   // Validators.minLength, Validators.maxLength
   // this.volunteerForm = new FormGroup({
@@ -39,6 +39,12 @@ export class NewVolunteerComponent implements OnInit {
   // });
   
   onSubmit(): void{
+    this.submitted = true;
+    
+    // stop here if form is invalid
+    if (this.volunteerForm.invalid) {
+      return;
+  }
     console.log(this.volunteerForm.value);
     this.volunteerForm.reset();
   }

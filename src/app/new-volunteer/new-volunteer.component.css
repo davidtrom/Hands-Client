@@ -3,7 +3,7 @@
     border-width: 2px;
     border-color: rgb(245, 78, 78);
     padding-top: 1%;
-    padding-bottom: 2%;
+    padding-bottom: 1%;
     /* border: medium groove rgb(228, 86, 86) */
 }
 
@@ -18,5 +18,10 @@
 
 h2{
     padding-bottom: 1%;
+}
+
+#btnSubmit{
+    text-align: center;
+    padding-top: 1%;
 }
 
