@@ -15,6 +15,7 @@ import { RecipientLoginComponent } from './recipient-login/recipient-login.compo
 import { HttpClientModule } from '@angular/common/http';
 import { DisplayRequestsComponent } from './display-requests/display-requests.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,7 @@ import { DisplayRequestsComponent } from './display-requests/display-requests.co
     VolunteerLoginComponent,
     RecipientLoginComponent,
     DisplayRequestsComponent
+    
   ],
   imports: [
     BrowserModule,

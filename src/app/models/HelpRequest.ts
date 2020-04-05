@@ -1,6 +1,6 @@
 import { Recipient } from './Recipient';
 
-export class Request {
+export class HelpRequest {
     id: number;
     typeOfRequest: string;
     requestDescription: string;

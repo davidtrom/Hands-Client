@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HelpRequest } from '../models/helpRequest';
+import { HelpRequestService } from '../services/help-request.service';
 
 @Component({
   selector: 'app-display-requests',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisplayRequestsComponent implements OnInit {
 
-  constructor() { }
+  helpRequests: any[];
+  requestToClose: HelpRequest;
+
+  constructor(private helpRequestService: HelpRequestService ) {
+    
+   }
 
   ngOnInit() {
+    this.getHelpRequests();
+  }
+
+  getHelpRequests(){
+    this.helpRequestService.getAllRequests().subscribe(data => {this.helpRequests = data});
+    console.log(this.helpRequests);
   }
 
 }
