@@ -17,6 +17,8 @@ export class LoginService {
   recipient: Recipient;
   volunteerLoggedIn: boolean = false;
   recipientLoggedIn: boolean = false;
+  isVolunteerEmailAvailable: boolean;
+  isRecipientEmailAvailable: boolean;
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type' : 'application/json'})
@@ -25,9 +27,10 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   checkVolunteerEmailAvailability(email: string): Observable<boolean> {
+    console.log("inside service check email")
     //let reqData: Object = {"email": email};
-    return this.http.post<boolean>(this.baseUrl+"/volunteers/check-email", email, this.httpOptions)
-      .pipe(tap(data => console.log(data)));
+    return this.http.post<boolean>(this.baseUrl+"/volunteers/check-email", email, this.httpOptions);
+      //.pipe(tap(data => this.isVolunteerEmailAvailable = data));
   }
 
   checkRecipientEmailAvailability(email: string): Observable<boolean> {
@@ -36,10 +39,17 @@ export class LoginService {
       //.pipe(tap(data => console.log(data)));
   }
 
+  createVolunteer(volunteerToCreate:Volunteer): Observable<Volunteer> {
+    return this.http.post<Volunteer>(this.baseUrl+"/volunteers/create", volunteerToCreate, this.httpOptions)
+      .pipe(tap(data => {console.log("volunteer created");}), 
+      catchError(this.handleError<Volunteer>('create volunteer', null))
+    )
+  }
+
   verifyVolunteer(email:string, password:string) : Observable<Volunteer>{
     let reqData: Object = {"email": email, "password": password};
     return this.http.post<Volunteer>(this.baseUrl+"/volunteers/verify", reqData, this.httpOptions)
-      .pipe(tap(data => {console.log(data);}),
+      .pipe(tap(data => {this.volunteer = data; this.volunteerLoggedIn = true;}),
       catchError(this.handleError<Volunteer>('verification', null))
     )
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { LoginService } from '../services/login.service';
 
 @Component({
@@ -15,28 +15,22 @@ export class VolunteerLoginComponent implements OnInit {
   password: string;
   invalidLogin: boolean = false;
   
-  constructor(private router: Router, private loginService: LoginService) {
-    this.volLoginForm = this.createFormGroup();
+  constructor(private router: Router, private loginService: LoginService, private fb: FormBuilder) {
    }
 
-  ngOnInit() { }
-
-    createFormGroup() { 
-      return new FormGroup({
-          volEmail: new FormControl('', [Validators.required]),
-          volPassword: new FormControl('', [Validators.required])
+  ngOnInit() { 
+    this.volLoginForm = this.fb.group({
+      volEmail: [''],
+      volPassword: ['']
     });
-    }
+  }
 
-    get volEmail(){
-      return this.volLoginForm.get('volEmail');
-    }
+  get form() { return this.volLoginForm.controls; }
 
-    get volPassword(){
-      return this.volLoginForm.get('volEmail');
-    }
-
-  onSubmit()  {
+  onSubmit() {
+    this.loginService.verifyVolunteer(this.volLoginForm.controls.volEmail.value, this.volLoginForm.controls.volPassword.value)
+      .subscribe.
+    //if(this.volLoginForm.controls.volEmail.touched)
     this.email = this.volLoginForm.controls.volEmail.value;
     this.password = this.volLoginForm.controls.volPassword.value;
      console.log(this.volLoginForm);

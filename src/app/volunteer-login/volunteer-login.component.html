@@ -4,10 +4,9 @@
     <div class="container">
         <form [formGroup]="volLoginForm" (ngSubmit)="onSubmit()">
             <div class="form-group"> 
-                <!-- <div class="row align-items-center"> -->
+                
                 <label for="loginInputEmail1">Email address:</label>
                 <input type="email" formControlName = "volEmail" class="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                 
                 <label for="loginInputPassword">Password:</label>
                 <input type="password" formControlName = "volPassword" class="form-control" id="inputPassword1" placeholder="Password">
@@ -24,7 +23,7 @@
                     Don't have a Volunteer account?
                     <a [routerLink]="['/new-volunteer']"><u>Register as a Volunteer</u></a>
                 </div>
-                <!-- </div> -->
+               
             </div>
         </form>
     </div>
