@@ -40,6 +40,14 @@
                         Requests  
                         </a>
                     </li>
+
+                    <div *ngIf="isLoggedIn">
+                        <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
+                            <a class="nav-link" a [routerLink]="['/volunteer-login']" routerLinkActive="router-link-active" style="color:white" (click)="logout()"  role="button">
+                            Logout  
+                            </a>
+                        </li>
+                    </div>
                 </ul>
             </div>
         </nav>

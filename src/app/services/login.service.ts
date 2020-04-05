@@ -15,8 +15,8 @@ export class LoginService {
   baseUrl = environment.baseUrl;
   volunteer: Volunteer;
   recipient: Recipient;
-  volunteerIsLoggedIn: boolean = false;
-  recipientIsLoggedIn: boolean = false;
+  isLoggedIn: boolean = false;
+  
   isVolunteerEmailAvailable: boolean;
   isRecipientEmailAvailable: boolean;
 
@@ -24,12 +24,13 @@ export class LoginService {
     headers: new HttpHeaders({'Content-Type' : 'application/json'})
   }
 
+
   constructor(private http: HttpClient) { }
 
   checkVolunteerEmailAvailability(email: string): Observable<boolean> {
     console.log("inside service check email")
-    //let reqData: Object = {"email": email};
-    return this.http.post<boolean>(this.baseUrl+"/volunteers/check-email", email, this.httpOptions);
+    let reqData: Object = {"email": email};
+    return this.http.post<boolean>(this.baseUrl+"/volunteers/check-email", reqData, this.httpOptions);
       //.pipe(tap(data => this.isVolunteerEmailAvailable = data));
   }
 
@@ -49,7 +50,7 @@ export class LoginService {
   verifyVolunteer(email:string, password:string) : Observable<Volunteer>{
     let reqData: Object = {"email": email, "password": password};
     return this.http.post<Volunteer>(this.baseUrl+"/volunteers/verify", reqData, this.httpOptions)
-      .pipe(tap(data => {this.volunteer = data; this.volunteerIsLoggedIn = true;}),
+      .pipe(tap(data => {this.volunteer = data; this.isLoggedIn = true;}),
       catchError(this.handleError<Volunteer>('verification', null))
     )
   }

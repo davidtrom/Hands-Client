@@ -13,13 +13,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let request of Requests;" ng*For="let recipient of Recipients;">
+            <tr *ngFor="let request of Requests;" >
                 <td>{{ request.datePosted | date: 'shortDate'}}</td>
                 <td>{{ request.type }}</td>
-                <td>{{ recipient.location }}</td>
+                <td>Placeholder</td>
+                <!-- <td>{{ recipient.location }}</td> -->
                 <td>{{ request.description }}</td>
-                <td>{{ workOrder.workOrderStatus}}</td>
-                <td>{{ workOrder.dateCompleted}}  {{workOrder.fileName}}</td>
+                <td>{{ request.workOrderStatus}}</td>
                 <td>
                     <div>
                       <button type="button" id=button class="table-btn btn-primary" (click)="changeStatus(request.id)">
@@ -32,3 +32,4 @@
     </div>
 </div>
   
+ng*For="let recipient of Recipients;"

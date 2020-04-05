@@ -29,6 +29,7 @@ export class VolunteerLoginComponent implements OnInit {
   get form() { return this.volLoginForm.controls; }
 
   onSubmit() {
+    console.log("Inside submit")
     this.loginService.verifyVolunteer(this.volLoginForm.controls.volEmail.value, this.volLoginForm.controls.volPassword.value)
       .subscribe(data => {
         if(data == null){
@@ -38,16 +39,10 @@ export class VolunteerLoginComponent implements OnInit {
         else {
           console.log("Login Successful");
           this.volunteer = this.loginService.volunteer;
-          this.volunteerIsLoggedIn = this.loginService.volunteerIsLoggedIn;
+          this.volunteerIsLoggedIn = this.loginService.isLoggedIn;
           this.router.navigate(['/display-requests']);
         }
       })
-    //if(this.volLoginForm.controls.volEmail.touched)
-    // this.email = this.volLoginForm.controls.volEmail.value;
-    // this.password = this.volLoginForm.controls.volPassword.value;
-    //  console.log(this.volLoginForm);
-    //  console.log(this.volPassword);
-    
   }
 
 }

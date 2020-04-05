@@ -25,4 +25,8 @@ export class DisplayRequestsComponent implements OnInit {
     console.log(this.helpRequests);
   }
 
+  changeStatus(id:number){
+    
+  }
+
 }
