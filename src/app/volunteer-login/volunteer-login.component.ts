@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { LoginService } from '../services/login.service';
+import { Volunteer } from '../models/Volunteer';
 
 @Component({
   selector: 'app-volunteer-login',
@@ -11,9 +12,9 @@ import { LoginService } from '../services/login.service';
 export class VolunteerLoginComponent implements OnInit {
 
   volLoginForm: FormGroup;
-  email: string;
-  password: string;
   invalidLogin: boolean = false;
+  volunteer: Volunteer;
+  volunteerIsLoggedIn: boolean;
   
   constructor(private router: Router, private loginService: LoginService, private fb: FormBuilder) {
    }
@@ -29,13 +30,24 @@ export class VolunteerLoginComponent implements OnInit {
 
   onSubmit() {
     this.loginService.verifyVolunteer(this.volLoginForm.controls.volEmail.value, this.volLoginForm.controls.volPassword.value)
-      .subscribe.
+      .subscribe(data => {
+        if(data == null){
+          this.invalidLogin = true;
+          this.volLoginForm.reset();
+        }
+        else {
+          console.log("Login Successful");
+          this.volunteer = this.loginService.volunteer;
+          this.volunteerIsLoggedIn = this.loginService.volunteerIsLoggedIn;
+          this.router.navigate(['/display-requests']);
+        }
+      })
     //if(this.volLoginForm.controls.volEmail.touched)
-    this.email = this.volLoginForm.controls.volEmail.value;
-    this.password = this.volLoginForm.controls.volPassword.value;
-     console.log(this.volLoginForm);
+    // this.email = this.volLoginForm.controls.volEmail.value;
+    // this.password = this.volLoginForm.controls.volPassword.value;
+    //  console.log(this.volLoginForm);
     //  console.log(this.volPassword);
-    this.router.navigate(['/display-requests']);
+    
   }
 
 }

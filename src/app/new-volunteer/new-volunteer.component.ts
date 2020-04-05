@@ -13,6 +13,7 @@ import { Volunteer } from '../models/Volunteer';
 export class NewVolunteerComponent implements OnInit {
 
   volunteerForm: FormGroup;
+  submitted : boolean = false;
   emailAlreadyTaken: boolean = false;
   
   constructor(private fb: FormBuilder, private router: Router, private loginService: LoginService) { }

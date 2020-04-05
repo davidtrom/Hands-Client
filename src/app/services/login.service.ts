@@ -15,8 +15,8 @@ export class LoginService {
   baseUrl = environment.baseUrl;
   volunteer: Volunteer;
   recipient: Recipient;
-  volunteerLoggedIn: boolean = false;
-  recipientLoggedIn: boolean = false;
+  volunteerIsLoggedIn: boolean = false;
+  recipientIsLoggedIn: boolean = false;
   isVolunteerEmailAvailable: boolean;
   isRecipientEmailAvailable: boolean;
 
@@ -49,7 +49,7 @@ export class LoginService {
   verifyVolunteer(email:string, password:string) : Observable<Volunteer>{
     let reqData: Object = {"email": email, "password": password};
     return this.http.post<Volunteer>(this.baseUrl+"/volunteers/verify", reqData, this.httpOptions)
-      .pipe(tap(data => {this.volunteer = data; this.volunteerLoggedIn = true;}),
+      .pipe(tap(data => {this.volunteer = data; this.volunteerIsLoggedIn = true;}),
       catchError(this.handleError<Volunteer>('verification', null))
     )
   }

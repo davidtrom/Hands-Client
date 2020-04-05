@@ -1,1 +1,34 @@
 <p>display-requests works!</p>
+
+<div class="flex-container">
+    <div class="container">
+        <table class="table table-dark table-hover table-striped">
+        <thead class="thead-light">
+            <tr>
+            <th>Request Date</th>
+            <th>Request Type</th>
+            <th>Request Location</th>
+            <th>Request Description</th>
+            <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let request of Requests;" ng*For="let recipient of Recipients;">
+                <td>{{ request.datePosted | date: 'shortDate'}}</td>
+                <td>{{ request.type }}</td>
+                <td>{{ recipient.location }}</td>
+                <td>{{ request.description }}</td>
+                <td>{{ workOrder.workOrderStatus}}</td>
+                <td>{{ workOrder.dateCompleted}}  {{workOrder.fileName}}</td>
+                <td>
+                    <div>
+                      <button type="button" id=button class="table-btn btn-primary" (click)="help(request.id)">
+                      Help!
+                      </button>
+                    </div>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</div>
+  
