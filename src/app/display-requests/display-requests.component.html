@@ -8,7 +8,7 @@
             <th>Request Type</th>
             <th>Request Location</th>
             <th>Request Details</th>
-            <th>Status</th>
+            <th>Request Status</th>
             <th>Click to Help</th>
             </tr>
         </thead>
@@ -17,7 +17,7 @@
                 <td>{{ helpRequest.datePosted | date: 'shortDate'}}</td>
                 <td>{{ helpRequest.typeOfRequest }}</td>
                 <td>Placeholder</td>
-                <td>{{ helpRequest.requestDescription }}</td>
+                <td id="description">{{ helpRequest.requestDescription }}</td>
                 <td>{{ helpRequest.requestStatus}}</td>
                 <td>
                     <button type="button" id="helpbtn" class="table-btn btn-success btn-sm" (click)="changeStatus(helpRequest.id)">
