@@ -17,6 +17,12 @@ export class HeaderComponent implements OnInit {
     console.log(this.isLoggedIn);
   }
 
+  checkLogin(){
+    if(!this.loginService.volunteer == null){
+      
+    }
+  }
+
   logout(){
     this.loginService.isLoggedIn=false;
   }

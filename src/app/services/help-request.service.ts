@@ -19,8 +19,16 @@ export class HelpRequestService {
   constructor(private http: HttpClient) { }
 
   getAllRequests() : Observable <HelpRequest[]> {
+    console.log("inside request service: ", this.baseUrl+"/requests")
     return this.http.get<HelpRequest[]>(this.baseUrl+"/requests", this.httpOptions)
-      .pipe(tap( () => catchError(this.handleError<HelpRequest[]>('fetching all requests', null))));
+    .pipe(tap(data => console.log('fetch requests', data)),
+      catchError(this.handleError<HelpRequest[]>('get requests', null)));
+  }
+
+  changeRequestStatus(id): Observable<HelpRequest> {
+    return this.http.post<HelpRequest>(this.baseUrl+"/requests/"+id+"/update-status", this.httpOptions)
+    .pipe(tap(data => console.log('update status', data)),
+      catchError(this.handleError<HelpRequest>('change status', null)));
   }
 
 /**

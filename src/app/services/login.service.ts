@@ -27,6 +27,10 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
+  // set checkLogin(isLoggedIn){
+  //   this.isLoggedIn = isLoggedIn;
+  // }
+
   checkVolunteerEmailAvailability(email: string): Observable<boolean> {
     console.log("inside service check email")
     let reqData: Object = {"email": email};
@@ -50,9 +54,14 @@ export class LoginService {
   verifyVolunteer(email:string, password:string) : Observable<Volunteer>{
     let reqData: Object = {"email": email, "password": password};
     return this.http.post<Volunteer>(this.baseUrl+"/volunteers/verify", reqData, this.httpOptions)
-      .pipe(tap(data => {this.volunteer = data; this.isLoggedIn = true;}),
+      .pipe(tap(data => {this.volunteer = data;
+        if(!this.volunteer==null){
+          this.isLoggedIn=true;
+        }
+      }),
       catchError(this.handleError<Volunteer>('verification', null))
     )
+    
   }
 
   verifyRecipient(email:string, password:string) : Observable<Volunteer>{

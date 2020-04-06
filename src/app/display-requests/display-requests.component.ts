@@ -10,7 +10,7 @@ import { HelpRequestService } from '../services/help-request.service';
 export class DisplayRequestsComponent implements OnInit {
 
   helpRequests: any[];
-  requestToClose: HelpRequest;
+  requestToUpdateStatus: HelpRequest;
 
   constructor(private helpRequestService: HelpRequestService ) {
     
@@ -22,11 +22,12 @@ export class DisplayRequestsComponent implements OnInit {
 
   getHelpRequests(){
     this.helpRequestService.getAllRequests().subscribe(data => {this.helpRequests = data});
-    console.log(this.helpRequests);
+    //console.log(this.helpRequests);
   }
 
   changeStatus(id:number){
-    
+    this.helpRequestService.changeRequestStatus(id).subscribe(data => {this.requestToUpdateStatus = data});
+    location.reload();
   }
 
 }

@@ -1,35 +1,35 @@
-<p>display-requests works!</p>
 
 <div class="flex-container">
-    <div class="container">
+    <div class="container-fluid">
         <table class="table table-dark table-hover table-striped">
         <thead class="thead-light">
             <tr>
             <th>Request Date</th>
             <th>Request Type</th>
             <th>Request Location</th>
-            <th>Request Description</th>
+            <th>Request Details</th>
             <th>Status</th>
+            <th>Click to Help</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let request of Requests;" >
-                <td>{{ request.datePosted | date: 'shortDate'}}</td>
-                <td>{{ request.type }}</td>
+            <tr *ngFor="let helpRequest of helpRequests;" >
+                <td>{{ helpRequest.datePosted | date: 'shortDate'}}</td>
+                <td>{{ helpRequest.typeOfRequest }}</td>
                 <td>Placeholder</td>
-                <!-- <td>{{ recipient.location }}</td> -->
-                <td>{{ request.description }}</td>
-                <td>{{ request.workOrderStatus}}</td>
+                <td>{{ helpRequest.requestDescription }}</td>
+                <td>{{ helpRequest.requestStatus}}</td>
                 <td>
-                    <div>
-                      <button type="button" id=button class="table-btn btn-primary" (click)="changeStatus(request.id)">
-                      Help!
-                      </button>
-                    </div>
+                    <button type="button" id="helpbtn" class="table-btn btn-success btn-sm" (click)="changeStatus(helpRequest.id)">
+                    Help
+                    </button>
+                    <button type="button" id="viewbtn" class="table-btn btn-primary btn-sm" (click)="viewMore(helpRequest.id)">
+                    More
+                    </button>
+                </td>
+                    
             </tr>
         </tbody>
         </table>
     </div>
 </div>
-  
-ng*For="let recipient of Recipients;"
