@@ -24,9 +24,10 @@
                     <button type="button" id="helpbtn" class="table-btn btn-success btn-sm" (click)="changeStatus(helpRequest.id)">
                     Help
                     </button>
-                    <button type="button" id="viewbtn" class="table-btn btn-primary btn-sm" (click)="viewMore(helpRequest.id)">
-                    More
-                    </button>
+                    <a [routerLink]="['/request-detail', helpRequest.id]" class="table-btn  btn-sm ">View Details</a>
+                    <!-- <a class="btn btn-sm btn-link"
+                        routerLink="/request-detail/{{helpRequest.id}}"
+                        [routerLinkActive]="router.url.match(incident.id)">View</a> -->
                 </td>
                     
             </tr>

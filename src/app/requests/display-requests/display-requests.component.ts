@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HelpRequest } from '../models/helpRequest';
-import { HelpRequestService } from '../services/help-request.service';
+import { HelpRequest } from '../../models/helpRequest';
+import { HelpRequestService } from '../../services/help-request.service';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-display-requests',
@@ -18,7 +20,10 @@ export class DisplayRequestsComponent implements OnInit {
 
   ngOnInit() {
     this.getHelpRequests();
+    //this.incidents$ = this.incidentService.getIncidents();
   }
+
+  //helpRequests?: Observable<HelpRequest[]>;
 
   getHelpRequests(){
     this.helpRequestService.getAllRequests().subscribe(data => {this.helpRequests = data});

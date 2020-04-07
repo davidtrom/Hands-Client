@@ -25,10 +25,16 @@ export class HelpRequestService {
       catchError(this.handleError<HelpRequest[]>('get requests', null)));
   }
 
-  changeRequestStatus(id): Observable<HelpRequest> {
+  changeRequestStatus(id: number): Observable<HelpRequest> {
     return this.http.post<HelpRequest>(this.baseUrl+"/requests/"+id+"/update-status", this.httpOptions)
     .pipe(tap(data => console.log('update status', data)),
       catchError(this.handleError<HelpRequest>('change status', null)));
+  }
+
+  getRequest(id: number) {
+    return this.http.get<HelpRequest>(this.baseUrl+`/requests/${id}`, this.httpOptions)
+    .pipe(tap(data => console.log('get detail', data)),
+      catchError(this.handleError<HelpRequest>('getting details', null)));
   }
 
 /**

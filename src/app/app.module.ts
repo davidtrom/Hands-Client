@@ -4,17 +4,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AboutComponent } from './about/about.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+import { AboutComponent } from './layout/about/about.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
 import { NewVolunteerComponent } from './new-volunteer/new-volunteer.component';
-import { NewRecipientComponent } from './new-recipient/new-recipient.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { NewRecipientComponent } from './recipient/new-recipient/new-recipient.component';
+import { DashboardComponent } from './layout/dashboard/dashboard.component';
 import { VolunteerLoginComponent } from './volunteer-login/volunteer-login.component';
-import { RecipientLoginComponent } from './recipient-login/recipient-login.component';
+import { RecipientLoginComponent } from './recipient/recipient-login/recipient-login.component';
 import { HttpClientModule } from '@angular/common/http';
-import { DisplayRequestsComponent } from './display-requests/display-requests.component';
-import { RequestDetailComponent } from './request-detail/request-detail.component';
+import { DisplayRequestsComponent } from './requests/display-requests/display-requests.component';
+import { RequestDetailComponent } from './requests/request-detail/request-detail.component';
 
 
 @NgModule({

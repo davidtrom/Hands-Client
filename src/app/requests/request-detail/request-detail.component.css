@@ -1,0 +1,10 @@
+.flex-container{
+    align-content: center;
+}
+
+.card-header{
+    text-align: left;
+    font-size: 13pt;
+    font-weight: bold;
+}
+
