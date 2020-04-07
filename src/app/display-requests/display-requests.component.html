@@ -16,8 +16,9 @@
             <tr *ngFor="let helpRequest of helpRequests;" >
                 <td>{{ helpRequest.datePosted | date: 'shortDate'}}</td>
                 <td>{{ helpRequest.typeOfRequest }}</td>
-                <td>Placeholder</td>
-                <td id="description">{{ helpRequest.requestDescription }}</td>
+                <td>PlaceHolder</td>
+                <!-- <td>{{ helpRequest.recipient.location}}</td> -->
+                <td>{{ helpRequest.requestDescription }}</td>
                 <td>{{ helpRequest.requestStatus}}</td>
                 <td>
                     <button type="button" id="helpbtn" class="table-btn btn-success btn-sm" (click)="changeStatus(helpRequest.id)">

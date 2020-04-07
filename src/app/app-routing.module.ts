@@ -7,6 +7,7 @@ import { NewVolunteerComponent } from './new-volunteer/new-volunteer.component';
 import { RecipientLoginComponent } from './recipient-login/recipient-login.component';
 import { NewRecipientComponent } from './new-recipient/new-recipient.component';
 import { DisplayRequestsComponent } from './display-requests/display-requests.component';
+import { RequestDetailComponent } from './request-detail/request-detail.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'client-login', component: RecipientLoginComponent},
   { path: 'new-client', component: NewRecipientComponent},
   { path: 'display-requests', component: DisplayRequestsComponent},
+  { path: 'request-detail', component: RequestDetailComponent},
   
   // if no route, redirect to home
   { path: '**', redirectTo: '' }

@@ -14,6 +14,7 @@ import { VolunteerLoginComponent } from './volunteer-login/volunteer-login.compo
 import { RecipientLoginComponent } from './recipient-login/recipient-login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DisplayRequestsComponent } from './display-requests/display-requests.component';
+import { RequestDetailComponent } from './request-detail/request-detail.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { DisplayRequestsComponent } from './display-requests/display-requests.co
     DashboardComponent,
     VolunteerLoginComponent,
     RecipientLoginComponent,
-    DisplayRequestsComponent
+    DisplayRequestsComponent,
+    RequestDetailComponent
     
   ],
   imports: [

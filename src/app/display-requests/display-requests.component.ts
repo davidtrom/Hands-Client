@@ -30,4 +30,8 @@ export class DisplayRequestsComponent implements OnInit {
     location.reload();
   }
 
+  viewMore(id:number){
+
+  }
+
 }
