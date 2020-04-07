@@ -10,7 +10,7 @@ import { HelpRequestService } from '../../services/help-request.service';
   styleUrls: ['./request-detail.component.css']
 })
 export class RequestDetailComponent implements OnInit {
-  request$: HelpRequest;
+  request$: any;
 
   constructor(private route: ActivatedRoute, private router: Router,  private helpRequestService: HelpRequestService){
 
@@ -22,7 +22,7 @@ export class RequestDetailComponent implements OnInit {
     let id = +this.route.snapshot.paramMap.get('id');
     console.log(id);
 
-    this.helpRequestService.getRequest(id).subscribe(data => {this.request$ = data});
+   this.helpRequestService.getRequest(id).subscribe(data => {this.request$ = data});
     console.log(this.request$);
   }
 
