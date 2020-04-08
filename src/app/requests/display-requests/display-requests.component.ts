@@ -27,16 +27,12 @@ export class DisplayRequestsComponent implements OnInit {
 
   getHelpRequests(){
     this.helpRequestService.getAllRequests().subscribe(data => {this.helpRequests = data});
-    //console.log(this.helpRequests);
+  
   }
 
   changeStatus(id:number){
     this.helpRequestService.changeRequestStatus(id).subscribe(data => {this.requestToUpdateStatus = data});
     location.reload();
-  }
-
-  viewMore(id:number){
-
   }
 
 }
