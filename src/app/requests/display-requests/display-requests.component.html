@@ -16,15 +16,14 @@
             <tr *ngFor="let helpRequest of helpRequests;" >
                 <td>{{ helpRequest.datePosted | date: 'shortDate'}}</td>
                 <td>{{ helpRequest.typeOfRequest }}</td>
-                <!-- <td>PlaceHolder</td> -->
-                <td>{{ helpRequest.recipient}}</td>
+                <td>{{ helpRequest.recipient.location}}</td>
                 <td>{{ helpRequest.requestDescription }}</td>
                 <td>{{ helpRequest.requestStatus}}</td>
                 <td>
                     <button type="button" id="helpbtn" class="table-btn btn-success btn-sm" (click)="changeStatus(helpRequest.id)">
                     Help
                     </button>
-                    <a [routerLink]="['/request-detail', helpRequest.id]" type="button" class="table-btn btn-warning btn-sm ">View Details</a>
+                    <a [routerLink]="['/request-detail', helpRequest.id]" type="button" class="table-btn btn-warning btn-sm ">More</a>
                     <!-- <a class="btn btn-sm btn-link"
                         routerLink="/request-detail/{{helpRequest.id}}"
                         [routerLinkActive]="router.url.match(incident.id)">View</a> -->
