@@ -27,7 +27,7 @@ export class RequestDetailComponent implements OnInit {
 
    this.helpRequestService.getRequest(id).subscribe(data => {this.request$ = data});
   
-   this.recipientService.getRecipient(this.request$.recipient).subscribe(data => {this.recipient = data});
+   //this.recipientService.getRecipient(this.request$.recipient).subscribe(data => {this.recipient = data});
 
   }
 
