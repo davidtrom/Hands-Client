@@ -1,1 +1,30 @@
 <p>recipient-login works!</p>
+
+<div class="flex-container">
+    <div class="container">
+        <form [formGroup]="recipLoginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group"> 
+                
+                <label for="loginInputEmail1">Email address:</label>
+                <input type="email" formControlName = "recipEmail" class="form-control" id="inputEmail1" placeholder="Enter email">
+                
+                <label for="loginInputPassword">Password:</label>
+                <input type="password" formControlName = "recipPassword" class="form-control" id="inputPassword1" placeholder="Password">
+                
+                <div *ngIf="invalidLogin" class="alert alert-danger"> 
+                    *The username or password you have entered is invalid!
+                </div> 
+        
+                <div id="btnSubmit">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>   
+            
+                <div id="noAcct">
+                    Don't have a Requestor account?
+                    <a [routerLink]="['/new-client']"><u>Register as a Volunteer</u></a>
+                </div>
+               
+            </div>
+        </form>
+    </div>
+</div>

@@ -38,8 +38,8 @@ export class VolunteerLoginComponent implements OnInit {
         }
         else {
           console.log("Login Successful");
-          this.volunteer = this.loginService.volunteer;
-          this.volunteerIsLoggedIn = this.loginService.isLoggedIn;
+          this.loginService.updateCurrentVolunteer(data);
+          this.loginService.updateLoggedInStatus(true);
           this.router.navigate(['/display-requests']);
         }
       })

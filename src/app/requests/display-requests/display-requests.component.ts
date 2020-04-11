@@ -30,9 +30,4 @@ export class DisplayRequestsComponent implements OnInit {
   
   }
 
-  changeStatus(id:number){
-    this.helpRequestService.changeRequestStatus(id).subscribe(data => {this.requestToUpdateStatus = data});
-    location.reload();
-  }
-
 }

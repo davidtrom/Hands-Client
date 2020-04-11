@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Volunteer } from '../models/Volunteer';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { Recipient } from '../models/Recipient';
 
@@ -15,7 +15,10 @@ export class LoginService {
   baseUrl = environment.baseUrl;
   volunteer: Volunteer;
   recipient: Recipient;
-  isLoggedIn: boolean = false;
+  isLoggedIn$: BehaviorSubject<any> = new BehaviorSubject([]);
+  currentVolunteer$: BehaviorSubject<any> = new BehaviorSubject([]);
+  currentRecipient$: BehaviorSubject<any> = new BehaviorSubject([]);
+
   
   isVolunteerEmailAvailable: boolean;
   isRecipientEmailAvailable: boolean;
@@ -27,9 +30,20 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  // set checkLogin(isLoggedIn){
-  //   this.isLoggedIn = isLoggedIn;
-  // }
+  updateCurrentVolunteer(volunteer : Volunteer) {
+    console.log("user update in service", volunteer);
+    this.currentVolunteer$.next(volunteer);
+  }
+
+  updateCurrentRecipient(recipient : Recipient) {
+    console.log("user update in service", recipient);
+    this.currentRecipient$.next(recipient);
+  }
+
+  updateLoggedInStatus(isLoggedIn : Boolean) {
+    console.log("user update in service", isLoggedIn);
+    this.isLoggedIn$.next(isLoggedIn);
+  }
 
   checkVolunteerEmailAvailability(email: string): Observable<boolean> {
     console.log("inside service check email")
@@ -56,7 +70,7 @@ export class LoginService {
     return this.http.post<Volunteer>(this.baseUrl+"/volunteers/verify", reqData, this.httpOptions)
       .pipe(tap(data => {this.volunteer = data;
         if(!this.volunteer==null){
-          this.isLoggedIn=true;
+          this.isLoggedIn$.next(true);
         }
       }),
       catchError(this.handleError<Volunteer>('verification', null))
@@ -71,6 +85,8 @@ export class LoginService {
       catchError(this.handleError<Volunteer>('verification', null))
     )
   }
+
+
 
 
 

@@ -14,6 +14,7 @@ import { Recipient } from 'src/app/models/Recipient';
 export class RequestDetailComponent implements OnInit {
   request$: any;
   recipient: Recipient;
+  emailSent: boolean;
 
   constructor(private route: ActivatedRoute, private router: Router,  private helpRequestService: HelpRequestService, private recipientService: RecipientService){
 
@@ -23,12 +24,13 @@ export class RequestDetailComponent implements OnInit {
 
   ngOnInit() {
     let id = +this.route.snapshot.paramMap.get('id');
-    console.log(id);
 
-   this.helpRequestService.getRequest(id).subscribe(data => {this.request$ = data});
-  
-   //this.recipientService.getRecipient(this.request$.recipient).subscribe(data => {this.recipient = data});
+    this.helpRequestService.getRequest(id).subscribe(data => {this.request$ = data});
+  }
 
+  changeStatus(id:number){
+    this.helpRequestService.changeRequestStatus(id).subscribe(data => {console.log("update request status; emailing requestor...")});
+    location.reload();
   }
 
 }

@@ -9,7 +9,7 @@
             <th>Request Location</th>
             <th>Request Details</th>
             <th>Request Status</th>
-            <th>Click to Help</th>
+            <th>Click to View Details</th>
             </tr>
         </thead>
         <tbody>
@@ -20,13 +20,10 @@
                 <td>{{ helpRequest.requestDescription }}</td>
                 <td>{{ helpRequest.requestStatus}}</td>
                 <td>
-                    <button type="button" id="helpbtn" class="table-btn btn-success btn-sm" (click)="changeStatus(helpRequest.id)">
+                    <!-- <button type="button" id="helpbtn" class="table-btn btn-success btn-sm" (click)="changeStatus(helpRequest.id)">
                     Help
-                    </button>
-                    <a [routerLink]="['/request-detail', helpRequest.id]" type="button" class="table-btn btn-warning btn-sm ">More</a>
-                    <!-- <a class="btn btn-sm btn-link"
-                        routerLink="/request-detail/{{helpRequest.id}}"
-                        [routerLinkActive]="router.url.match(incident.id)">View</a> -->
+                    </button> -->
+                    <a [routerLink]="['/request-detail', helpRequest.id]" type="button" class="table-btn btn-warning btn-sm ">View Details</a>
                 </td>
                     
             </tr>
