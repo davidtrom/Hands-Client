@@ -14,10 +14,9 @@ export class LoginService {
 
   baseUrl = environment.baseUrl;
   volunteer: Volunteer;
-  recipient: Recipient;
   isLoggedIn$: BehaviorSubject<any> = new BehaviorSubject([]);
   currentVolunteer$: BehaviorSubject<any> = new BehaviorSubject([]);
-  currentRecipient$: BehaviorSubject<any> = new BehaviorSubject([]);
+  
 
   
   isVolunteerEmailAvailable: boolean;
@@ -35,10 +34,7 @@ export class LoginService {
     this.currentVolunteer$.next(volunteer);
   }
 
-  updateCurrentRecipient(recipient : Recipient) {
-    console.log("user update in service", recipient);
-    this.currentRecipient$.next(recipient);
-  }
+  
 
   updateLoggedInStatus(isLoggedIn : Boolean) {
     console.log("user update in service", isLoggedIn);
@@ -75,20 +71,7 @@ export class LoginService {
       }),
       catchError(this.handleError<Volunteer>('verification', null))
     )
-    
   }
-
-  verifyRecipient(email:string, password:string) : Observable<Recipient>{
-    let reqData: Object = {"email": email, "password": password};
-    return this.http.post<Recipient>(this.baseUrl+"/recipients/verify", reqData, this.httpOptions)
-      .pipe(tap(data => {console.log(data);}),
-      catchError(this.handleError<Recipient>('verification', null))
-    )
-  }
-
-
-
-
 
   /**
    * Handle Http operation that failed.

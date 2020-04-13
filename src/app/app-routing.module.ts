@@ -8,6 +8,9 @@ import { RecipientLoginComponent } from './recipient/recipient-login/recipient-l
 import { NewRecipientComponent } from './recipient/new-recipient/new-recipient.component';
 import { DisplayRequestsComponent } from './requests/display-requests/display-requests.component';
 import { RequestDetailComponent } from './requests/request-detail/request-detail.component';
+import { EditVolunteerComponent } from './volunteers/edit-volunteer/edit-volunteer.component';
+import { EditRecipientComponent } from './recipient/edit-recipient/edit-recipient.component';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
 
 
 const routes: Routes = [
@@ -15,10 +18,13 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent},
   { path: 'volunteer-login', component: VolunteerLoginComponent},
   { path: 'new-volunteer', component: NewVolunteerComponent},
-  { path: 'client-login', component: RecipientLoginComponent},
+  { path: 'requestor-login', component: RecipientLoginComponent},
   { path: 'new-client', component: NewRecipientComponent},
   { path: 'display-requests', component: DisplayRequestsComponent},
   { path: 'request-detail/:id', component: RequestDetailComponent},
+  { path: 'edit-volunteer/:id', component: EditVolunteerComponent},
+  { path: 'edit-recipient/:id', component: EditRecipientComponent},
+  { path: 'view-profile', component: ViewProfileComponent},
 
   
   // if no route, redirect to home

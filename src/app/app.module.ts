@@ -15,10 +15,11 @@ import { RecipientLoginComponent } from './recipient/recipient-login/recipient-l
 import { HttpClientModule } from '@angular/common/http';
 import { DisplayRequestsComponent } from './requests/display-requests/display-requests.component';
 import { RequestDetailComponent } from './requests/request-detail/request-detail.component';
-import { EditVolunteerComponent } from './edit-volunteer/edit-volunteer.component';
-import { EditRecipientComponent } from './edit-recipient/edit-recipient.component';
-import { EditVolpwComponent } from './edit-volpw/edit-volpw.component';
-import { EditRecippwComponent } from './edit-recippw/edit-recippw.component';
+import { EditVolunteerComponent } from './volunteers/edit-volunteer/edit-volunteer.component';
+import { EditRecipientComponent } from './recipient/edit-recipient/edit-recipient.component';
+import { EditVolpwComponent } from './volunteers/edit-volpw/edit-volpw.component';
+import { EditRecippwComponent } from './recipient/edit-recippw/edit-recippw.component';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { EditRecippwComponent } from './edit-recippw/edit-recippw.component';
     EditVolunteerComponent,
     EditRecipientComponent,
     EditVolpwComponent,
-    EditRecippwComponent
+    EditRecippwComponent,
+    ViewProfileComponent
     
   ],
   imports: [

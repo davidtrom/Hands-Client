@@ -36,7 +36,7 @@
                     </li>
 
                     <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
-                        <a class="nav-link" a [routerLink]="['/client-login']" routerLinkActive="router-link-active" style="color:white"  role="button">
+                        <a class="nav-link" a [routerLink]="['/requestor-login']" routerLinkActive="router-link-active" style="color:white"  role="button">
                         Requests  
                         </a>
                     </li>
@@ -45,6 +45,14 @@
                         <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
                             <a class="nav-link" a [routerLink]="['/volunteer-login']" routerLinkActive="router-link-active" style="color:white" (click)="logout()"  role="button">
                             Logout  
+                            </a>
+                        </li>
+                    </div>
+
+                    <div *ngIf="isLoggedIn && (userIsVolunteer || userIsRecipient)">
+                        <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
+                            <a class="nav-link" a [routerLink]="['/view-details']" routerLinkActive="router-link-active" style="color:white" role="button">
+                            Profile  
                             </a>
                         </li>
                     </div>
