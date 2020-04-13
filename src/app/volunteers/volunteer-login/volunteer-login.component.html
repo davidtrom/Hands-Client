@@ -2,29 +2,30 @@
 
 <div class="flex-container">
     <div class="container">
-        <form [formGroup]="volLoginForm" (ngSubmit)="onSubmit()">
-            <div class="form-group"> 
-                
-                <label for="loginInputEmail1">Email address:</label>
-                <input type="email" formControlName = "volEmail" class="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                
-                <label for="loginInputPassword">Password:</label>
-                <input type="password" formControlName = "volPassword" class="form-control" id="inputPassword1" placeholder="Password">
-                
-                <div *ngIf="invalidLogin" class="alert alert-danger"> 
-                    *The username or password you have entered is invalid!
-                </div> 
-        
-                <div id="btnSubmit">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>   
+        <h2><u>Volunteer Login:</u></h2>
+            <form [formGroup]="volLoginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group"> 
+                    
+                    <label for="loginInputEmail1">Email address:</label>
+                    <input type="email" formControlName = "volEmail" class="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    
+                    <label for="loginInputPassword">Password:</label>
+                    <input type="password" formControlName = "volPassword" class="form-control" id="inputPassword1" placeholder="Password">
+                    
+                    <div *ngIf="invalidLogin" class="alert alert-danger"> 
+                        *The username or password you have entered is invalid!
+                    </div> 
             
-                <div id="noAcct">
-                    Don't have a Volunteer account?
-                    <a [routerLink]="['/new-volunteer']"><u>Register as a Volunteer</u></a>
+                    <div id="btnSubmit">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>   
+                
+                    <div id="noAcct">
+                        Don't have a Volunteer account?
+                        <a [routerLink]="['/new-volunteer']"><u>Register as a Volunteer</u></a>
+                    </div>
+                
                 </div>
-               
-            </div>
-        </form>
+            </form>
     </div>
 </div>

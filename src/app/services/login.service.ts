@@ -78,11 +78,11 @@ export class LoginService {
     
   }
 
-  verifyRecipient(email:string, password:string) : Observable<Volunteer>{
+  verifyRecipient(email:string, password:string) : Observable<Recipient>{
     let reqData: Object = {"email": email, "password": password};
-    return this.http.post<Volunteer>(this.baseUrl+"/volunteers/verify", reqData, this.httpOptions)
+    return this.http.post<Recipient>(this.baseUrl+"/recipients/verify", reqData, this.httpOptions)
       .pipe(tap(data => {console.log(data);}),
-      catchError(this.handleError<Volunteer>('verification', null))
+      catchError(this.handleError<Recipient>('verification', null))
     )
   }
 

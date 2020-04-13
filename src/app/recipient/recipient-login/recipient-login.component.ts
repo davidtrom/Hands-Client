@@ -37,7 +37,7 @@ export class RecipientLoginComponent implements OnInit {
         }
         else {
           console.log("Login Successful");
-          this.loginService.updateCurrentVolunteer(data);
+          this.loginService.updateCurrentRecipient(data);
           this.loginService.updateLoggedInStatus(true);
           this.router.navigate(['/display-requests']);
         }

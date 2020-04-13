@@ -2,16 +2,14 @@
     text-align: center;
     font-size: 16pt;
     padding-bottom: 2%;
+    padding-top: 4%;
+    font-weight: bold;
 }
 
 .row{
     text-align: center;
     font-size: 16pt;
-    padding-top: 3%;
-}
-
-#row2{
-    padding-bottom: 2%;
+    padding-top: 2%;
 }
 
 #about{
@@ -20,5 +18,18 @@
 
 .btn{
     background-color: rgb(228, 86, 86);
-    color: white;
+    color: white; 
+}
+
+.alreadyAVolunteer, .updateRequest{
+    padding-top: 9%;
+    font-weight: bold; 
+}
+
+#regBtn{
+    padding-top: 2%;
+}
+
+.newRequestor, .wantToVolunteer{
+    font-weight: bold;
 }

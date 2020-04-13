@@ -3,32 +3,36 @@
     <div class="row">
         <div class="col-md-6">
             <div class="wantToVolunteer">
-                Become a Volunteer
-                <br>
-                <a class="btn btn-lg" [routerLink]="['/new-volunteer']" role="button">Register as a Volunteer</a>
-                </div>
+                <u>Become a Volunteer</u>
+                <p id="regBtn">
+                    <a class="btn btn-lg" [routerLink]="['/new-volunteer']" role="button">Register as a Volunteer</a>
+                </p>    
+            </div>
             <div class="alreadyAVolunteer">
-                Prevoiusly Registered Volunteer?
-                <br>
-                <a class="btn btn-lg" [routerLink]="['/volunteer-login']" role="button">Volunteer Sign-in</a>
+                <u>Prevoiusly Registered Volunteer?</u>
+                <p id="regBtn">
+                    <a class="btn btn-lg" [routerLink]="['/volunteer-login']" role="button">Volunteer Sign-in</a>
+                </p>
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="newRequestor">
-                Register to make a Request for Help
-                <br>
-                <a class="btn btn-lg" [routerLink]="['/new-client']" role="button">Request Help</a>
+                <u>Register to make a Request for Help</u>
+                <p id="regBtn">
+                    <a class="btn btn-lg" [routerLink]="['/new-client']" role="button">Request Help</a>
+                </p>
             </div>
             <div class="updateRequest">
-                Create or update a Request for Help
-                <br>
-                <a class="btn btn-lg" [routerLink]="['/client-login']" role="button">Requester Sign-in</a>
+                <u>Create or update a Request for Help</u>
+                <p id="regBtn">
+                    <a class="btn btn-lg" [routerLink]="['/client-login']" role="button">Requester Sign-in</a>
+                </p>
             </div>
         </div>   
     </div>
 
     <div id="more-info">
-        For more information about our website and what it means to be a Volunteer or a Requestor click <a [routerLink]="['/about']" id="about"><u>HERE</u></a>.
+        *For more information about our website and what it means to be a Volunteer or a Requestor click <a [routerLink]="['/about']" id="about"><u>HERE</u></a>.
     </div>
 </div>

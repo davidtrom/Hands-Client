@@ -15,6 +15,10 @@ import { RecipientLoginComponent } from './recipient/recipient-login/recipient-l
 import { HttpClientModule } from '@angular/common/http';
 import { DisplayRequestsComponent } from './requests/display-requests/display-requests.component';
 import { RequestDetailComponent } from './requests/request-detail/request-detail.component';
+import { EditVolunteerComponent } from './edit-volunteer/edit-volunteer.component';
+import { EditRecipientComponent } from './edit-recipient/edit-recipient.component';
+import { EditVolpwComponent } from './edit-volpw/edit-volpw.component';
+import { EditRecippwComponent } from './edit-recippw/edit-recippw.component';
 
 
 @NgModule({
@@ -29,7 +33,11 @@ import { RequestDetailComponent } from './requests/request-detail/request-detail
     VolunteerLoginComponent,
     RecipientLoginComponent,
     DisplayRequestsComponent,
-    RequestDetailComponent
+    RequestDetailComponent,
+    EditVolunteerComponent,
+    EditRecipientComponent,
+    EditVolpwComponent,
+    EditRecippwComponent
     
   ],
   imports: [

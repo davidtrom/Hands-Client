@@ -49,10 +49,10 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="password">Password:</label>
-                            <input type="password" formControlName="password" class="form-control" id="password" [ngClass]="{ 'is-invalid': submitted && form.email.errors }" placeholder="Password">
-                            <div *ngIf="submitted && form.email.errors" class="invalid-feedback">
-                                <div *ngIf="form.email.errors.pattern">Password needs lowercase, uppercase, number, and symbol: 8 characters minimum</div>
-                                <div *ngIf="form.email.errors.required">Password is required</div>
+                            <input type="password" formControlName="password" class="form-control" id="password" [ngClass]="{ 'is-invalid': submitted && form.password.errors }" placeholder="Password">
+                            <div *ngIf="submitted && form.password.errors" class="invalid-feedback">
+                                <div *ngIf="form.password.errors.pattern">Password needs lowercase, uppercase, number, and symbol: 8 characters minimum</div>
+                                <div *ngIf="form.password.errors.required">Password is required</div>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
@@ -60,7 +60,17 @@
                             <input type="text" formControlName="link" class="form-control" id="link" placeholder="Social Media Link">
                         </div>
                     </div>
-
+                    
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="location">Location City:</label>
+                            <input type="location" formControlName="location" class="form-control" id="location" [ngClass]="{ 'is-invalid': submitted && form.email.errors }" placeholder="Nearest City Location">
+                            <div *ngIf="submitted && form.location.errors" class="invalid-feedback">
+                                <div *ngIf="form.location.errors.required">A location is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="form-group" id="btnSubmit">                 
                     <button type="submit" class="btn btn-primary">Register</button>
