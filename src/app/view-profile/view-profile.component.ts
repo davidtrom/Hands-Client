@@ -11,28 +11,27 @@ import { Recipient } from '../models/Recipient';
 })
 export class ViewProfileComponent implements OnInit {
 
-  userIsVolunteer: boolean;
-  userIsRecipient: boolean;
+  userIsVolunteer: boolean = false;
+  userIsRecipient: boolean = false;
   currentVolunteer: Volunteer;
   currentRecipient: Recipient;
 
   constructor(private loginService: LoginService, private requestorLoginService: RequestorLoginService) { }
 
   ngOnInit() {
-    this.loginService.currentVolunteer$.subscribe(data => {this.currentVolunteer = data;
-      if(!data == null){
-        this.userIsRecipient=false;
-        this.userIsVolunteer=true;
-      }
-    });
+    this.loginService.currentVolunteer$.subscribe(volData => this.currentVolunteer = volData);
+    console.log("userIsVolunteer: ", this.userIsVolunteer)
 
-    this.requestorLoginService.currentRecipient$.subscribe(data => {this.currentRecipient = data;
-      if(!data == null){
-        this.userIsRecipient=true;
-        this.userIsVolunteer=false;
-      }
-    });
-  
+    this.requestorLoginService.currentRecipient$.subscribe(recipData => this.currentRecipient = recipData);
+  }
+
+  editVolunteer(id:number){
+
+  }
+
+  editRecipient(id:number){
+    
+
   }
 
   

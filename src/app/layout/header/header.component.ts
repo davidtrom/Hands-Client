@@ -22,19 +22,21 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.loginService.isLoggedIn$.subscribe(data => this.isLoggedIn = data);
     
-    this.loginService.currentVolunteer$.subscribe(data => {this.currentVolunteer = data;
-      if(!data == null){
-        this.userIsRecipient=false;
-        this.userIsVolunteer=true;
-      }
-    });
+    // this.loginService.currentVolunteer$.subscribe(data => {this.currentVolunteer = data;
+    //   if(!data == null){
+    //     this.userIsRecipient=false;
+    //     this.userIsVolunteer=true;
+    //     console.log("recipient: ", this.userIsRecipient);
+    //     console.log("volunteer: ", this.userIsVolunteer);
+    //   }
+    // });
     
-    this.requestorLoginService.currentRecipient$.subscribe(data => {this.currentRecipient = data;
-      if(!data == null){
-        this.userIsRecipient=true;
-        this.userIsVolunteer=false;
-      }
-    });
+    // this.requestorLoginService.currentRecipient$.subscribe(data => {this.currentRecipient = data;
+    //   if(!data == null){
+    //     this.userIsRecipient=true;
+    //     this.userIsVolunteer=false;
+    //   }
+    // });
   }
 
   logout(){

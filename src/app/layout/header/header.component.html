@@ -49,9 +49,9 @@
                         </li>
                     </div>
 
-                    <div *ngIf="isLoggedIn && (userIsVolunteer || userIsRecipient)">
+                    <div *ngIf="isLoggedIn">
                         <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
-                            <a class="nav-link" a [routerLink]="['/view-details']" routerLinkActive="router-link-active" style="color:white" role="button">
+                            <a class="nav-link" a [routerLink]="['/view-profile']" routerLinkActive="router-link-active" style="color:white" role="button">
                             Profile  
                             </a>
                         </li>

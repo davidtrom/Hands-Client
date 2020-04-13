@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HelpRequest } from '../../models/helpRequest';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HelpRequestService } from '../../services/help-request.service';
 import { RecipientService } from 'src/app/services/recipient.service';
 import { Recipient } from 'src/app/models/Recipient';

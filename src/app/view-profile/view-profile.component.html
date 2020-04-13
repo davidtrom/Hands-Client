@@ -1,1 +1,125 @@
-<p>view-profile works!</p>
+
+<div *ngIf="volData !== null; else recipient" class="flex-container">
+    <div class="card w-75 p-3 mx-auto">
+        <div class="card-header">
+        Volunteer Profile:
+        </div>
+        <div class="card-body">
+            <div class = "row">
+                <div class= "col-md-4">
+                    <u>Name:</u>
+                </div>
+                <div class= "col-md-8">
+                    {{currentVolunteer.firstName}} {{currentVolunteer.lastName}}
+                </div>
+            </div>
+
+            <div class = "row">
+                <div class= "col-md-4">
+                    <u>Phone Number:</u>
+                </div>
+                <div class= "col-md-8">
+                    {{currentVolunteer.phoneNum}}
+                </div>
+            </div>
+
+            <div class = "row">
+                <div class= "col-md-4">
+                    <u>Email:</u>
+                </div>
+                <div class= "col-md-8">
+                    {{currentVolunteer.email}}
+                </div>
+            </div>
+
+            <div class = "row">
+                <div class= "col-md-4">
+                    <u>Social Media Link:</u>
+                </div>
+                <div class= "col-md-8">
+                    {{currentVolunteer.link}}
+                </div>
+            </div>
+
+        <div class="card-footer">
+            <div id="backBtn">
+                <a type="button" class="btn btn-primary" [routerLink]="['/display-requests']">Back</a>
+            </div>
+            <div id="editProfBtn">
+                <a [routerLink]="['/edit-volunteer', currentVolunteer.id]" type="button" class="btn btn-info ">Edit Profile</a>
+            </div>
+            <div id="editLoginBtn">
+                <a [routerLink]="['/edit-volpw', currentVolunteer.id]" type="button" class="btn btn-info">Edit Login</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<ng-template #recipient>
+    <div class="flex-container">
+        <div class="card w-75 p-3 mx-auto">
+            <div class="card-header">
+            Requestor Profile:
+            </div>
+            <div class="card-body">
+                <div class = "row">
+                    <div class= "col-md-4">
+                        <u>Name:</u>
+                    </div>
+                    <div class= "col-md-8">
+                        {{currentRecipient.firstName}} {{currentRecipient.lastName}}
+                    </div>
+                </div>
+    
+                <div class = "row">
+                    <div class= "col-md-4">
+                        <u>Phone Number:</u>
+                    </div>
+                    <div class= "col-md-8">
+                        {{currentRecipient.phoneNum}}
+                    </div>
+                </div>
+    
+                <div class = "row">
+                    <div class= "col-md-4">
+                        <u>Email:</u>
+                    </div>
+                    <div class= "col-md-8">
+                        {{currentRecipient.email}}
+                    </div>
+                </div>
+
+                <div class = "row">
+                    <div class= "col-md-4">
+                        <u>Nearest City Location:</u>
+                    </div>
+                    <div class= "col-md-8">
+                        {{currentRecipient.location}}
+                    </div>
+                </div>
+    
+                <div class = "row">
+                    <div class= "col-md-4">
+                        <u>Social Media Link:</u>
+                    </div>
+                    <div class= "col-md-8">
+                        {{currentRecipient.link}}
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card-footer">
+                <div id="backBtn">
+                    <a type="button" class="btn btn-primary" [routerLink]="['/display-requests']">Back</a>
+                </div>
+                <div id="editProfBtn">
+                    <a [routerLink]="['/edit-recipient', currentRecipient.id]" type="button" class="btn btn-primary ">Edit Profile</a>
+                </div>
+                <div id="editLoginBtn"> 
+                    <a [routerLink]="['/edit-reqpw', currentVolunteer.id]" type="button" class="btn btn-primary">Edit Login</a>
+                </div>
+            </div>
+        </div>
+    </div>    
+</ng-template>

@@ -1,0 +1,23 @@
+.flex-container{
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.card-header{
+    font-weight: bold;
+    font-size: 13pt;
+}
+
+#backBtn{
+    display: inline;
+    padding-right: 3%;
+}
+
+#editProfBtn{
+    display: inline;
+    padding-right: 3%;
+}
+
+#editLoginBtn{
+    display: inline;
+}

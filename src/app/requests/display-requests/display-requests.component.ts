@@ -20,14 +20,10 @@ export class DisplayRequestsComponent implements OnInit {
 
   ngOnInit() {
     this.getHelpRequests();
-    //this.incidents$ = this.incidentService.getIncidents();
   }
-
-  //helpRequests?: Observable<HelpRequest[]>;
 
   getHelpRequests(){
     this.helpRequestService.getAllRequests().subscribe(data => {this.helpRequests = data});
-  
   }
 
 }
