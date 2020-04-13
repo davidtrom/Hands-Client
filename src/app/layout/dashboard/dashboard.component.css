@@ -33,3 +33,7 @@
 .newRequestor, .wantToVolunteer{
     font-weight: bold;
 }
+
+#column1{
+    border-right: 2px gray solid;
+}
