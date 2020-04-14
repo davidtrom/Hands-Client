@@ -1,1 +1,43 @@
-<p>edit-volpw works!</p>
+
+<div class="flex-container">
+    <div class="container">
+        <h2>Volunteer: Update Password</h2>
+        <div class="form-row">
+            <div class="col-md-8">
+                <form [formGroup]="editVolunteerPWForm" (ngSubmit)="onSubmit()">
+                    
+                    <label for="currentPassword">Current Password:</label>
+                    <input type="currentPassword" formControlName="currentPassword" class="form-control" id="currentPassword" [ngClass]="{ 'is-invalid': form.currentPassword.errors }" placeholder="Current Password">
+                    <div *ngIf="submitted && form.currentPassword.errors" class="invalid-feedback">
+                        <div *ngIf="form.currentPassword.errors.required">Password is required</div>
+                    </div>
+
+                    <label for="newPassword">New Password:</label>
+                    <input type="newPassword" formControlName="newPassword" class="form-control" id="newPassword" [ngClass]="{ 'is-invalid': form.newPassword.errors }" placeholder="New Password">
+                    <div *ngIf="submitted && form.newPassword.errors" class="invalid-feedback">
+                        <div *ngIf="form.newPassword.errors.pattern">Password needs lowercase, uppercase, number, and symbol: 8 characters minimum</div>
+                        <div *ngIf="form.newPassword.errors.required">Password is required</div>
+                    </div>
+
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="confirmPassword" formControlName="confirmPassword" class="form-control" id="confirmPassword" [ngClass]="{ 'is-invalid': form.confirmPassword.errors }" placeholder="Confirm Password">
+                    <div *ngIf="submitted && form.confirmPassword.errors" class="invalid-feedback">
+                        <div *ngIf="form.confirmPassword.errors.pattern">Password needs lowercase, uppercase, number, and symbol: 8 characters minimum</div>
+                        <div *ngIf="form.confirmPassword.errors.required">Password is required</div>
+                    </div>
+
+                    <div class="buttons">
+                        <div class="form-group" id="btnSubmit">                 
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </div>
+                </form>
+                <div id="backBtn">
+                    <a type="button" class="btn btn-primary" [routerLink]="['/view-profile']">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

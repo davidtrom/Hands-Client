@@ -20,6 +20,7 @@ import { EditRecipientComponent } from './recipient/edit-recipient/edit-recipien
 import { EditVolpwComponent } from './volunteers/edit-volpw/edit-volpw.component';
 import { EditRecippwComponent } from './recipient/edit-recippw/edit-recippw.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
+import { RequestorDashboardComponent } from './recipient/requestor-dashboard/requestor-dashboard.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ViewProfileComponent } from './view-profile/view-profile.component';
     EditRecipientComponent,
     EditVolpwComponent,
     EditRecippwComponent,
-    ViewProfileComponent
+    ViewProfileComponent,
+    RequestorDashboardComponent
     
   ],
   imports: [

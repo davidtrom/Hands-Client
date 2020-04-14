@@ -1,6 +1,7 @@
 .flex-container{
     padding-top: 2%;
     padding-bottom: 2%;
+    font-size: 13pt;
 }
 
 .card-header{
@@ -9,15 +10,21 @@
 }
 
 #backBtn{
-    display: inline;
-    padding-right: 3%;
+    /* display: inline; */
+    /* padding-right: 3%; */
+    padding-bottom: 2%;
 }
 
 #editProfBtn{
-    display: inline;
-    padding-right: 3%;
+    /* display: inline; */
+    padding-bottom: 2%;
 }
 
 #editLoginBtn{
-    display: inline;
+    /* display: inline; */
+    padding-bottom: 2%;
+}
+
+#bottomRow{
+    padding-bottom: 2%;
 }
