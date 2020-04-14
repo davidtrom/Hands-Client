@@ -34,17 +34,39 @@ export class EditVolunteerComponent implements OnInit {
 
   get form() { return this.editVolunteerForm.controls; }
 
-  onSubmitLogin(){
-    this.loginService.checkVolunteerEmailAvailability(this.editVolunteerForm.controls.email.value).subscribe(
-      data => {this.isEmailAvailable = data;
-        if(this.isEmailAvailable){
-          
-
-          
-
-          
-        }
-    })
+  onSubmitProfile(){
+    if(this.editVolunteerForm.controls.email.touched && this.editVolunteerForm.controls.dirty){
+      this.loginService.checkVolunteerEmailAvailability(this.editVolunteerForm.controls.email.value).subscribe(
+        data => {this.isEmailAvailable = data;
+          if(this.isEmailAvailable){
+              this.loginService.updateVolunteerProfile(this.volunteer$.id, this.editVolunteerForm.controls.firstName.value, this.editVolunteerForm.controls.lastName.value, this.editVolunteerForm.controls.phoneNum.value, this.editVolunteerForm.controls.email.value, this.editVolunteerForm.controls.link.value).subscribe(
+                data => {console.log("in update component", data);
+                if(data != null){
+                  alert('Your profile has been successfully updated')
+                  this.editVolunteerForm.reset();
+                }
+                else{
+                  alert('There was an error, please try again');
+                }
+                }); 
+          }
+          else{
+            this.isEmailAvailable = false;
+          }
+        });
+    }
+    else{
+        console.log(this.editVolunteerForm)
+        this.loginService.updateVolunteerProfile(this.volunteer$.id, this.editVolunteerForm.controls.firstName.value, this.editVolunteerForm.controls.lastName.value, this.editVolunteerForm.controls.phoneNum.value, this.editVolunteerForm.controls.email.value, this.editVolunteerForm.controls.link.value).subscribe(
+          data => {console.log("in update component", data);
+                if(data != null){
+                  alert('Your profile has been successfully updated')
+                  this.editVolunteerForm.reset();
+                }
+                else{
+                  alert('There was an error, please try again');
+                }
+              });
+    }
   }
-
 }

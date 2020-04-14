@@ -5,6 +5,8 @@ import { Volunteer } from '../models/Volunteer';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { Recipient } from '../models/Recipient';
+import { EmailValidator } from '@angular/forms';
+import { link } from 'fs';
 
 
 @Injectable({
@@ -59,6 +61,15 @@ export class LoginService {
       .pipe(tap(data => {console.log("volunteer created");}), 
       catchError(this.handleError<Volunteer>('create volunteer', null))
     )
+  }
+
+  updateVolunteerProfile(id: number, firstName:string, lastName: string, phoneNum: string, email: string, link: string): Observable<Volunteer> {
+    let reqData: Object = {"id": id, "firstName": firstName, "lastName": lastName, "phoneNum": phoneNum, "email": email, "link": link}
+    return this.http.post<Volunteer>(this.baseUrl + "/volunteers/update-profile", reqData, this.httpOptions)
+      .pipe(tap(data => {console.log("volunteer updating", data);
+        this.currentVolunteer$.next(data);}),
+      catchError(this.handleError<Volunteer>('error updating', null))
+      )
   }
 
   verifyVolunteer(email:string, password:string) : Observable<Volunteer>{
