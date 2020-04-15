@@ -18,9 +18,6 @@ export class LoginService {
   volunteer: Volunteer;
   isLoggedIn$: BehaviorSubject<any> = new BehaviorSubject([]);
   currentVolunteer$: BehaviorSubject<any> = new BehaviorSubject([]);
-  
-
-  
   isVolunteerEmailAvailable: boolean;
   isRecipientEmailAvailable: boolean;
 
@@ -36,8 +33,6 @@ export class LoginService {
     this.currentVolunteer$.next(volunteer);
   }
 
-  
-
   updateLoggedInStatus(isLoggedIn : Boolean) {
     console.log("user update in service", isLoggedIn);
     this.isLoggedIn$.next(isLoggedIn);
@@ -50,11 +45,11 @@ export class LoginService {
       //.pipe(tap(data => this.isVolunteerEmailAvailable = data));
   }
 
-  checkRecipientEmailAvailability(email: string): Observable<boolean> {
-    //let reqData: Object = {"email": email};
-    return this.http.post<boolean>(this.baseUrl+"/volunteers/check-email", email, this.httpOptions);
-      //.pipe(tap(data => console.log(data)));
-  }
+  // checkRecipientEmailAvailability(email: string): Observable<boolean> {
+  //   //let reqData: Object = {"email": email};
+  //   return this.http.post<boolean>(this.baseUrl+"/volunteers/check-email", email, this.httpOptions);
+  //     //.pipe(tap(data => console.log(data)));
+  // }
 
   createVolunteer(volunteerToCreate:Volunteer): Observable<Volunteer> {
     return this.http.post<Volunteer>(this.baseUrl+"/volunteers/create", volunteerToCreate, this.httpOptions)

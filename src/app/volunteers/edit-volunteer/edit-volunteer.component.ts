@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { Volunteer } from 'src/app/models/Volunteer';
 import { LoginService } from 'src/app/services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-volunteer',
@@ -16,7 +17,7 @@ export class EditVolunteerComponent implements OnInit {
   isEmailAvailable: boolean;
   
 
-  constructor(private fb: FormBuilder, private loginService: LoginService) { }
+  constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
     this.loginService.currentVolunteer$.subscribe(data => {this.volunteer$ = data});
@@ -44,6 +45,7 @@ export class EditVolunteerComponent implements OnInit {
                 if(data != null){
                   alert('Your profile has been successfully updated')
                   this.editVolunteerForm.reset();
+                  this.router.navigate(['/view-profile'])
                 }
                 else{
                   alert('There was an error, please try again');

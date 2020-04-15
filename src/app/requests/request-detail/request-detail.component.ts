@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { HelpRequestService } from '../../services/help-request.service';
 import { RecipientService } from 'src/app/services/recipient.service';
 import { Recipient } from 'src/app/models/Recipient';
+import { LoginService } from 'src/app/services/login.service';
+import { Volunteer } from 'src/app/models/Volunteer';
 
 @Component({
   selector: 'app-request-detail',
@@ -12,10 +14,11 @@ import { Recipient } from 'src/app/models/Recipient';
 })
 export class RequestDetailComponent implements OnInit {
   request$: any;
+  volunteer$: Volunteer;
   recipient: Recipient;
   emailSent: boolean;
 
-  constructor(private route: ActivatedRoute, private router: Router,  private helpRequestService: HelpRequestService, private recipientService: RecipientService){
+  constructor(private route: ActivatedRoute, private helpRequestService: HelpRequestService, private recipientService: RecipientService, private loginService: LoginService){
 
    }
 
@@ -25,10 +28,13 @@ export class RequestDetailComponent implements OnInit {
     let id = +this.route.snapshot.paramMap.get('id');
 
     this.helpRequestService.getRequest(id).subscribe(data => {this.request$ = data});
+
+    this.loginService.currentVolunteer$.subscribe(data => this.volunteer$ = data);
   }
 
   changeStatus(id:number){
-    this.helpRequestService.changeRequestStatus(id).subscribe(data => {console.log("update request status; emailing requestor...")});
+    console.log(this.volunteer$);
+    this.helpRequestService.changeRequestStatus(id, this.volunteer$).subscribe(data => {console.log("update request status; emailing requestor...")});
     location.reload();
   }
 

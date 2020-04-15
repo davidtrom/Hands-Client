@@ -4,6 +4,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { HelpRequest } from '../models/helpRequest';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { Volunteer } from '../models/Volunteer';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,8 @@ export class HelpRequestService {
       catchError(this.handleError<HelpRequest[]>('get requests', null)));
   }
 
-  changeRequestStatus(id: number): Observable<HelpRequest> {
-    return this.http.post<HelpRequest>(this.baseUrl+"/requests/"+id+"/update-status", this.httpOptions)
+  changeRequestStatus(id: number, volunteer: Volunteer): Observable<HelpRequest> {
+    return this.http.post<HelpRequest>(this.baseUrl+"/requests/"+id+"/update-status", volunteer, this.httpOptions)
     .pipe(tap(data => console.log('update status', data)),
       catchError(this.handleError<HelpRequest>('change status', null)));
   }
