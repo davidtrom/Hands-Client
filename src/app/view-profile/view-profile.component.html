@@ -42,17 +42,24 @@
             </div>
 
         <div class="card-footer">
-            <div id="backBtn">
-                <a type="button" class="btn btn-primary" [routerLink]="['/display-requests']">Back</a>
-            </div>
-            <div id="editProfBtn">
-                <a [routerLink]="['/edit-volunteer', currentVolunteer.id]" type="button" class="btn btn-info ">Edit Profile</a>
-            </div>
-            <div id="editLoginBtn">
-                <a [routerLink]="['/edit-volpw', currentVolunteer.id]" type="button" class="btn btn-info">Update Password</a>
-            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div id="backBtn">
+                        <a type="button" class="btn btn-primary" [routerLink]="['/display-requests']">Back</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div id="editProfBtn">
+                        <a [routerLink]="['/edit-volunteer', currentVolunteer.id]" type="button" class="btn btn-info ">Edit Profile</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div id="editLoginBtn">
+                        <a [routerLink]="['/edit-volpw', currentVolunteer.id]" type="button" class="btn btn-info">Update Password</a>
+                    </div>
+                </div>
+            </div>   
         </div>
-
     </div>
 </div>
 
@@ -110,16 +117,24 @@
             </div>
     
             <div class="card-footer">
-                <div id="backBtn">
-                    <a type="button" class="btn btn-primary" [routerLink]="['/display-requests']">Back</a>
-                </div>
-                <div id="editProfBtn">
-                    <a [routerLink]="['/edit-recipient', currentRecipient.id]" type="button" class="btn btn-primary ">Edit Profile</a>
-                </div>
-                <div id="editLoginBtn"> 
-                    <a [routerLink]="['/edit-reqpw', currentVolunteer.id]" type="button" class="btn btn-primary">Edit Login</a>
-                </div>
-            </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div id="backBtn">
+                            <a type="button" class="btn btn-primary" [routerLink]="['/display-requests']">Back</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div id="editProfBtn">
+                            <a [routerLink]="['/edit-recipient', currentRecipient.id]" type="button" class="btn btn-info ">Edit Profile</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div id="editLoginBtn">
+                            <a [routerLink]="['/edit-recippw', currentRecipient.id]" type="button" class="btn btn-info">Update Password</a>
+                        </div>
+                    </div>
+                </div>   
+            </div>    
         </div>
     </div>    
 </ng-template>

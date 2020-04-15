@@ -26,8 +26,9 @@ export class HelpRequestService {
       catchError(this.handleError<HelpRequest[]>('get requests', null)));
   }
 
-  changeRequestStatus(id: number, volunteer: Volunteer): Observable<HelpRequest> {
-    return this.http.post<HelpRequest>(this.baseUrl+"/requests/"+id+"/update-status", volunteer, this.httpOptions)
+  changeRequestStatus(id: number, volunteerEmail: string): Observable<HelpRequest> {
+    let reqData: Object = {"email": volunteerEmail};
+    return this.http.post<HelpRequest>(this.baseUrl+"/requests/"+id+"/update-status", reqData, this.httpOptions)
     .pipe(tap(data => console.log('update status', data)),
       catchError(this.handleError<HelpRequest>('change status', null)));
   }

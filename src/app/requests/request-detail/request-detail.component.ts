@@ -34,7 +34,7 @@ export class RequestDetailComponent implements OnInit {
 
   changeStatus(id:number){
     console.log(this.volunteer$);
-    this.helpRequestService.changeRequestStatus(id, this.volunteer$).subscribe(data => {console.log("update request status; emailing requestor...")});
+    this.helpRequestService.changeRequestStatus(id, this.volunteer$.email).subscribe(data => {console.log("update request status; emailing requestor...")});
     location.reload();
   }
 
