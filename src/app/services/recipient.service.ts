@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Recipient } from '../models/Recipient';
 import { tap, catchError } from 'rxjs/operators';
 import { HelpRequest } from '../models/helpRequest';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,8 @@ export class RecipientService {
 
   baseUrl = environment.baseUrl;
   recipient: Recipient;
+  isLoggedIn$: BehaviorSubject<any> = new BehaviorSubject([]);
+  currentRecipient$: BehaviorSubject<any> = new BehaviorSubject([]);
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type' : 'application/json'})
@@ -20,11 +22,49 @@ export class RecipientService {
 
   constructor(private http: HttpClient) { }
 
+  createRecipient(recipientToCreate:Recipient): Observable<Recipient> {
+    return this.http.post<Recipient>(this.baseUrl+"/recipients/create", recipientToCreate, this.httpOptions)
+      .pipe(tap(data => {console.log("requestor created");}), 
+      catchError(this.handleError<Recipient>('error registering Requestor', null))
+    )
+  }
+
+  verifyRecipient(email:string, password:string) : Observable<Recipient>{
+    let reqData: Object = {"email": email, "password": password};
+    return this.http.post<Recipient>(this.baseUrl+"/recipients/verify", reqData, this.httpOptions)
+      .pipe(tap(data => {this.recipient = data;
+        if(!this.recipient==null){
+          this.isLoggedIn$.next(true);
+        }
+      }),
+      catchError(this.handleError<Recipient>('verification', null))
+    )
+  }
+
+  checkRecipientEmailAvailability(email: string): Observable<Boolean> {
+    console.log("inside service check email")
+    let reqData: Object = {"email": email};
+    return this.http.post<Boolean>(this.baseUrl+"/recipients/check-email", reqData, this.httpOptions)
+      .pipe(tap(data => console.log("verifying email")));
+  }
+
+  updateCurrentRecipient(recipient : Recipient) {
+    console.log("requestor update in service", recipient);
+    this.currentRecipient$.next(recipient);
+  }
+
+  updateLoggedInStatus(isLoggedIn : Boolean) {
+    console.log("requestor logged in", isLoggedIn);
+    this.isLoggedIn$.next(isLoggedIn);
+  }
+
   getRecipient(id: number) {
     return this.http.get<Recipient>(this.baseUrl+`/recipients/${id}`, this.httpOptions)
     .pipe(tap(data => console.log('get recipient', data)),
       catchError(this.handleError<Recipient>('getting recipient', null)));
   }
+
+
 
   /**
    * Handle Http operation that failed.

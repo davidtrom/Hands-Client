@@ -3,7 +3,8 @@ import { Recipient } from 'src/app/models/Recipient';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
-import { RequestorLoginService } from 'src/app/requestor-login.service';
+import { RequestorLoginService } from 'src/app/services/requestor-login.service';
+import { RecipientService } from 'src/app/services/recipient.service';
 
 @Component({
   selector: 'app-recipient-login',
@@ -17,7 +18,7 @@ export class RecipientLoginComponent implements OnInit {
   recipient: Recipient;
   volunteerIsLoggedIn: boolean;
 
-  constructor(private router: Router, private requestorLoginService: RequestorLoginService, private fb: FormBuilder) { }
+  constructor(private router: Router, private recipientService: RecipientService, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.recipLoginForm = this.fb.group({
@@ -30,7 +31,7 @@ export class RecipientLoginComponent implements OnInit {
 
   onSubmit() {
     console.log("Inside submit", this.recipLoginForm.value)
-    this.requestorLoginService.verifyRecipient(this.recipLoginForm.controls.recipEmail.value, this.recipLoginForm.controls.recipPassword.value)
+    this.recipientService.verifyRecipient(this.recipLoginForm.controls.recipEmail.value, this.recipLoginForm.controls.recipPassword.value)
       .subscribe(data => {
         if(data == null){
           this.invalidLogin = true;
@@ -38,8 +39,8 @@ export class RecipientLoginComponent implements OnInit {
         }
         else {
           console.log("Login Successful");
-          this.requestorLoginService.updateCurrentRecipient(data);
-          this.requestorLoginService.updateLoggedInStatus(true);
+          this.recipientService.updateCurrentRecipient(data);
+          this.recipientService.updateLoggedInStatus(true);
           this.router.navigate(['/about']);
         }
       })

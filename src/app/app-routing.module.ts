@@ -14,6 +14,7 @@ import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { EditRecippwComponent } from './recipient/edit-recippw/edit-recippw.component';
 import { EditVolpwComponent } from './volunteers/edit-volpw/edit-volpw.component';
 import { RequestorDashboardComponent } from './recipient/requestor-dashboard/requestor-dashboard.component';
+import { VolRequestsComponent } from './volunteers/vol-requests/vol-requests.component';
 
 
 const routes: Routes = [
@@ -31,7 +32,8 @@ const routes: Routes = [
   { path: 'edit-reqpw/:id', component: EditRecippwComponent},
   { path: 'edit-volpw/:id', component: EditVolpwComponent},
   { path: 'req-dashboard', component: RequestorDashboardComponent},
-  
+  { path: 'vol-requests/:id', component: VolRequestsComponent},
+
 
   
   // if no route, redirect to home

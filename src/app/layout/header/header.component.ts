@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { Volunteer } from 'src/app/models/Volunteer';
 import { Recipient } from 'src/app/models/Recipient';
-import { RequestorLoginService } from 'src/app/requestor-login.service';
+import { RequestorLoginService } from 'src/app/services/requestor-login.service';
 
 @Component({
   selector: 'app-header',

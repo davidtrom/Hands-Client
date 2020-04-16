@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from 'src/app/services/login.service';
+import { Volunteer } from 'src/app/models/Volunteer';
 
 @Component({
   selector: 'app-edit-volpw',
@@ -9,10 +11,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class EditVolpwComponent implements OnInit {
 
   editVolunteerPWForm: FormGroup;
+  volunteer$: Volunteer;
   
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private loginService: LoginService) { }
 
   ngOnInit() {
+    //this.loginService.currentVolunteer$.subscribe(data => this.volunteer$ = data);
 
     this.editVolunteerPWForm = this.fb.group({
       currentPassword: ['', [Validators.required]],

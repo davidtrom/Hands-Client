@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service';
-import { RequestorLoginService } from '../requestor-login.service';
+import { RequestorLoginService } from '../services/requestor-login.service';
 import { Volunteer } from '../models/Volunteer';
 import { Recipient } from '../models/Recipient';
 
@@ -30,7 +30,7 @@ export class ViewProfileComponent implements OnInit {
   }
 
   editRecipient(id:number){
-    
+
 
   }
 

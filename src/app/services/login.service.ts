@@ -29,12 +29,12 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   updateCurrentVolunteer(volunteer : Volunteer) {
-    console.log("user update in service", volunteer);
+    console.log("volunteer update in service", volunteer);
     this.currentVolunteer$.next(volunteer);
   }
 
   updateLoggedInStatus(isLoggedIn : Boolean) {
-    console.log("user update in service", isLoggedIn);
+    console.log("volunteer logged in", isLoggedIn);
     this.isLoggedIn$.next(isLoggedIn);
   }
 

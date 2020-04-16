@@ -1,3 +1,4 @@
+import { HelpRequest } from './helpRequest';
 
 export class Volunteer {
     id: number;
@@ -7,6 +8,7 @@ export class Volunteer {
     email: string;
     password: string;
     link: string;
+    helpRequests: HelpRequest[];
 
 
     constructor(id:number, firstName:string, lastName:string, phoneNum:string, email:string, password:string, link:string){

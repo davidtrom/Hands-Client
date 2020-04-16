@@ -22,6 +22,7 @@ import { EditRecippwComponent } from './recipient/edit-recippw/edit-recippw.comp
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { RequestorDashboardComponent } from './recipient/requestor-dashboard/requestor-dashboard.component';
 import { CreateRequestComponent } from './requests/create-request/create-request.component';
+import { VolRequestsComponent } from './volunteers/vol-requests/vol-requests.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { CreateRequestComponent } from './requests/create-request/create-request
     EditRecippwComponent,
     ViewProfileComponent,
     RequestorDashboardComponent,
-    CreateRequestComponent
+    CreateRequestComponent,
+    VolRequestsComponent
     
   ],
   imports: [

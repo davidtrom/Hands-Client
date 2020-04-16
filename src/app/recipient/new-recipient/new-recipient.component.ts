@@ -3,7 +3,8 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
 import { Recipient } from 'src/app/models/Recipient';
-import { RequestorLoginService } from 'src/app/requestor-login.service';
+import { RequestorLoginService } from 'src/app/services/requestor-login.service';
+import { RecipientService } from 'src/app/services/recipient.service';
 
 @Component({
   selector: 'app-new-recipient',
@@ -14,9 +15,9 @@ export class NewRecipientComponent implements OnInit {
 
   recipientForm: FormGroup;
   submitted: boolean = false;
-  emailAlreadyTaken: boolean = false;
+  emailAlreadyTaken: boolean;
 
-  constructor(private fb: FormBuilder, private requestorLoginService: RequestorLoginService, private router: Router) { }
+  constructor(private fb: FormBuilder, private requestorLoginService: RequestorLoginService, private router: Router, private recipientService: RecipientService) { }
 
   ngOnInit() {
     this.recipientForm = this.fb.group({
@@ -35,8 +36,9 @@ export class NewRecipientComponent implements OnInit {
   onSubmit(): void{
     this.submitted = true;
     
-    this.requestorLoginService.checkRecipientEmailAvailability(this.recipientForm.controls.email.value).subscribe(
+    this.recipientService.checkRecipientEmailAvailability(this.recipientForm.controls.email.value).subscribe(
       data =>{
+        console.log("Is the email Available: ", data);
     
       if(data){
         
@@ -51,7 +53,7 @@ export class NewRecipientComponent implements OnInit {
           this.recipientForm.controls.link.value
           );
 
-        this.requestorLoginService.createRecipient(requestor).subscribe(
+        this.recipientService.createRecipient(requestor).subscribe(
           data => {console.log("in component", data);
           console.log(this.recipientForm.value);
           this.router.navigate(['/requestor-login']);
