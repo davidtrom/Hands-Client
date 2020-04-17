@@ -3,10 +3,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Volunteer } from '../models/Volunteer';
 import { Observable, of, BehaviorSubject } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
-import { Recipient } from '../models/Recipient';
-import { EmailValidator } from '@angular/forms';
-import { link } from 'fs';
+import { catchError, tap } from 'rxjs/operators';
+
 
 
 @Injectable({
@@ -77,6 +75,12 @@ export class LoginService {
       }),
       catchError(this.handleError<Volunteer>('verification', null))
     )
+  }
+
+  getVolunteer(id:number) : Observable<Volunteer>{
+    return this.http.get<Volunteer>(this.baseUrl + "/volunteers/get/" +id, this.httpOptions)
+    .pipe(tap(data => {this.currentVolunteer$.next(data);}),
+    catchError(this.handleError<Volunteer>('verification', null)))
   }
 
   /**

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HelpRequest } from '../../models/helpRequest';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { HelpRequestService } from '../../services/help-request.service';
 import { RecipientService } from 'src/app/services/recipient.service';
 import { Recipient } from 'src/app/models/Recipient';
@@ -17,6 +17,7 @@ export class RequestDetailComponent implements OnInit {
   volunteer$: Volunteer;
   recipient: Recipient;
   emailSent: boolean;
+  statusOpen: boolean = false;
 
   constructor(private route: ActivatedRoute, private helpRequestService: HelpRequestService, private recipientService: RecipientService, private loginService: LoginService){
 
@@ -27,9 +28,18 @@ export class RequestDetailComponent implements OnInit {
   ngOnInit() {
     let id = +this.route.snapshot.paramMap.get('id');
 
-    this.helpRequestService.getRequest(id).subscribe(data => {this.request$ = data});
+    this.helpRequestService.getRequest(id).subscribe(data => {this.request$ = data;
+      if(this.request$.requestStatus == "OPEN"){
+        this.statusOpen = true;
+      }
+    });
+
+    
+    console.log(this.statusOpen);
 
     this.loginService.currentVolunteer$.subscribe(data => this.volunteer$ = data);
+
+
   }
 
   changeStatus(id:number){

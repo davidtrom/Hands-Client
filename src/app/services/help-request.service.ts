@@ -33,10 +33,14 @@ export class HelpRequestService {
       catchError(this.handleError<HelpRequest>('change status', null)));
   }
 
-  getRequest(id: number) {
+  getRequest(id: number): Observable<HelpRequest> {
     return this.http.get<HelpRequest>(this.baseUrl+`/requests/${id}`, this.httpOptions)
     .pipe(tap(data => console.log('get detail', data)),
       catchError(this.handleError<HelpRequest>('getting details', null)));
+  }
+
+  getThisVolunteerRequests(id: number) : Observable<HelpRequest[]>{
+    return this.http.get<HelpRequest[]>(this.baseUrl)
   }
 
 /**

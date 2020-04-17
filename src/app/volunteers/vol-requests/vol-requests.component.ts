@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/services/login.service';
 import { Volunteer } from 'src/app/models/Volunteer';
 import { HelpRequest } from 'src/app/models/helpRequest';
+import { ActivatedRoute } from '@angular/router';
+import { HelpRequestService } from 'src/app/services/help-request.service';
 
 @Component({
   selector: 'app-vol-requests',
@@ -13,12 +14,11 @@ export class VolRequestsComponent implements OnInit {
   volunteer$: Volunteer;
   helpRequests: HelpRequest[];
 
-  constructor(private loginService: LoginService) { }
+  constructor(private helpRequestService: HelpRequestService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.loginService.currentVolunteer$.subscribe(data => this.volunteer$ = data);
-
-    this.helpRequests=this.volunteer$.helpRequests;
+    let id = +this.route.snapshot.paramMap.get('id');
+    this.helpRequestService.getThisVolunteerRequests(id).subscribe(data => {console.log("Fetching requests");
+      this.helpRequests = data;})
   }
-
 }

@@ -94,7 +94,7 @@
             <div id="backBtn">
                 <a type="button" class="btn btn-primary btn-lg" [routerLink]="['/display-requests']">Back</a>
             </div>
-            <div id="helpBtn">
+            <div *ngIf="statusOpen" id="helpBtn">
                 <button type="button" class="btn btn-success btn-lg" (click)="changeStatus(request$.id)">
                     Help
                 </button>

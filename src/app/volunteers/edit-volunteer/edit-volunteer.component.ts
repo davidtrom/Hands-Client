@@ -45,7 +45,7 @@ export class EditVolunteerComponent implements OnInit {
                 if(data != null){
                   alert('Your profile has been successfully updated')
                   this.editVolunteerForm.reset();
-                  this.router.navigate(['/view-profile'])
+                  this.router.navigate(['/view-profile']);
                 }
                 else{
                   alert('There was an error, please try again');
@@ -62,8 +62,9 @@ export class EditVolunteerComponent implements OnInit {
         this.loginService.updateVolunteerProfile(this.volunteer$.id, this.editVolunteerForm.controls.firstName.value, this.editVolunteerForm.controls.lastName.value, this.editVolunteerForm.controls.phoneNum.value, this.editVolunteerForm.controls.email.value, this.editVolunteerForm.controls.link.value).subscribe(
           data => {console.log("in update component", data);
                 if(data != null){
-                  alert('Your profile has been successfully updated')
+                  alert('Your profile has been successfully updated');
                   this.editVolunteerForm.reset();
+                  this.router.navigate(['/view-profile']);
                 }
                 else{
                   alert('There was an error, please try again');

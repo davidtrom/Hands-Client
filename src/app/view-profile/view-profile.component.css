@@ -9,22 +9,6 @@
     font-size: 13pt;
 }
 
-#backBtn{
-    /* display: inline; */
-    /* padding-right: 3%; */
-    padding-bottom: 2%;
-}
-
-#editProfBtn{
-    /* display: inline; */
-    padding-bottom: 2%;
-}
-
-#editLoginBtn{
-    /* display: inline; */
-    padding-bottom: 2%;
-}
-
-#bottomRow{
+#backBtn, #editProfBtn, #editLoginBtn, #bottomRow, #myReqBtn, #allReqBtn{
     padding-bottom: 2%;
 }

@@ -1,1 +1,32 @@
 <p>requestor-dashboard works!</p>
+
+<div class = "flex-container">
+    <div class="container-fluid">
+        <h2>My Requests</h2>
+        <table class="table table-dark table-hover table-striped">
+        <thead class="thead-light">
+            <tr>
+            <th>Request Date</th>
+            <th>Request Type</th>
+            <th>Request Location</th>
+            <th>Request Details</th>
+            <th>Request Status</th>
+            <th>Click to View Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let helpRequest of helpRequests;" >
+                <td>{{ helpRequest.datePosted | date: 'shortDate'}}</td>
+                <td>{{ helpRequest.typeOfRequest }}</td>
+                <td>{{ helpRequest.recipient.location}}</td>
+                <td>{{ helpRequest.requestDescription }}</td>
+                <td>{{ helpRequest.requestStatus}}</td>
+                <td>
+                    <a [routerLink]="['/request-detail', helpRequest.id]" type="button" class="btn btn-warning">View Details</a>
+                </td>
+                    
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</div>
