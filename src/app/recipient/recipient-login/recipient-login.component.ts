@@ -39,9 +39,9 @@ export class RecipientLoginComponent implements OnInit {
         }
         else {
           console.log("Login Successful");
-          this.recipientService.updateCurrentRecipient(data);
-          this.recipientService.updateLoggedInStatus(true);
-          this.router.navigate(['/about']);
+          //this.recipientService.updateCurrentRecipient(data);
+          //this.recipientService.updateLoggedInStatus(true);
+          this.router.navigate(['/req-dashboard']);
         }
       })
   }

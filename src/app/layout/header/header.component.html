@@ -41,7 +41,7 @@
                         </a>
                     </li>
 
-                    <div *ngIf="isLoggedIn">
+                    <div *ngIf="volIsLoggedIn || recipIsLoggedIn">
                         <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
                             <a class="nav-link" a [routerLink]="['/volunteer-login']" routerLinkActive="router-link-active" style="color:white" (click)="logout()"  role="button">
                             Logout  
@@ -49,7 +49,7 @@
                         </li>
                     </div>
 
-                    <div *ngIf="isLoggedIn">
+                    <div *ngIf="volIsLoggedIn || recipIsLoggedIn">
                         <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
                             <a class="nav-link" a [routerLink]="['/view-profile']" routerLinkActive="router-link-active" style="color:white" role="button">
                             Profile  

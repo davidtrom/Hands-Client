@@ -3,6 +3,7 @@ import { LoginService } from '../../services/login.service';
 import { Volunteer } from 'src/app/models/Volunteer';
 import { Recipient } from 'src/app/models/Recipient';
 import { RequestorLoginService } from 'src/app/services/requestor-login.service';
+import { RecipientService } from 'src/app/services/recipient.service';
 
 @Component({
   selector: 'app-header',
@@ -11,42 +12,29 @@ import { RequestorLoginService } from 'src/app/services/requestor-login.service'
 })
 export class HeaderComponent implements OnInit {
 
-  isLoggedIn: boolean;
-  userIsVolunteer: boolean;
-  userIsRecipient: boolean;
-  currentVolunteer: Volunteer;
-  currentRecipient: Recipient;
+  volIsLoggedIn: boolean;
+  recipIsLoggedIn: boolean;
 
-  constructor(private loginService: LoginService, private requestorLoginService: RequestorLoginService) { }
+  constructor(private loginService: LoginService, private recipientService: RecipientService) { }
 
   ngOnInit() {
-    this.loginService.isLoggedIn$.subscribe(data => this.isLoggedIn = data);
-    
-    // this.loginService.currentVolunteer$.subscribe(data => {this.currentVolunteer = data;
-    //   if(!data == null){
-    //     this.userIsRecipient=false;
-    //     this.userIsVolunteer=true;
-    //     console.log("recipient: ", this.userIsRecipient);
-    //     console.log("volunteer: ", this.userIsVolunteer);
-    //   }
-    // });
-    
-    // this.requestorLoginService.currentRecipient$.subscribe(data => {this.currentRecipient = data;
-    //   if(!data == null){
-    //     this.userIsRecipient=true;
-    //     this.userIsVolunteer=false;
-    //   }
-    // });
+    this.loginService.isLoggedIn$.subscribe(data => this.volIsLoggedIn = data);
+    this.recipientService.isLoggedIn$.subscribe(data => this.recipIsLoggedIn = data);
+  }
+
+  ngOnDestroy(){
+
   }
 
   logout(){
     this.loginService.updateLoggedInStatus(false);
-    if(!this.currentVolunteer==null){
-      this.loginService.updateCurrentVolunteer(null);
-    }
-    else {
-    this.requestorLoginService.updateCurrentRecipient(null);
-    }
+    this.recipientService.updateLoggedInStatus(false);
+    // if(this.currentVolunteer != null){
+    //   this.loginService.updateCurrentVolunteer(null);
+    // }
+    // else {
+    // this.recipientService.updateCurrentRecipient(null);
+    // }
   }
 
 }
