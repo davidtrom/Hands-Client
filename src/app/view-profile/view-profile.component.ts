@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service';
-import { RequestorLoginService } from '../services/requestor-login.service';
 import { Volunteer } from '../models/Volunteer';
 import { Recipient } from '../models/Recipient';
+import { RecipientService } from '../services/recipient.service';
 
 @Component({
   selector: 'app-view-profile',
@@ -12,27 +12,23 @@ import { Recipient } from '../models/Recipient';
 export class ViewProfileComponent implements OnInit {
 
   userIsVolunteer: boolean = false;
-  userIsRecipient: boolean = false;
+  //userIsRecipient: boolean = false;
   currentVolunteer: Volunteer;
   currentRecipient: Recipient;
 
-  constructor(private loginService: LoginService, private requestorLoginService: RequestorLoginService) { }
+  constructor(private loginService: LoginService, private recipientService: RecipientService) { }
 
   ngOnInit() {
-    this.loginService.currentVolunteer$.subscribe(volData => this.currentVolunteer = volData);
+    this.loginService.getCurrentVolunteer().subscribe(volData => {this.currentVolunteer = volData;
+      console.log(volData);
+      if( volData != null){
+      this.userIsVolunteer = true;
+    }});
+
     console.log("userIsVolunteer: ", this.userIsVolunteer)
 
-    this.requestorLoginService.currentRecipient$.subscribe(recipData => this.currentRecipient = recipData);
+    this.recipientService.getCurrentRecipient().subscribe(recipData => this.currentRecipient = recipData);
+    // console.log("userIsRecipient: ", this.userIsRecipient)
   }
 
-  editVolunteer(id:number){
-
-  }
-
-  editRecipient(id:number){
-
-
-  }
-
-  
 }

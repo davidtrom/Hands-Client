@@ -13,14 +13,23 @@ export class RecipientService {
 
   baseUrl = environment.baseUrl;
   recipient: Recipient;
-  isLoggedIn$: BehaviorSubject<any> = new BehaviorSubject([]);
-  currentRecipient$: BehaviorSubject<any> = new BehaviorSubject([]);
+  private isLoggedIn$: BehaviorSubject<boolean>;
+  private currentRecipient$: BehaviorSubject<Recipient>;
+
+  //isLoggedIn$: BehaviorSubject<any> = new BehaviorSubject([]);
+  //currentRecipient$: BehaviorSubject<any> = new BehaviorSubject([]);
+  
+  // private currentRecipient$ = new BehaviorSubject<Recipient>(new Recipient());
+  // data = this.currentRecipient$.asObservable();
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type' : 'application/json'})
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.isLoggedIn$ = new BehaviorSubject<boolean>(false);
+    this.currentRecipient$ = new BehaviorSubject<Recipient>(null);
+  }
 
   createRecipient(recipientToCreate:Recipient): Observable<Recipient> {
     return this.http.post<Recipient>(this.baseUrl+"/recipients/create", recipientToCreate, this.httpOptions)
@@ -33,8 +42,9 @@ export class RecipientService {
     let reqData: Object = {"email": email, "password": password};
     return this.http.post<Recipient>(this.baseUrl+"/recipients/verify", reqData, this.httpOptions)
       .pipe(tap(data => {this.recipient = data;
-        if(!this.recipient==null){
+        if(this.recipient != null){
           this.isLoggedIn$.next(true);
+          this.currentRecipient$.next(data);
         }
       }),
       catchError(this.handleError<Recipient>('verification', null))
@@ -53,9 +63,17 @@ export class RecipientService {
     this.currentRecipient$.next(recipient);
   }
 
-  updateLoggedInStatus(isLoggedIn : Boolean) {
+  updateLoggedInStatus(isLoggedIn : boolean) {
     console.log("requestor logged in", isLoggedIn);
     this.isLoggedIn$.next(isLoggedIn);
+  }
+
+  getCurrentRecipient(): Observable<Recipient> {
+    return this.currentRecipient$.asObservable();
+  }
+
+  getLoggedInStatus(): Observable<boolean> {
+    return this.isLoggedIn$.asObservable();
   }
 
   getRecipient(id: number) {

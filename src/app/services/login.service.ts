@@ -14,26 +14,37 @@ export class LoginService {
 
   baseUrl = environment.baseUrl;
   volunteer: Volunteer;
-  isLoggedIn$: BehaviorSubject<any> = new BehaviorSubject([]);
-  currentVolunteer$: BehaviorSubject<any> = new BehaviorSubject([]);
+  private isLoggedIn$: BehaviorSubject<boolean>;
+  private currentVolunteer$: BehaviorSubject<Volunteer>;
   isVolunteerEmailAvailable: boolean;
-  isRecipientEmailAvailable: boolean;
+  
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type' : 'application/json'})
   }
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.isLoggedIn$ = new BehaviorSubject<boolean>(false);
+    this.currentVolunteer$ = new BehaviorSubject<Volunteer>(null);
+  }
 
   updateCurrentVolunteer(volunteer : Volunteer) {
     console.log("volunteer update in service", volunteer);
     this.currentVolunteer$.next(volunteer);
   }
 
-  updateLoggedInStatus(isLoggedIn : Boolean) {
+  updateLoggedInStatus(isLoggedIn : boolean) {
     console.log("volunteer logged in", isLoggedIn);
     this.isLoggedIn$.next(isLoggedIn);
+  }
+
+  getCurrentVolunteer(): Observable<Volunteer> {
+    return this.currentVolunteer$.asObservable();
+  }
+
+  getLoggedInStatus(): Observable<boolean> {
+    return this.isLoggedIn$.asObservable();
   }
 
   checkVolunteerEmailAvailability(email: string): Observable<boolean> {
@@ -42,12 +53,6 @@ export class LoginService {
     return this.http.post<boolean>(this.baseUrl+"/volunteers/check-email", reqData, this.httpOptions);
       //.pipe(tap(data => this.isVolunteerEmailAvailable = data));
   }
-
-  // checkRecipientEmailAvailability(email: string): Observable<boolean> {
-  //   //let reqData: Object = {"email": email};
-  //   return this.http.post<boolean>(this.baseUrl+"/volunteers/check-email", email, this.httpOptions);
-  //     //.pipe(tap(data => console.log(data)));
-  // }
 
   createVolunteer(volunteerToCreate:Volunteer): Observable<Volunteer> {
     return this.http.post<Volunteer>(this.baseUrl+"/volunteers/create", volunteerToCreate, this.httpOptions)
@@ -69,8 +74,9 @@ export class LoginService {
     let reqData: Object = {"email": email, "password": password};
     return this.http.post<Volunteer>(this.baseUrl+"/volunteers/verify", reqData, this.httpOptions)
       .pipe(tap(data => {this.volunteer = data;
-        if(!this.volunteer==null){
+        if(this.volunteer != null){
           this.isLoggedIn$.next(true);
+          this.currentVolunteer$.next(data);
         }
       }),
       catchError(this.handleError<Volunteer>('verification', null))

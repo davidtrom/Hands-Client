@@ -38,7 +38,7 @@ export class RecipientLoginComponent implements OnInit {
           this.recipLoginForm.reset();
         }
         else {
-          console.log("Login Successful");
+          console.log("Login Successful ", data);
           //this.recipientService.updateCurrentRecipient(data);
           //this.recipientService.updateLoggedInStatus(true);
           this.router.navigate(['/req-dashboard']);

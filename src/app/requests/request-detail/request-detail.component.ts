@@ -37,7 +37,7 @@ export class RequestDetailComponent implements OnInit {
     
     console.log(this.statusOpen);
 
-    this.loginService.currentVolunteer$.subscribe(data => this.volunteer$ = data);
+    this.loginService.getCurrentVolunteer().subscribe(data => this.volunteer$ = data);
 
 
   }

@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
-import { Volunteer } from 'src/app/models/Volunteer';
-import { Recipient } from 'src/app/models/Recipient';
-import { RequestorLoginService } from 'src/app/services/requestor-login.service';
 import { RecipientService } from 'src/app/services/recipient.service';
 
 @Component({
@@ -18,11 +15,14 @@ export class HeaderComponent implements OnInit {
   constructor(private loginService: LoginService, private recipientService: RecipientService) { }
 
   ngOnInit() {
-    this.loginService.isLoggedIn$.subscribe(data => this.volIsLoggedIn = data);
-    this.recipientService.isLoggedIn$.subscribe(data => this.recipIsLoggedIn = data);
+    this.loginService.getLoggedInStatus().subscribe(data => this.volIsLoggedIn = data);
+    console.log("Vol Logged In: ", this.volIsLoggedIn)
+    this.recipientService.getLoggedInStatus().subscribe(data => this.recipIsLoggedIn = data);
+    console.log("Recip Logged In: ", this.recipIsLoggedIn)
   }
 
   ngOnDestroy(){
+
 
   }
 

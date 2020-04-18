@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 export class EditVolunteerComponent implements OnInit {
 
   editVolunteerForm: FormGroup;
-  //editVolunteerLoginForm: FormGroup;
   volunteer$: Volunteer;
   isEmailAvailable: boolean;
   
@@ -20,14 +19,13 @@ export class EditVolunteerComponent implements OnInit {
   constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
-    this.loginService.currentVolunteer$.subscribe(data => {this.volunteer$ = data});
+    this.loginService.getCurrentVolunteer().subscribe(data => {this.volunteer$ = data});
     
     this.editVolunteerForm = this.fb.group({
       firstName: [this.volunteer$.firstName, [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
       lastName: [this.volunteer$.lastName, [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
       phoneNum: [this.volunteer$.phoneNum, [Validators.required, Validators.minLength(10)]],
       email: [this.volunteer$.email, [Validators.required, Validators.pattern('^[a-zA-Z0-9._%$!#+\-]+@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$')]],
-      // password: [this.volunteer$.password, [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!_.@$%^&*-]).{8,}$')]],
       link: [this.volunteer$.link]
     });
 

@@ -21,42 +21,42 @@ export class RequestorLoginService {
 
   constructor(private http: HttpClient) { }
 
-  updateCurrentRecipient(recipient : Recipient) {
-    console.log("user update in service", recipient);
-    this.currentRecipient$.next(recipient);
-  }
+  // updateCurrentRecipient(recipient : Recipient) {
+  //   console.log("user update in service", recipient);
+  //   this.currentRecipient$.next(recipient);
+  // }
 
-  updateLoggedInStatus(isLoggedIn : Boolean) {
-    console.log("user update in service", isLoggedIn);
-    this.isLoggedIn$.next(isLoggedIn);
-  }
+  // updateLoggedInStatus(isLoggedIn : Boolean) {
+  //   console.log("user update in service", isLoggedIn);
+  //   this.isLoggedIn$.next(isLoggedIn);
+  // }
 
-  checkRecipientEmailAvailability(email: string): Observable<boolean> {
-    //let reqData: Object = {"email": email};
-    return this.http.post<boolean>(this.baseUrl+"/recipients/check-email", email, this.httpOptions);
-      //.pipe(tap(data => console.log(data)));
-  }
+  // checkRecipientEmailAvailability(email: string): Observable<boolean> {
+  //   //let reqData: Object = {"email": email};
+  //   return this.http.post<boolean>(this.baseUrl+"/recipients/check-email", email, this.httpOptions);
+  //     //.pipe(tap(data => console.log(data)));
+  // }
 
-  createRecipient(recipientToCreate:Recipient): Observable<Recipient> {
-    return this.http.post<Recipient>(this.baseUrl+"/recipients/create", recipientToCreate, this.httpOptions)
-      .pipe(tap(data => {console.log("requestor created");}), 
-      catchError(this.handleError<Recipient>('create requestor', null))
-    )
-  }
+  // createRecipient(recipientToCreate:Recipient): Observable<Recipient> {
+  //   return this.http.post<Recipient>(this.baseUrl+"/recipients/create", recipientToCreate, this.httpOptions)
+  //     .pipe(tap(data => {console.log("requestor created");}), 
+  //     catchError(this.handleError<Recipient>('create requestor', null))
+  //   )
+  // }
 
-  verifyRecipient(email:string, password:string) : Observable<Recipient>{
-    console.log("inside service");
-    let reqData: Object = {"email": email, "password": password};
-    return this.http.post<Recipient>(this.baseUrl+"/recipients/verify/requestor", reqData, this.httpOptions)
-      .pipe(tap(data => {this.recipient = data;
-        console.log("in service ", data)
-        if(!this.recipient==null){
-          this.isLoggedIn$.next(true);
-        }
-      }),
-      catchError(this.handleError<Recipient>('verification', null))
-    )
-  }
+  // verifyRecipient(email:string, password:string) : Observable<Recipient>{
+  //   console.log("inside service");
+  //   let reqData: Object = {"email": email, "password": password};
+  //   return this.http.post<Recipient>(this.baseUrl+"/recipients/verify/requestor", reqData, this.httpOptions)
+  //     .pipe(tap(data => {this.recipient = data;
+  //       console.log("in service ", data)
+  //       if(!this.recipient==null){
+  //         this.isLoggedIn$.next(true);
+  //       }
+  //     }),
+  //     catchError(this.handleError<Recipient>('verification', null))
+  //   )
+  // }
 
  /**
    * Handle Http operation that failed.
