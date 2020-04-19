@@ -25,6 +25,7 @@ import { CreateRequestComponent } from './requests/create-request/create-request
 import { VolRequestsComponent } from './volunteers/vol-requests/vol-requests.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { NewRequestComponent } from './new-request/new-request.component';
+import { RecipRequestsComponent } from './recip-requests/recip-requests.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { NewRequestComponent } from './new-request/new-request.component';
     CreateRequestComponent,
     VolRequestsComponent,
     ForgotPasswordComponent,
-    NewRequestComponent
+    NewRequestComponent,
+    RecipRequestsComponent
     
   ],
   imports: [

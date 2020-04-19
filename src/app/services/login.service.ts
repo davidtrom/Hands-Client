@@ -51,14 +51,16 @@ export class LoginService {
   checkVolunteerEmailAvailability(email: string): Observable<boolean> {
     console.log("inside service check email")
     let reqData: Object = {"email": email};
-    return this.http.post<boolean>(this.baseUrl+"/volunteers/check-email", reqData, this.httpOptions);
-      //.pipe(tap(data => this.isVolunteerEmailAvailable = data));
+    return this.http.post<boolean>(this.baseUrl+"/volunteers/check-email", reqData, this.httpOptions)
+      .pipe(tap(data => {this.isVolunteerEmailAvailable = data;
+        console.log(data);}),
+        catchError(this.handleError<boolean>('error while checking email availability status', null)));
   }
 
   createVolunteer(volunteerToCreate:Volunteer): Observable<Volunteer> {
     return this.http.post<Volunteer>(this.baseUrl+"/volunteers/create", volunteerToCreate, this.httpOptions)
       .pipe(tap(data => {console.log("volunteer created");}), 
-      catchError(this.handleError<Volunteer>('create volunteer', null))
+      catchError(this.handleError<Volunteer>('error creating volunteer', null))
     )
   }
 

@@ -30,12 +30,13 @@ export class EditVolunteerComponent implements OnInit {
       link: [this.volunteer$.link]
     });
 
-    
     //this.loopForm(this.editVolunteerForm);
     
     // this.onChanges();
-    
+  }
 
+  ngOnDestroy(){
+    
   }
 
   // onChanges(){

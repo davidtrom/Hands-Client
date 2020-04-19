@@ -91,14 +91,14 @@
         </div>
 
         <div class="card-footer">
-            <div id="backBtn">
+            <!-- <div id="backBtn">
                 <button type="button" class="btn btn-success btn-lg" (click)="reRouteBack()">
                     Back
                 </button>
-            </div>
-            <!-- <div id="backBtn">
-                <a type="button" class="btn btn-primary btn-lg" [routerLink]="['/display-requests']">Back</a>
             </div> -->
+            <div id="backBtn">
+                <a type="button" class="btn btn-primary btn-lg" [routerLink]="['/display-requests']">Back</a>
+            </div>
             <div *ngIf="statusOpen" id="helpBtn">
                 <button type="button" class="btn btn-success btn-lg" (click)="changeStatus(request$.id)">
                     Help
