@@ -26,4 +26,8 @@ export class EditVolpwComponent implements OnInit {
   }
 
   get form() { return this.editVolunteerPWForm.controls; }
+
+  // updatePassword(this.editVolunteerPWForm.controls.currentPassword.value){
+
+  // }
 }

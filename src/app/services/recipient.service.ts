@@ -82,6 +82,12 @@ export class RecipientService {
       catchError(this.handleError<Recipient>('getting recipient', null)));
   }
 
+  getThisRecipientRequests(id: number) : Observable<HelpRequest[]>{
+    return this.http.get<HelpRequest[]>(this.baseUrl + `/requests/recipient/${id}`, this.httpOptions)
+    .pipe(tap(data => console.log("fetching your requests...")),
+    catchError(this.handleError<HelpRequest[]>('error getting requests', null)));
+  }
+
 
 
   /**

@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Volunteer } from '../models/Volunteer';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { HelpRequest } from '../models/helpRequest';
 
 
 
@@ -87,6 +88,12 @@ export class LoginService {
     return this.http.get<Volunteer>(this.baseUrl + "/volunteers/get/" +id, this.httpOptions)
     .pipe(tap(data => {this.currentVolunteer$.next(data);}),
     catchError(this.handleError<Volunteer>('verification', null)))
+  }
+
+  getThisVolunteerRequests(id: number) : Observable<HelpRequest[]>{
+    return this.http.get<HelpRequest[]>(this.baseUrl + `/requests/volunteer/${id}`, this.httpOptions)
+    .pipe(tap(data => console.log("fetching your requests...")),
+    catchError(this.handleError<HelpRequest[]>('error getting requests', null)));
   }
 
   /**

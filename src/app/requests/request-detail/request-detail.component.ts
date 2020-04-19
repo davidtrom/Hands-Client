@@ -48,4 +48,8 @@ export class RequestDetailComponent implements OnInit {
     location.reload();
   }
 
+  reRouteBack() {
+    //if()
+  }
+
 }

@@ -23,6 +23,8 @@ import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { RequestorDashboardComponent } from './recipient/requestor-dashboard/requestor-dashboard.component';
 import { CreateRequestComponent } from './requests/create-request/create-request.component';
 import { VolRequestsComponent } from './volunteers/vol-requests/vol-requests.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { NewRequestComponent } from './new-request/new-request.component';
 
 
 @NgModule({
@@ -45,7 +47,9 @@ import { VolRequestsComponent } from './volunteers/vol-requests/vol-requests.com
     ViewProfileComponent,
     RequestorDashboardComponent,
     CreateRequestComponent,
-    VolRequestsComponent
+    VolRequestsComponent,
+    ForgotPasswordComponent,
+    NewRequestComponent
     
   ],
   imports: [

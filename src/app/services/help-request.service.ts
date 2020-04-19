@@ -23,24 +23,31 @@ export class HelpRequestService {
     console.log("inside request service: ", this.baseUrl+"/requests")
     return this.http.get<HelpRequest[]>(this.baseUrl+"/requests", this.httpOptions)
     .pipe(tap(data => console.log('fetch requests', data)),
-      catchError(this.handleError<HelpRequest[]>('get requests', null)));
+      catchError(this.handleError<HelpRequest[]>('error geting requests', null)));
   }
 
   changeRequestStatus(id: number, volunteerEmail: string): Observable<HelpRequest> {
     let reqData: Object = {"email": volunteerEmail};
     return this.http.post<HelpRequest>(this.baseUrl+"/requests/"+id+"/update-status", reqData, this.httpOptions)
     .pipe(tap(data => console.log('update status', data)),
-      catchError(this.handleError<HelpRequest>('change status', null)));
+      catchError(this.handleError<HelpRequest>('error updating status', null)));
   }
 
   getRequest(id: number): Observable<HelpRequest> {
     return this.http.get<HelpRequest>(this.baseUrl+`/requests/${id}`, this.httpOptions)
     .pipe(tap(data => console.log('get detail', data)),
-      catchError(this.handleError<HelpRequest>('getting details', null)));
+      catchError(this.handleError<HelpRequest>('error getting details', null)));
   }
 
-  getThisVolunteerRequests(id: number) : Observable<HelpRequest[]>{
-    return this.http.get<HelpRequest[]>(this.baseUrl)
+  
+
+  
+
+  freeRequest(helpRequestId: number): Observable<HelpRequest>{
+    let reqData: Object = {"id": helpRequestId};
+    return this.http.post<HelpRequest>(this.baseUrl+`/volunteers/free-request/${helpRequestId}`, this.httpOptions)
+    .pipe(tap(data => console.log("freeing request")),
+    catchError(this.handleError<HelpRequest>('error freeing request', null)))
   }
 
 /**

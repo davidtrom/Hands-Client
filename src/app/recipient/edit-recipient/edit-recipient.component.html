@@ -3,7 +3,7 @@
     <div class="container">
         <div class="form-row">
             <div class="col-md-8">
-                <form [formGroup]="editVolunteerForm" (ngSubmit)="onSubmitProfile()">
+                <form [formGroup]="editRecipientForm" (ngSubmit)="onSubmitProfile()">
                     <div class="heading">
                         <h2 class="title">Requestor: Edit Profile</h2>
                     </div>
@@ -37,6 +37,12 @@
                     </div>
                     <div *ngIf="emailAlreadyTaken" class="alert alert-danger"> 
                         *This username already exists!
+                    </div>
+
+                    <label for="phoneNum">Nearest City Location:</label>
+                    <input type="text" formControlName="location" class="form-control" id="location" [ngClass]="{ 'is-invalid': form.location.errors }" placeholder="Nearest City Location">
+                    <div *ngIf="submitted && form.location.errors" class="invalid-feedback">
+                        <div *ngIf="form.location.errors.required">Location is required</div>
                     </div>
                 
                     <label for="link">A link to a social media account for identification purposes:</label>

@@ -45,29 +45,24 @@
 
         <div class="card-footer">
             <div class="row">
-                <div class="col-md-2">
-                    <div id="backBtn">
-                        <a type="button" class="btn btn-primary" [routerLink]="['/display-requests']">Back</a>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div id="editProfBtn">
-                        <a [routerLink]="['/edit-volunteer', currentVolunteer.id]" type="button" class="btn btn-info ">Edit Profile</a>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div id="editLoginBtn">
-                        <a [routerLink]="['/edit-volpw', currentVolunteer.id]" type="button" class="btn btn-info">Edit Password</a>
-                    </div>
-                </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <div id="myReqBtn">
                         <a [routerLink]="['/vol-requests', currentVolunteer.id]" type="button" class="btn btn-info">My Requests</a>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <div id="allReqBtn">
                         <a [routerLink]="['/display-requests']" type="button" class="btn btn-info">All Requests</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div id="editProfBtn">
+                        <a [routerLink]="['/edit-volunteer', currentVolunteer.id]" type="button" class="btn btn-info ">Edit Profile</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div id="editLoginBtn">
+                        <a [routerLink]="['/edit-volpw', currentVolunteer.id]" type="button" class="btn btn-info">Edit Password</a>
                     </div>
                 </div>
             </div>   
@@ -133,27 +128,17 @@
     
             <div class="card-footer">
                 <div class="row">
-                    <div class="col-md-2">
-                        <div id="backBtn">
-                            <a type="button" class="btn btn-primary" [routerLink]="['/req-dashboard']">Back</a>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <div id="editProfBtn">
                             <a [routerLink]="['/edit-recipient', currentRecipient.id]" type="button" class="btn btn-info ">Edit Profile</a>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <div id="editLoginBtn">
                             <a [routerLink]="['/edit-recippw', currentRecipient.id]" type="button" class="btn btn-info">Edit Password</a>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <div id="editLoginBtn">
-                            <a [routerLink]="['/req-dashboard', currentRecipient.id]" type="button" class="btn btn-info">My Requests</a>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <div id="editLoginBtn">
                             <a [routerLink]="['/req-dashboard', currentRecipient.id]" type="button" class="btn btn-info">My Requests</a>
                         </div>

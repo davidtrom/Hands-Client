@@ -1,6 +1,6 @@
 <p>vol-requests works!</p>
 
-<div class="flex-container">
+<!-- <div class="flex-container">
     <div class="container-fluid">
         <table class="table table-dark table-hover table-striped">
         <thead class="thead-light">
@@ -28,9 +28,11 @@
         </tbody>
         </table>
     </div>
-</div>
+</div> -->
 
-<!-- <div class="flex-container" *ngFor="let helpRequest of helpRequests;">
+<div class="flex-container" *ngFor="let helpRequest of helpRequests;">
+    <!-- <div>{{helpRequest.volunteer.firstName}}'s Agreed Requests:</div> -->
+    <h1>HI</h1>
     <div class="card w-75 p-3 mx-auto">
         <div class="card-header">
         Request Detail:
@@ -41,7 +43,7 @@
                     <u>Date Request Posted:</u>
                 </div>
                 <div class= "col-md-8">
-                    {{request$.datePosted | date: 'shortDate'}} 
+                    {{helpRequest.datePosted | date: 'shortDate'}} 
                 </div>
             </div>
 
@@ -50,7 +52,7 @@
                     <u>Requestor Location:</u>
                 </div>
                 <div class= "col-md-8">
-                    {{request$.recipient.location}}
+                    {{helpRequest.recipient.location}}
                 </div>
             </div>
 
@@ -59,7 +61,7 @@
                     <u>Request Type:</u>
                 </div>
                 <div class= "col-md-8">
-                    {{request$.typeOfRequest}}
+                    {{helpRequest.typeOfRequest}}
                 </div>
             </div>
 
@@ -69,7 +71,7 @@
                 </div>
 
                 <div class= "col-md-8">
-                    {{request$.requestDescription}}
+                    {{helpRequest.requestDescription}}
                 </div>
             </div>
 
@@ -78,7 +80,7 @@
                     <u>Requestor Name:</u>
                 </div>
                 <div class= "col-md-8">
-                    {{request$.recipient.firstName}} {{request$.recipient.lastName}} 
+                    {{helpRequest.recipient.firstName}} {{helpRequest.recipient.lastName}} 
                 </div>
             </div>
 
@@ -87,7 +89,7 @@
                     <u>Requestor Phone Number:</u>
                 </div>
                 <div class= "col-md-8">
-                    {{request$.recipient.phoneNum}}
+                    {{helpRequest.recipient.phoneNum}}
                 </div>
             </div>
 
@@ -96,7 +98,7 @@
                     <u>Requestor Email:</u>
                 </div>
                 <div class= "col-md-8">
-                    {{request$.recipient.email}}
+                    {{helpRequest.recipient.email}}
                 </div>
             </div>
 
@@ -106,7 +108,7 @@
                 </div>
 
                 <div class= "col-md-8">
-                    {{request$.link}}
+                    {{helpRequest.link}}
                 </div>
             </div> 
             
@@ -116,26 +118,20 @@
                 </div>
 
                 <div class= "col-md-8">
-                    {{request$.requestStatus}}
+                    {{helpRequest.requestStatus}}
                 </div>
             </div> 
         </div>
 
         <div class="card-footer">
             <div id="backBtn">
-                <a type="button" class="btn btn-primary btn-lg" [routerLink]="['/display-requests']">Back</a>
+                <a type="button" class="btn btn-primary btn-lg" [routerLink]="['/view-profile']">Back</a>
             </div>
-            <div id="helpBtn">
-                <button type="button" class="btn btn-success btn-lg" (click)="changeStatus(request$.id)">
+            <div id="freeBtn">
+                <button type="button" class="btn btn-success btn-lg" (click)="freeRequest(helpRequest.id)">
                     Help
                 </button>
             </div>
         </div>
-
-        <div class="note">
-            ***Please note that when you click the "Help" button, an email will be sent to the requestor letting 
-            them know you have agreed to help them.  You will be responsible for contacting one another to complete 
-            the request.
-        </div>
     </div>
-</div> -->
+</div>

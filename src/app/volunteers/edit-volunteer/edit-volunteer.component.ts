@@ -13,7 +13,8 @@ export class EditVolunteerComponent implements OnInit {
 
   editVolunteerForm: FormGroup;
   volunteer$: Volunteer;
-  isEmailAvailable: boolean;
+  isEmailAvailable: boolean = false;
+  newEmail: string;
   
 
   constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router) { }
@@ -29,34 +30,48 @@ export class EditVolunteerComponent implements OnInit {
       link: [this.volunteer$.link]
     });
 
+    
+    //this.loopForm(this.editVolunteerForm);
+    
+    // this.onChanges();
+    
+
   }
+
+  // onChanges(){
+  //   this.editVolunteerForm.get('email').valueChanges.subscribe(data => this.newEmail = data);
+
+  // }
+
+  // loopForm(group: FormGroup): void{
+  //   Object.keys(group.controls).forEach((element: string) => {
+  //     group.get(element);
+      
+  //   });
+  // }
 
   get form() { return this.editVolunteerForm.controls; }
 
   onSubmitProfile(){
-    if(this.editVolunteerForm.controls.email.touched && this.editVolunteerForm.controls.dirty){
+    console.log(this.volunteer$.email, " ", this.editVolunteerForm.controls.email.value);
+    if(this.volunteer$.email != this.editVolunteerForm.controls.email.value){
       this.loginService.checkVolunteerEmailAvailability(this.editVolunteerForm.controls.email.value).subscribe(
         data => {this.isEmailAvailable = data;
-          if(this.isEmailAvailable){
+          console.log("email available? ", this.isEmailAvailable);
+          if(!this.isEmailAvailable){
               this.loginService.updateVolunteerProfile(this.volunteer$.id, this.editVolunteerForm.controls.firstName.value, this.editVolunteerForm.controls.lastName.value, this.editVolunteerForm.controls.phoneNum.value, this.editVolunteerForm.controls.email.value, this.editVolunteerForm.controls.link.value).subscribe(
                 data => {console.log("in update component", data);
-                if(data != null){
                   alert('Your profile has been successfully updated')
                   this.editVolunteerForm.reset();
                   this.router.navigate(['/view-profile']);
-                }
-                else{
-                  alert('There was an error, please try again');
-                }
                 }); 
           }
-          else{
+          else {
             this.isEmailAvailable = false;
           }
         });
     }
-    else{
-        console.log(this.editVolunteerForm)
+    else if (this.volunteer$.email === this.editVolunteerForm.controls.email.value){
         this.loginService.updateVolunteerProfile(this.volunteer$.id, this.editVolunteerForm.controls.firstName.value, this.editVolunteerForm.controls.lastName.value, this.editVolunteerForm.controls.phoneNum.value, this.editVolunteerForm.controls.email.value, this.editVolunteerForm.controls.link.value).subscribe(
           data => {console.log("in update component", data);
                 if(data != null){
