@@ -21,7 +21,9 @@ export class VolRequestsComponent implements OnInit {
     let id = +this.route.snapshot.paramMap.get('id');
     console.log(id);
     this.loginService.getThisVolunteerRequests(id).subscribe(data => {console.log("Fetching requests");
-      this.helpRequests = data;})
+      this.helpRequests = data;});
+    this.loginService.getCurrentVolunteer().subscribe(data => this.volunteer$ = data);
+
   }
 
   freeRequest(id: number){

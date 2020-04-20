@@ -1,38 +1,9 @@
-<p>vol-requests works!</p>
 
-<!-- <div class="flex-container">
-    <div class="container-fluid">
-        <table class="table table-dark table-hover table-striped">
-        <thead class="thead-light">
-            <tr>
-            <th>Request Date</th>
-            <th>Request Type</th>
-            <th>Request Location</th>
-            <th>Request Details</th>
-            <th>Request Status</th>
-            <th>Click to View Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let helpRequest of helpRequests;" >
-                <td>{{ helpRequest.datePosted | date: 'shortDate'}}</td>
-                <td>{{ helpRequest.typeOfRequest }}</td>
-                <td>{{ helpRequest.recipient.location}}</td>
-                <td>{{ helpRequest.requestDescription }}</td>
-                <td>{{ helpRequest.requestStatus}}</td>
-                <td>
-                    <a [routerLink]="['/request-detail', helpRequest.id]" type="button" class="btn btn-warning">View Details</a>
-                </td>
-                    
-            </tr>
-        </tbody>
-        </table>
-    </div>
-</div> -->
+<div class="title">
+    <h1>{{volunteer$.firstName}}'s Agreed Requests:</h1>
+</div>
 
 <div class="flex-container" *ngFor="let helpRequest of helpRequests;">
-    <!-- <div>{{helpRequest.volunteer.firstName}}'s Agreed Requests:</div> -->
-    <h1>HI</h1>
     <div class="card w-75 p-3 mx-auto">
         <div class="card-header">
         Request Detail:
@@ -124,18 +95,24 @@
         </div>
 
         <div class="card-footer">
-            <div id="backBtn">
-                <a type="button" class="btn btn-primary btn-lg" [routerLink]="['/view-profile']">Back</a>
-            </div>
-            <div id="freeBtn">
-                <button type="button" class="btn btn-success btn-lg" (click)="freeRequest(helpRequest.id)">
-                    Decline Help
-                </button>
+            <div class = "row">
+                <div class="col-md-2">
+                    <div id="backBtn">
+                        <a type="button" class="btn btn-primary" [routerLink]="['/view-profile']">Back</a>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div id="freeBtn">
+                        <button type="button" class="btn btn-danger" (click)="freeRequest(helpRequest.id)">
+                            Decline Help
+                        </button>
+                    </div>
+                </div>  
             </div>
             <div class="cantHelp">
                 **Please note, if for any reason you are unable to help the Requestor with their Request, 
-                click the Decline Help button and an email will be sent to the Requestor letting them know you
-                are unable to help and re-set the request back to OPEN. 
+                click the Decline Help button. An email will be sent to the Requestor letting them know you
+                are unable to help and it will reset the Request back to OPEN. 
             </div>
         </div>
     </div>
