@@ -45,6 +45,7 @@ export class RecipientService {
         if(this.recipient != null){
           this.isLoggedIn$.next(true);
           this.currentRecipient$.next(data);
+          sessionStorage.setItem('username', email);
         }
       }),
       catchError(this.handleError<Recipient>('verification', null))
@@ -86,6 +87,22 @@ export class RecipientService {
     return this.http.get<HelpRequest[]>(this.baseUrl + `/requests/recipient/${id}`, this.httpOptions)
     .pipe(tap(data => console.log("fetching your requests...")),
     catchError(this.handleError<HelpRequest[]>('error getting requests', null)));
+  }
+
+  logout(){
+    sessionStorage.removeItem('username')
+    this.updateLoggedInStatus(false);
+    this.updateCurrentRecipient(null);
+  }
+
+  isRecipientLoggedIn(){
+    let recipient = sessionStorage.getItem('username');
+    return !(recipient === null);
+  }
+
+  getMyRecipient(){
+    let recipient: string = sessionStorage.getItem('username');
+    return recipient;
   }
 
 

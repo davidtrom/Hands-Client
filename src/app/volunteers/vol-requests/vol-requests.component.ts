@@ -14,6 +14,7 @@ export class VolRequestsComponent implements OnInit {
   
   volunteer$: Volunteer;
   helpRequests: HelpRequest[];
+  noHelpRequests: boolean = true;
 
   constructor(private helpRequestService: HelpRequestService, private route: ActivatedRoute, private loginService: LoginService) { }
 
@@ -21,13 +22,17 @@ export class VolRequestsComponent implements OnInit {
     let id = +this.route.snapshot.paramMap.get('id');
     console.log(id);
     this.loginService.getThisVolunteerRequests(id).subscribe(data => {console.log("Fetching requests");
-      this.helpRequests = data;});
+      this.helpRequests = data;
+      // if(this.helpRequests != null){
+      //   this.noHelpRequests = false;
+      // }
+    });
     this.loginService.getCurrentVolunteer().subscribe(data => this.volunteer$ = data);
 
   }
 
   freeRequest(id: number){
-    this.helpRequestService.freeRequest(id);
-    location.reload;
+    this.helpRequestService.freeRequest(id).subscribe(data => console.log("freeing request..."));
+    location.reload();
   }
 }

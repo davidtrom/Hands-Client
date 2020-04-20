@@ -27,14 +27,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
-    this.loginService.updateLoggedInStatus(false);
-    this.recipientService.updateLoggedInStatus(false);
-    // if(this.currentVolunteer != null){
-    //   this.loginService.updateCurrentVolunteer(null);
-    // }
-    // else {
-    // this.recipientService.updateCurrentRecipient(null);
-    // }
+    this.loginService.logout();
+    this.recipientService.logout();
   }
 
 }

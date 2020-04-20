@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HelpRequest } from '../../models/helpRequest';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HelpRequestService } from '../../services/help-request.service';
 import { RecipientService } from 'src/app/services/recipient.service';
 import { Recipient } from 'src/app/models/Recipient';
@@ -19,7 +19,7 @@ export class RequestDetailComponent implements OnInit {
   emailSent: boolean;
   statusOpen: boolean = false;
 
-  constructor(private route: ActivatedRoute, private helpRequestService: HelpRequestService, private recipientService: RecipientService, private loginService: LoginService){
+  constructor(private route: ActivatedRoute, private helpRequestService: HelpRequestService, private recipientService: RecipientService, private loginService: LoginService, private router: Router){
 
    }
 
@@ -34,11 +34,14 @@ export class RequestDetailComponent implements OnInit {
       }
     });
 
-    
-    console.log(this.statusOpen);
-
     this.loginService.getCurrentVolunteer().subscribe(data => this.volunteer$ = data);
 
+    this.loginService.getVolunteerByEmail(this.loginService.getSessionStorageVolunteer()).subscribe(data => {this.volunteer$ = data;
+      // if(this.volunteer$ != null){
+      //   this.loginService.updateLoggedInStatus(true);
+      //   this.loginService.updateCurrentVolunteer(data);
+      // }
+    });
 
   }
 
@@ -46,10 +49,17 @@ export class RequestDetailComponent implements OnInit {
     console.log(this.volunteer$);
     this.helpRequestService.changeRequestStatus(id, this.volunteer$.email).subscribe(data => {console.log("update request status; emailing requestor...")});
     location.reload();
-  }
+}
 
   reRouteBack() {
-    //if()
+    if(this.volunteer$ == null){
+      this.router.navigate(['/req-dashboard']);
+    }
+    //else if ()
   }
+
+  //view all requests
+  //view my requests button 
+  //if not a volunteer then view all requests button doesn't appear
 
 }

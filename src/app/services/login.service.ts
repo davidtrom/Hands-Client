@@ -15,6 +15,7 @@ export class LoginService {
 
   baseUrl = environment.baseUrl;
   volunteer: Volunteer;
+  private isLoggedIn: boolean;
   private isLoggedIn$: BehaviorSubject<boolean>;
   private currentVolunteer$: BehaviorSubject<Volunteer>;
   isVolunteerEmailAvailable: boolean;
@@ -80,22 +81,46 @@ export class LoginService {
         if(this.volunteer != null){
           this.isLoggedIn$.next(true);
           this.currentVolunteer$.next(data);
+          sessionStorage.setItem('username', email);
         }
       }),
       catchError(this.handleError<Volunteer>('verification', null))
     )
   }
 
-  getVolunteer(id:number) : Observable<Volunteer>{
+  getVolunteerById(id:number) : Observable<Volunteer>{
     return this.http.get<Volunteer>(this.baseUrl + "/volunteers/get/" +id, this.httpOptions)
     .pipe(tap(data => {this.currentVolunteer$.next(data);}),
-    catchError(this.handleError<Volunteer>('verification', null)))
+    catchError(this.handleError<Volunteer>('error getting volunteer by Id', null)))
+  }
+
+  getVolunteerByEmail(email:string) : Observable<Volunteer>{
+    return this.http.get<Volunteer>(this.baseUrl + "/volunteers/get-by-email/" +email, this.httpOptions)
+    .pipe(tap(data => {this.currentVolunteer$.next(data);}),
+    catchError(this.handleError<Volunteer>('error getting volunteer by Email', null)))
   }
 
   getThisVolunteerRequests(id: number) : Observable<HelpRequest[]>{
     return this.http.get<HelpRequest[]>(this.baseUrl + `/requests/volunteer/${id}`, this.httpOptions)
     .pipe(tap(data => console.log("fetching your requests...")),
     catchError(this.handleError<HelpRequest[]>('error getting requests', null)));
+  }
+
+  logout(){
+    sessionStorage.removeItem('username')
+    this.updateLoggedInStatus(false);
+    this.updateCurrentVolunteer(null);
+  }
+
+  isVolunteerLoggedIn(){
+    let volunteer = sessionStorage.getItem('username');
+    return !(volunteer === null);
+  }
+
+  getSessionStorageVolunteer(){
+    let volunteer: string = sessionStorage.getItem('username');
+    console.log(volunteer);
+    return volunteer;
   }
 
   /**

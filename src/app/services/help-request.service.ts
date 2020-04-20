@@ -44,8 +44,8 @@ export class HelpRequestService {
   
 
   freeRequest(helpRequestId: number): Observable<HelpRequest>{
-    let reqData: Object = {"id": helpRequestId};
-    return this.http.post<HelpRequest>(this.baseUrl+`/volunteers/free-request/${helpRequestId}`, this.httpOptions)
+    //let reqData: Object = {"id": helpRequestId};
+    return this.http.post<HelpRequest>(this.baseUrl+`/requests/free-request/${helpRequestId}`, this.httpOptions)
     .pipe(tap(data => console.log("freeing request")),
     catchError(this.handleError<HelpRequest>('error freeing request', null)))
   }
