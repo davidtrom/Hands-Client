@@ -24,8 +24,7 @@ import { RequestorDashboardComponent } from './recipient/requestor-dashboard/req
 import { CreateRequestComponent } from './requests/create-request/create-request.component';
 import { VolRequestsComponent } from './volunteers/vol-requests/vol-requests.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { NewRequestComponent } from './new-request/new-request.component';
-import { RecipRequestsComponent } from './recip-requests/recip-requests.component';
+import { RecipRequestsComponent } from './recipient/recip-requests/recip-requests.component';
 
 
 @NgModule({
@@ -50,7 +49,6 @@ import { RecipRequestsComponent } from './recip-requests/recip-requests.componen
     CreateRequestComponent,
     VolRequestsComponent,
     ForgotPasswordComponent,
-    NewRequestComponent,
     RecipRequestsComponent
     
   ],
