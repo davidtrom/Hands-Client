@@ -14,7 +14,7 @@ export class VolRequestsComponent implements OnInit {
   
   volunteer$: Volunteer;
   helpRequests: HelpRequest[];
-  noHelpRequests: boolean = true;
+  noHelpRequests: boolean;
 
   constructor(private helpRequestService: HelpRequestService, private route: ActivatedRoute, private loginService: LoginService) { }
 
@@ -23,12 +23,15 @@ export class VolRequestsComponent implements OnInit {
     console.log(id);
     this.loginService.getThisVolunteerRequests(id).subscribe(data => {console.log("Fetching requests");
       this.helpRequests = data;
-      if(this.helpRequests !== null){
+      if(this.helpRequests.length === 0){
+        this.noHelpRequests = true;
+      }
+      else {
         this.noHelpRequests = false;
       }
     });
-    this.loginService.getCurrentVolunteer().subscribe(data => this.volunteer$ = data);
-
+    
+    this.loginService.getVolunteerByEmail(sessionStorage.getItem('username')).subscribe(data => this.volunteer$ = data);
   }
 
   freeRequest(id: number){

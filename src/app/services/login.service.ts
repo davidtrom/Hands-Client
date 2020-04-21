@@ -47,13 +47,14 @@ export class LoginService {
 
   getCurrentVolunteer(): Observable<Volunteer> {
     //this.getVolunteerByEmail().subscribe(data => console.log("retrieving volunteer"));
-    var email = sessionStorage.getItem('username');
-    console.log("email: ", email);
-    return this.http.get<Volunteer>(this.baseUrl + "/volunteers/get-by-email/" +email, this.httpOptions)
-    .pipe(tap(data => {this.currentVolunteer$.next(data);
-      return this.currentVolunteer$.asObservable();
-    }),
-    catchError(this.handleError<Volunteer>('error getting volunteer by Email', null)))
+    // var email = sessionStorage.getItem('username');
+    // console.log("email: ", email);
+    // return this.http.get<Volunteer>(this.baseUrl + "/volunteers/get-by-email/" +email, this.httpOptions)
+    // .pipe(tap(data => {this.currentVolunteer$.next(data);
+      
+    // }),
+    // catchError(this.handleError<Volunteer>('error getting volunteer by Email', null)))
+    return this.currentVolunteer$.asObservable();
   }
 
   // getLoggedInStatus(): Observable<boolean> {
@@ -116,8 +117,8 @@ export class LoginService {
   }
 
   getVolunteerByEmail(email:string) : Observable<Volunteer>{
-    return this.http.get<Volunteer>(this.baseUrl + "/volunteers/get-by-email/" +email, this.httpOptions)
-    .pipe(tap(data => {console.log("getting volunteer by email");}),
+    return this.http.get<Volunteer>(this.baseUrl + `/volunteers/${email}/get-by-email`, this.httpOptions)
+    .pipe(tap(data => {this.currentVolunteer$.next(data);}),
     catchError(this.handleError<Volunteer>('error getting volunteer by Email', null)))
   }
 

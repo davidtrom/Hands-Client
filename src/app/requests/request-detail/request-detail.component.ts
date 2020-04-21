@@ -36,20 +36,15 @@ export class RequestDetailComponent implements OnInit {
       }
     });
 
-    this.loginService.getCurrentVolunteer().subscribe(data => this.volunteer$ = data);
+    this.loginService.getVolunteerByEmail(sessionStorage.getItem('username')).subscribe(data => {this.volunteer$ = data;
+     this.userIsVolunteer = true; 
+    //  if(this.volunteer$ === null){
+      //this.recipientService.getRecipientByEmail().subscribe(data => {this.recipient$ = data;
+    //           this.userIsRecipient = true;
+    //         })
+    // }
+    });
     
-    this.loginService.getLoggedInStatus
-    // this.loginService.getCurrentVolunteer().subscribe(data => {this.volunteer$ = data;
-    //   if(this.volunteer$ !== null){
-    //     this.userIsVolunteer = true;
-    //   }
-    //   else{
-    //     this.recipientService.getCurrentRecipient().subscribe(data => {this.recipient$ = data;
-    //       if(this.recipient$ !== null){
-    //         this.userIsRecipient = true;
-    //       }});
-    //   }
-    // });
   }
 
   changeStatus(id:number){
@@ -57,17 +52,6 @@ export class RequestDetailComponent implements OnInit {
     this.helpRequestService.changeRequestStatus(id, sessionStorage.getItem('username')).subscribe(data => {console.log("update request status; emailing requestor...")});
     location.reload();
   }
-
-  // getSessionStoredVolunteer(){
-  //   this.loginService.getVolunteerByEmail(this.loginService.getSessionStorageVolunteer()).subscribe(data => {this.volunteer$ = data;
-  //     // if(this.volunteer$ != null){
-  //     //   this.loginService.updateLoggedInStatus(true);
-  //     //   this.loginService.updateCurrentVolunteer(data);
-  //     // }
-  //   });
-
-  // }
-
   //view all requests
   //view my requests button 
   //if not a volunteer then view all requests button doesn't appear

@@ -19,13 +19,8 @@
     font-weight: bold;
 }
 
-#helpBtn{
-    display:inline;
-}
-
-#volBackBtn, #recipBackBtn, #allReqBtn{
-    padding-right: 3%; 
-    display:inline;
+#volBackBtn, #recipBackBtn, #allReqBtn, #helpBtn{
+    padding-bottom: 3%;
 }
 
 

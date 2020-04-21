@@ -91,27 +91,28 @@
         </div>
 
         <div class="card-footer">
-            <!-- <div id="backBtn">
-                <button type="button" class="btn btn-primary btn-lg" (click)="reRouteBack()">
-                    Back
-                </button>
-            </div> -->
-            <div *ngIf="userIsVolunteer" id="volBackBtn">
-                <a [routerLink]="['/vol-requests', volunteer$.id]" type="button" class="btn btn-info btn-lg">My Requests</a>
+            <div class = "row">
+                <div class="col-md-2">
+                    <div *ngIf="userIsVolunteer" id="volBackBtn">
+                        <a [routerLink]="['/vol-requests', volunteer$.id]" type="button" class="btn btn-info">My Requests</a>
+                    </div>
+                    <div *ngIf="userIsRecipient" id="recipBackBtn">
+                        <a [routerLink]="['/req-requests', recipient$.id]" type="button" class="btn btn-info">My Requests</a>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div *ngIf="userIsVolunteer" id="allReqBtn">
+                        <a type="button" class="btn btn-info" [routerLink]="['/display-requests']">All Requests</a>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div *ngIf="statusOpen" id="helpBtn">
+                        <button type="button" class="btn btn-success" (click)="changeStatus(request$.id)">
+                            Help
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div *ngIf="userIsRecipient" id="recipBackBtn">
-                <a [routerLink]="['/req-requests', recipient$.id]" type="button" class="btn btn-info btn-lg">My Requests</a>
-            </div>
-
-            <div *ngIf="userIsVolunteer" id="allReqBtn">
-                <a type="button" class="btn btn-primary btn-lg" [routerLink]="['/display-requests']">All Requests</a>
-            </div>
-            <div *ngIf="statusOpen" id="helpBtn">
-                <button type="button" class="btn btn-success btn-lg" (click)="changeStatus(request$.id)">
-                    Help
-                </button>
-            </div>
-            
         </div>
 
         <div *ngIf="statusOpen" class="note">
