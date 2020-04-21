@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   constructor(private loginService: LoginService, private recipientService: RecipientService) { }
 
   ngOnInit() {
+    
     this.loginService.getLoggedInStatus().subscribe(data => this.volIsLoggedIn = data);
     console.log("Vol Logged In: ", this.volIsLoggedIn)
     this.recipientService.getLoggedInStatus().subscribe(data => this.recipIsLoggedIn = data);

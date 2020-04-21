@@ -96,17 +96,25 @@
                     Back
                 </button>
             </div> -->
-            <div id="backBtn">
-                <a type="button" class="btn btn-primary btn-lg" [routerLink]="['/display-requests']">Back</a>
+            <div *ngIf="userIsVolunteer" id="volBackBtn">
+                <a [routerLink]="['/vol-requests', volunteer$.id]" type="button" class="btn btn-info btn-lg">My Requests</a>
+            </div>
+            <div *ngIf="userIsRecipient" id="recipBackBtn">
+                <a [routerLink]="['/req-requests', recipient$.id]" type="button" class="btn btn-info btn-lg">My Requests</a>
+            </div>
+
+            <div *ngIf="userIsVolunteer" id="allReqBtn">
+                <a type="button" class="btn btn-primary btn-lg" [routerLink]="['/display-requests']">All Requests</a>
             </div>
             <div *ngIf="statusOpen" id="helpBtn">
                 <button type="button" class="btn btn-success btn-lg" (click)="changeStatus(request$.id)">
                     Help
                 </button>
             </div>
+            
         </div>
 
-        <div class="note">
+        <div *ngIf="statusOpen" class="note">
             ***Please note that when you click the "Help" button, an email will be sent to the requestor letting 
             them know you have agreed to help them.  You will be responsible for contacting one another to complete 
             the request.

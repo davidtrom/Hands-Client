@@ -15,9 +15,11 @@ import { Volunteer } from 'src/app/models/Volunteer';
 export class RequestDetailComponent implements OnInit {
   request$: any;
   volunteer$: Volunteer;
-  recipient: Recipient;
+  recipient$: Recipient;
   emailSent: boolean;
   statusOpen: boolean = false;
+  userIsVolunteer: boolean;
+  userIsRecipient: boolean;
 
   constructor(private route: ActivatedRoute, private helpRequestService: HelpRequestService, private recipientService: RecipientService, private loginService: LoginService, private router: Router){
 
@@ -35,28 +37,36 @@ export class RequestDetailComponent implements OnInit {
     });
 
     this.loginService.getCurrentVolunteer().subscribe(data => this.volunteer$ = data);
-
-    this.loginService.getVolunteerByEmail(this.loginService.getSessionStorageVolunteer()).subscribe(data => {this.volunteer$ = data;
-      // if(this.volunteer$ != null){
-      //   this.loginService.updateLoggedInStatus(true);
-      //   this.loginService.updateCurrentVolunteer(data);
-      // }
-    });
-
+    
+    this.loginService.getLoggedInStatus
+    // this.loginService.getCurrentVolunteer().subscribe(data => {this.volunteer$ = data;
+    //   if(this.volunteer$ !== null){
+    //     this.userIsVolunteer = true;
+    //   }
+    //   else{
+    //     this.recipientService.getCurrentRecipient().subscribe(data => {this.recipient$ = data;
+    //       if(this.recipient$ !== null){
+    //         this.userIsRecipient = true;
+    //       }});
+    //   }
+    // });
   }
 
   changeStatus(id:number){
     console.log(this.volunteer$);
-    this.helpRequestService.changeRequestStatus(id, this.volunteer$.email).subscribe(data => {console.log("update request status; emailing requestor...")});
+    this.helpRequestService.changeRequestStatus(id, sessionStorage.getItem('username')).subscribe(data => {console.log("update request status; emailing requestor...")});
     location.reload();
-}
-
-  reRouteBack() {
-    if(this.volunteer$ == null){
-      this.router.navigate(['/req-dashboard']);
-    }
-    //else if ()
   }
+
+  // getSessionStoredVolunteer(){
+  //   this.loginService.getVolunteerByEmail(this.loginService.getSessionStorageVolunteer()).subscribe(data => {this.volunteer$ = data;
+  //     // if(this.volunteer$ != null){
+  //     //   this.loginService.updateLoggedInStatus(true);
+  //     //   this.loginService.updateCurrentVolunteer(data);
+  //     // }
+  //   });
+
+  // }
 
   //view all requests
   //view my requests button 

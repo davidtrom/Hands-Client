@@ -19,11 +19,8 @@
                 <td>{{ helpRequest.typeOfRequest }}</td>
                 <td>{{ helpRequest.recipient.location}}</td>
                 <td>{{ helpRequest.requestDescription }}</td>
-                <td>{{ helpRequest.requestStatus}}</td>
-                <td>
-                    <a [routerLink]="['/request-detail', helpRequest.id]" type="button" class="btn btn-warning">View Details</a>
-                </td>
-                    
+                <td>{{ helpRequest.requestStatus}}</td>    
+                <td><a [routerLink]="['/request-detail', helpRequest.id]" type="button" class="btn btn-warning">View Details</a></td>       
             </tr>
         </tbody>
         </table>

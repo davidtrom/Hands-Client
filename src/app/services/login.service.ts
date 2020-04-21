@@ -15,7 +15,7 @@ export class LoginService {
 
   baseUrl = environment.baseUrl;
   volunteer: Volunteer;
-  private isLoggedIn: boolean;
+  private loggedInStatus = JSON.parse(sessionStorage.getItem('loggedIn') || 'false');
   private isLoggedIn$: BehaviorSubject<boolean>;
   private currentVolunteer$: BehaviorSubject<Volunteer>;
   isVolunteerEmailAvailable: boolean;
@@ -31,6 +31,10 @@ export class LoginService {
     this.currentVolunteer$ = new BehaviorSubject<Volunteer>(null);
   }
 
+  get isLoggedIn(){
+    return JSON.parse(sessionStorage.getItem('loggedIn') || this.loggedInStatus.toString());
+  }
+
   updateCurrentVolunteer(volunteer : Volunteer) {
     console.log("volunteer update in service", volunteer);
     this.currentVolunteer$.next(volunteer);
@@ -42,10 +46,26 @@ export class LoginService {
   }
 
   getCurrentVolunteer(): Observable<Volunteer> {
-    return this.currentVolunteer$.asObservable();
+    //this.getVolunteerByEmail().subscribe(data => console.log("retrieving volunteer"));
+    var email = sessionStorage.getItem('username');
+    console.log("email: ", email);
+    return this.http.get<Volunteer>(this.baseUrl + "/volunteers/get-by-email/" +email, this.httpOptions)
+    .pipe(tap(data => {this.currentVolunteer$.next(data);
+      return this.currentVolunteer$.asObservable();
+    }),
+    catchError(this.handleError<Volunteer>('error getting volunteer by Email', null)))
   }
 
-  getLoggedInStatus(): Observable<boolean> {
+  // getLoggedInStatus(): Observable<boolean> {
+  //   return this.isLoggedIn$.asObservable();
+  // }
+
+  getLoggedInStatus(): Observable<boolean>{
+    let checkLogin: string;
+    checkLogin = sessionStorage.getItem('isLoggedIn');
+    if (checkLogin === 'true'){
+      this.isLoggedIn$.next(true);
+    }
     return this.isLoggedIn$.asObservable();
   }
 
@@ -82,6 +102,7 @@ export class LoginService {
           this.isLoggedIn$.next(true);
           this.currentVolunteer$.next(data);
           sessionStorage.setItem('username', email);
+          sessionStorage.setItem('isLoggedIn', 'true')
         }
       }),
       catchError(this.handleError<Volunteer>('verification', null))
@@ -96,7 +117,7 @@ export class LoginService {
 
   getVolunteerByEmail(email:string) : Observable<Volunteer>{
     return this.http.get<Volunteer>(this.baseUrl + "/volunteers/get-by-email/" +email, this.httpOptions)
-    .pipe(tap(data => {this.currentVolunteer$.next(data);}),
+    .pipe(tap(data => {console.log("getting volunteer by email");}),
     catchError(this.handleError<Volunteer>('error getting volunteer by Email', null)))
   }
 
@@ -107,7 +128,8 @@ export class LoginService {
   }
 
   logout(){
-    sessionStorage.removeItem('username')
+    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('isLoggedIn');
     this.updateLoggedInStatus(false);
     this.updateCurrentVolunteer(null);
   }

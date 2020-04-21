@@ -23,9 +23,9 @@ export class VolRequestsComponent implements OnInit {
     console.log(id);
     this.loginService.getThisVolunteerRequests(id).subscribe(data => {console.log("Fetching requests");
       this.helpRequests = data;
-      // if(this.helpRequests != null){
-      //   this.noHelpRequests = false;
-      // }
+      if(this.helpRequests !== null){
+        this.noHelpRequests = false;
+      }
     });
     this.loginService.getCurrentVolunteer().subscribe(data => this.volunteer$ = data);
 

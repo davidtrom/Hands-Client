@@ -19,11 +19,14 @@ export class ViewProfileComponent implements OnInit {
   constructor(private loginService: LoginService, private recipientService: RecipientService) { }
 
   ngOnInit() {
-    this.loginService.getCurrentVolunteer().subscribe(volData => {this.currentVolunteer = volData;
-      console.log(volData);
-      if( volData != null){
-      this.userIsVolunteer = true;
-    }});
+    // this.loginService.getVolunteerByEmail(sessionStorage.getItem('username')).subscribe(data => this.currentVolunteer = data);
+    
+    this.loginService.getCurrentVolunteer().subscribe(data => this.currentVolunteer = data);
+    // this.loginService.getCurrentVolunteer().subscribe(volData => {this.currentVolunteer = volData;
+    //   console.log(volData);
+    //   if( volData != null){
+    //   this.userIsVolunteer = true;
+    // }});
 
     console.log("userIsVolunteer: ", this.userIsVolunteer)
 
