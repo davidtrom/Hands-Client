@@ -29,7 +29,7 @@
                         </a>
                     </li>
 
-                    <div *ngIf="(!volIsLoggedIn && recipIsLoggedIn) || (volIsLoggedIn && !recipIsLoggedIn)">
+                    <div *ngIf="!volIsLoggedIn">
                         <li class="nav-item" ngbDropdown>
                             <a class="nav-link" a [routerLink]="['/volunteer-login']" routerLinkActive="router-link-active" style="color:white"  role="button">
                                 Volunteers 
@@ -37,11 +37,21 @@
                         </li>
                     </div>
 
-                    <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
-                        <a class="nav-link" a [routerLink]="['/requestor-login']" routerLinkActive="router-link-active" style="color:white"  role="button">
-                        Requests  
-                        </a>
-                    </li>
+                    <div *ngIf="volIsLoggedIn; else loggedOut">
+                        <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
+                            <a class="nav-link" a [routerLink]="['/vol-requests', volunteer$.id]" routerLinkActive="router-link-active" style="color:white"  role="button">
+                            Requests  
+                            </a>
+                        </li>
+                    </div>
+
+                    <ng-template #loggedOut>
+                        <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
+                            <a class="nav-link" a [routerLink]="['/requestor-login']" routerLinkActive="router-link-active" style="color:white"  role="button">
+                            Requests  
+                            </a>
+                        </li>
+                    </ng-template>
 
                     <div *ngIf="volIsLoggedIn || recipIsLoggedIn">
                         <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">

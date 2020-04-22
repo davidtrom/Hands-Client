@@ -16,6 +16,7 @@ h1{
 .cantHelp{
     color: red;
     padding-top: 1%;
+    font-weight: bold;
 }
 
 #backBtn{

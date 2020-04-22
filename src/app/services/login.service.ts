@@ -135,16 +135,16 @@ export class LoginService {
     this.updateCurrentVolunteer(null);
   }
 
-  isVolunteerLoggedIn(){
-    let volunteer = sessionStorage.getItem('username');
-    return !(volunteer === null);
-  }
+  // isVolunteerLoggedIn(){
+  //   let volunteer = sessionStorage.getItem('username');
+  //   return !(volunteer === null);
+  // }
 
-  getSessionStorageVolunteer(){
-    let volunteer: string = sessionStorage.getItem('username');
-    console.log(volunteer);
-    return volunteer;
-  }
+  // getSessionStorageVolunteer(){
+  //   let volunteer: string = sessionStorage.getItem('username');
+  //   console.log(volunteer);
+  //   return volunteer;
+  // }
 
   /**
    * Handle Http operation that failed.

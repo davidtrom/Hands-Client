@@ -123,18 +123,24 @@
 
             <div class="card-footer">
                 <div class = "row">
+                    
                     <div class="col-md-2">
                         <div id="backBtn">
-                            <a type="button" class="btn btn-primary" [routerLink]="['/view-profile']">Back</a>
+                            <a type="button" class="btn btn-primary" [routerLink]="['/display-requests']">All Requests</a>
                         </div>
-                    </div>
+                    </div> 
+                    <div class="col-md-2">
+                        <div id="backBtn">
+                            <a type="button" class="btn btn-primary" [routerLink]="['/view-profile']">Profile</a>
+                        </div>
+                    </div>  
                     <div class="col-md-2">
                         <div id="freeBtn">
                             <button type="button" class="btn btn-danger" (click)="freeRequest(helpRequest.id)">
                                 Decline Help
                             </button>
                         </div>
-                    </div>  
+                    </div>
                 </div>
                 <div class="cantHelp">
                     **Please note, if for any reason you are unable to help the Requestor with their Request, 
