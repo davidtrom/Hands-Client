@@ -96,17 +96,15 @@
 
         <div class="card-footer">
             <div id="backBtn">
-                <a type="button" class="btn btn-primary btn-lg" [routerLink]="['/view-profile']">Back</a>
+                <a type="button" class="btn btn-primary" [routerLink]="['/view-profile']">Back</a>
             </div>
             <div id="freeBtn">
-                <button type="button" class="btn btn-success btn-lg" (click)="freeRequest(helpRequest.id)">
-                    Decline Help
+                <button type="button" class="btn btn-success" (click)="deleteRequest(helpRequest.id)">
+                    Mark As Completed
                 </button>
             </div>
             <div class="cantHelp">
-                **Please note, if for any reason you are unable to help the Requestor with their Request, 
-                click the Decline Help button and an email will be sent to the Requestor letting them know you
-                are unable to help and re-set the request back to OPEN. 
+                **Please note, if you click the Delete Request button, . 
             </div>
         </div>
     </div>

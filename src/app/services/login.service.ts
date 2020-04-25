@@ -15,7 +15,7 @@ export class LoginService {
 
   baseUrl = environment.baseUrl;
   volunteer: Volunteer;
-  private loggedInStatus = JSON.parse(sessionStorage.getItem('loggedIn') || 'false');
+  //private loggedInStatus = JSON.parse(sessionStorage.getItem('loggedIn') || 'false');
   private isLoggedIn$: BehaviorSubject<boolean>;
   private currentVolunteer$: BehaviorSubject<Volunteer>;
   isVolunteerEmailAvailable: boolean;
@@ -31,9 +31,9 @@ export class LoginService {
     this.currentVolunteer$ = new BehaviorSubject<Volunteer>(null);
   }
 
-  get isLoggedIn(){
-    return JSON.parse(sessionStorage.getItem('loggedIn') || this.loggedInStatus.toString());
-  }
+  // get isLoggedIn(){
+  //   return JSON.parse(sessionStorage.getItem('loggedIn') || this.loggedInStatus.toString());
+  // }
 
   updateCurrentVolunteer(volunteer : Volunteer) {
     console.log("volunteer update in service", volunteer);
@@ -106,7 +106,7 @@ export class LoginService {
           sessionStorage.setItem('isLoggedIn', 'true')
         }
       }),
-      catchError(this.handleError<Volunteer>('verification', null))
+      catchError(this.handleError<Volunteer>('error verifying volunteer', null))
     )
   }
 
@@ -129,8 +129,9 @@ export class LoginService {
   }
 
   logout(){
-    sessionStorage.removeItem('username');
-    sessionStorage.removeItem('isLoggedIn');
+    sessionStorage.clear();
+    //sessionStorage.removeItem('username');
+    //sessionStorage.removeItem('isLoggedIn');
     this.updateLoggedInStatus(false);
     this.updateCurrentVolunteer(null);
   }

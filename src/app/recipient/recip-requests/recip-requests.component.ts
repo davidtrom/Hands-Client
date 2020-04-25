@@ -3,6 +3,7 @@ import { HelpRequestService } from 'src/app/services/help-request.service';
 import { RecipientService } from 'src/app/services/recipient.service';
 import { HelpRequest } from 'src/app/models/helpRequest';
 import { Recipient } from 'src/app/models/Recipient';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-recip-requests',
@@ -13,13 +14,24 @@ export class RecipRequestsComponent implements OnInit {
 
   helpRequests: HelpRequest[];
   currentRecipient$: Recipient;
+  noHelpRequests: boolean;
 
-  constructor(private recipientService: RecipientService) { }
+  constructor(private route: ActivatedRoute, private helpRequestService: HelpRequestService, private recipientService: RecipientService) { }
 
   ngOnInit() {
-    this.recipientService.getCurrentRecipient().subscribe(data => this.currentRecipient$ = data);
-    let recipientId = this.currentRecipient$.id;
-    this.recipientService.getThisRecipientRequests(recipientId).subscribe(data => this.helpRequests = data);
+    let id = +this.route.snapshot.paramMap.get('id');
+    // console.log(sessionStorage.getItem('recipUsername'));
+    // this.recipientService.getRecipientByEmail(sessionStorage.getItem('recipUsername')).subscribe(data => this.currentRecipient$ = data);
+    // console.log(this.currentRecipient$);
+    
+    this.recipientService.getThisRecipientRequests(id).subscribe(data => {this.helpRequests = data;
+    if(this.helpRequests.length === 0){
+        this.noHelpRequests = true;
+    }
+    else {
+      this.noHelpRequests = false;
+    }});
+
   }
 
   // ngOnDestroy(){

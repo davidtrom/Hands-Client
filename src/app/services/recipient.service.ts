@@ -16,12 +16,6 @@ export class RecipientService {
   private isLoggedIn$: BehaviorSubject<boolean>;
   private currentRecipient$: BehaviorSubject<Recipient>;
 
-  //isLoggedIn$: BehaviorSubject<any> = new BehaviorSubject([]);
-  //currentRecipient$: BehaviorSubject<any> = new BehaviorSubject([]);
-  
-  // private currentRecipient$ = new BehaviorSubject<Recipient>(new Recipient());
-  // data = this.currentRecipient$.asObservable();
-
   httpOptions = {
     headers: new HttpHeaders({'Content-Type' : 'application/json'})
   }
@@ -30,6 +24,17 @@ export class RecipientService {
     this.isLoggedIn$ = new BehaviorSubject<boolean>(false);
     this.currentRecipient$ = new BehaviorSubject<Recipient>(null);
   }
+
+  updateCurrentRecipient(recipient : Recipient) {
+    console.log("requestor update in service", recipient);
+    this.currentRecipient$.next(recipient);
+  }
+
+  updateLoggedInStatus(isLoggedIn : boolean) {
+    console.log("requestor logged in", isLoggedIn);
+    this.isLoggedIn$.next(isLoggedIn);
+  }
+
 
   createRecipient(recipientToCreate:Recipient): Observable<Recipient> {
     return this.http.post<Recipient>(this.baseUrl+"/recipients/create", recipientToCreate, this.httpOptions)
@@ -45,10 +50,11 @@ export class RecipientService {
         if(this.recipient != null){
           this.isLoggedIn$.next(true);
           this.currentRecipient$.next(data);
-          sessionStorage.setItem('username', email);
+          sessionStorage.setItem('recipUsername', email);
+          sessionStorage.setItem('recipIsLogged', 'true');
         }
       }),
-      catchError(this.handleError<Recipient>('verification', null))
+      catchError(this.handleError<Recipient>('error verifying recipient', null))
     )
   }
 
@@ -59,21 +65,17 @@ export class RecipientService {
       .pipe(tap(data => console.log("verifying email")));
   }
 
-  updateCurrentRecipient(recipient : Recipient) {
-    console.log("requestor update in service", recipient);
-    this.currentRecipient$.next(recipient);
-  }
-
-  updateLoggedInStatus(isLoggedIn : boolean) {
-    console.log("requestor logged in", isLoggedIn);
-    this.isLoggedIn$.next(isLoggedIn);
-  }
-
+  
   getCurrentRecipient(): Observable<Recipient> {
     return this.currentRecipient$.asObservable();
   }
 
   getLoggedInStatus(): Observable<boolean> {
+    let checkLogin: string;
+    checkLogin = sessionStorage.getItem('recipIsLogged');
+    if(checkLogin === 'true'){
+      this.isLoggedIn$.next(true);
+    }
     return this.isLoggedIn$.asObservable();
   }
 
@@ -84,13 +86,14 @@ export class RecipientService {
   }
 
   getThisRecipientRequests(id: number) : Observable<HelpRequest[]>{
-    return this.http.get<HelpRequest[]>(this.baseUrl + `/requests/recipient/${id}`, this.httpOptions)
+    return this.http.get<HelpRequest[]>(this.baseUrl + "/requests/recipient/" + id, this.httpOptions)
     .pipe(tap(data => console.log("fetching your requests...")),
     catchError(this.handleError<HelpRequest[]>('error getting requests', null)));
   }
 
   logout(){
-    sessionStorage.removeItem('username')
+    sessionStorage.clear();
+    //sessionStorage.removeItem('recipUsername')
     this.updateLoggedInStatus(false);
     this.updateCurrentRecipient(null);
   }
@@ -104,6 +107,15 @@ export class RecipientService {
     let recipient: string = sessionStorage.getItem('username');
     return recipient;
   }
+
+  getRecipientByEmail(email:string) : Observable<Recipient>{
+    return this.http.get<Recipient>(this.baseUrl + `/recipients/${email}/get-by-email`, this.httpOptions)
+    .pipe(tap(data => {
+      this.recipient = data;
+      this.currentRecipient$.next(data);}),
+    catchError(this.handleError<Recipient>('error getting recipient by Email', null)))
+  }
+
 
 
 

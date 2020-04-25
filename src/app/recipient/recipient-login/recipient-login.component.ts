@@ -15,7 +15,7 @@ export class RecipientLoginComponent implements OnInit {
 
   recipLoginForm: FormGroup;
   invalidLogin: boolean = false;
-  recipient: Recipient;
+  recipient$: Recipient;
   volunteerIsLoggedIn: boolean;
 
   constructor(private router: Router, private recipientService: RecipientService, private fb: FormBuilder) { }
@@ -38,10 +38,12 @@ export class RecipientLoginComponent implements OnInit {
           this.recipLoginForm.reset();
         }
         else {
+          this.recipient$ = data;
           console.log("Login Successful ", data);
           //this.recipientService.updateCurrentRecipient(data);
           //this.recipientService.updateLoggedInStatus(true);
-          this.router.navigate(['/req-dashboard']);
+          this.router.navigate(['/req-requests', this.recipient$.id]);
+          //[routerLink]="['/request-detail', helpRequest.id]"
         }
       })
   }
