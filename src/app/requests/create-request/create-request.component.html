@@ -1,5 +1,13 @@
 <p>create-request works!</p>
 
+
+
+
+
+
+
+
+
 <div class="flex-container">
     <div class="container">
         <form [formGroup]="newRequestForm" (ngSubmit)="onSubmit()">
@@ -7,17 +15,18 @@
                 <div class="heading">
                     <h2 class="panel-title">Create a New Request:</h2>
                 </div>
-                <div class="panel-body">
+                
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             
                             <!-- <div class="form-group"> -->
                                 <select class="custom-select" required>
                                   <option value="" selected>Select a Type Of Request*</option>
-                                  <option value="1"></option>
-                                  <option value="2">Donation</option>
-                                  <option value="3">Food</option>
+                                  <option value="1">Donation</option>
+                                  <option value="2">Food</option>
+                                  <option value="3">Loneliness</option>
                                   <option value="4">Medication</option>
+                                  <option value="5">Other</option>
                                 </select>
                             <!-- </div> -->
 
@@ -29,50 +38,15 @@
                             </div> -->
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="lastName">Last Name:</label>
-                            <input id="lastName" formControlName="lastName" type="text" class="form-control" [ngClass]="{ 'is-invalid': form.lastName.errors }" placeholder="Last Name">
-                            <div *ngIf="submitted && form.lastName.errors" class="invalid-feedback">
-                                <div *ngIf="form.lastName.errors.pattern">Last name not valid</div>
-                                <div *ngIf="form.lastName.errors.required">Last Name is required</div>
+                            <label for="description">A Brief Description (255 characters or less) of What You Need:</label>
+                            <textarea id="description" formControlName="description" rows="4" type="text" class="form-control" [ngClass]="{ 'is-invalid': form.description.errors }" placeholder="Desccription of Your Need"></textarea>
+                            <!-- <div *ngIf="submitted && form.description.errors" class="invalid-feedback"> -->
+                            <div class="invalid-feedback">
+                                <div *ngIf="form.description.errors.required">A Description is required</div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="phoneNum">Phone Number:</label>
-                            <input type="text" formControlName="phoneNum" class="form-control" id="phoneNum" [ngClass]="{ 'is-invalid': form.phoneNum.errors }" placeholder="302-555-7890">
-                            <div *ngIf="submitted && form.phoneNum.errors" class="invalid-feedback">
-                                <div *ngIf="form.phoneNum.errors.minlength">Phone number needs to be 10 characters minimum</div>
-                                <div *ngIf="form.phoneNum.errors.required">Phone number is required</div>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="email">Email Address:</label>
-                            <input type="email" formControlName="email" class="form-control" id="email" [ngClass]="{ 'is-invalid': form.email.errors }" placeholder="yourAddress@email.com">
-                            <div *ngIf="submitted && form.email.errors" class="invalid-feedback">
-                                <div *ngIf="form.email.errors.pattern">Email is not valid</div>
-                                <div *ngIf="form.email.errors.required">Email is required</div>
-                            </div>
-                        </div>
-                        <div *ngIf="emailAlreadyTaken" class="alert alert-danger"> 
-                            *This username already exists!
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="password">Password:</label>
-                            <input type="password" formControlName="password" class="form-control" id="password" [ngClass]="{ 'is-invalid': form.password.errors }" placeholder="Password">
-                            <div *ngIf="submitted && form.password.errors" class="invalid-feedback">
-                                <div *ngIf="form.password.errors.pattern">Password needs lowercase, uppercase, number, and symbol: 8 characters minimum</div>
-                                <div *ngIf="form.password.errors.required">Password is required</div>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="link">A link to a social media account for identification purposes:</label>
-                            <input type="text" formControlName="link" class="form-control" id="link" placeholder="Social Media Link">
-                        </div>
-                    </div>
-                </div>
+                    
                 <div class="form-group" id="btnSubmit">                 
                     <button type="submit" class="btn btn-primary">Register</button>
                 </div>

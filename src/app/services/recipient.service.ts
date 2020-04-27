@@ -79,7 +79,7 @@ export class RecipientService {
     return this.isLoggedIn$.asObservable();
   }
 
-  getRecipient(id: number) {
+  getRecipientById(id: number) {
     return this.http.get<Recipient>(this.baseUrl+`/recipients/${id}`, this.httpOptions)
     .pipe(tap(data => console.log('get recipient', data)),
       catchError(this.handleError<Recipient>('getting recipient', null)));

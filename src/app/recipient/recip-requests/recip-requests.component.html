@@ -1,111 +1,133 @@
-
-<h1>Active Requests:</h1>
-
-<div class="flex-container" *ngFor="let helpRequest of helpRequests;">
-    <!-- <div>{{helpRequest.volunteer.firstName}}'s Agreed Requests:</div> -->
-    <h1>HI</h1>
-    <div class="card w-75 p-3 mx-auto">
-        <div class="card-header">
-        Request Detail:
+<div *ngIf="noHelpRequests; else showRequests" class="flex-container">
+    <div class="container">
+        <div class="info">
+            {{currentRecipient$.firstName}}, at this time you have not yet placed any requests for help.
+            Once you place a request, all of our Volunteers will be able to view your request, and with any luck 
+            one of them will be able to fulfill your request.  Once a request is made you can come back here to 
+            view the status of your request.  Once a Volunteer has agreed to take on your request, you will receive 
+            an email with their contact information so both parties can coordinate how they would like to go about 
+            completing the request.  This site is a way to connect those who would like to help with those who need 
+            need help during this difficult time.  Please practice safety at all times.  
         </div>
-        <div class="card-body">
-            <div class = "row">
-                <div class= "col-md-4">
-                    <u>Date Request Posted:</u>
-                </div>
-                <div class= "col-md-8">
-                    {{helpRequest.datePosted | date: 'shortDate'}} 
-                </div>
-            </div>
-
-            <div class = "row">
-                <div class= "col-md-4">
-                    <u>Requestor Location:</u>
-                </div>
-                <div class= "col-md-8">
-                    {{helpRequest.recipient.location}}
-                </div>
-            </div>
-
-            <div class = "row">
-                <div class= "col-md-4">
-                    <u>Request Type:</u>
-                </div>
-                <div class= "col-md-8">
-                    {{helpRequest.typeOfRequest}}
-                </div>
-            </div>
-
-            <div class = "row">
-                <div class= "col-md-4">
-                    <u>Request Description:</u>
-                </div>
-
-                <div class= "col-md-8">
-                    {{helpRequest.requestDescription}}
-                </div>
-            </div>
-
-            <div class = "row">
-                <div class= "col-md-4">
-                    <u>Requestor Name:</u>
-                </div>
-                <div class= "col-md-8">
-                    {{helpRequest.recipient.firstName}} {{helpRequest.recipient.lastName}} 
-                </div>
-            </div>
-
-            <div class = "row">
-                <div class= "col-md-4">
-                    <u>Requestor Phone Number:</u>
-                </div>
-                <div class= "col-md-8">
-                    {{helpRequest.recipient.phoneNum}}
-                </div>
-            </div>
-
-            <div class = "row">
-                <div class= "col-md-4">
-                    <u>Requestor Email:</u>
-                </div>
-                <div class= "col-md-8">
-                    {{helpRequest.recipient.email}}
-                </div>
-            </div>
-
-            <div class = "row">
-                <div class= "col-md-4">
-                    <u>Requestor Social Media Site:</u>
-                </div>
-
-                <div class= "col-md-8">
-                    {{helpRequest.link}}
-                </div>
-            </div> 
-            
-            <div class = "row">
-                <div class= "col-md-4">
-                    <u>Request Status:</u>
-                </div>
-
-                <div class= "col-md-8">
-                    {{helpRequest.requestStatus}}
-                </div>
-            </div> 
+        <div class="createRequestBtn">
+            <a type="button" class="btn btn-primary" [routerLink]="['/create-request']">Create Request</a>
         </div>
 
-        <div class="card-footer">
-            <div id="backBtn">
-                <a type="button" class="btn btn-primary" [routerLink]="['/view-profile']">Back</a>
+    </div>
+</div>
+
+
+
+
+<ng-template #showRequests>
+    <h1>{{currentRecipient$.firstName}}'s Active Requests:</h1>
+
+    <div class="flex-container" *ngFor="let helpRequest of helpRequests;">
+        <!-- <div>{{helpRequest.volunteer.firstName}}'s Agreed Requests:</div> -->
+        <h1>HI</h1>
+        <div class="card w-75 p-3 mx-auto">
+            <div class="card-header">
+            Request Detail:
             </div>
-            <div id="freeBtn">
-                <button type="button" class="btn btn-success" (click)="deleteRequest(helpRequest.id)">
-                    Mark As Completed
-                </button>
+            <div class="card-body">
+                <div class = "row">
+                    <div class= "col-md-4">
+                        <u>Date Request Posted:</u>
+                    </div>
+                    <div class= "col-md-8">
+                        {{helpRequest.datePosted | date: 'shortDate'}} 
+                    </div>
+                </div>
+
+                <div class = "row">
+                    <div class= "col-md-4">
+                        <u>Requestor Location:</u>
+                    </div>
+                    <div class= "col-md-8">
+                        {{helpRequest.recipient.location}}
+                    </div>
+                </div>
+
+                <div class = "row">
+                    <div class= "col-md-4">
+                        <u>Request Type:</u>
+                    </div>
+                    <div class= "col-md-8">
+                        {{helpRequest.typeOfRequest}}
+                    </div>
+                </div>
+
+                <div class = "row">
+                    <div class= "col-md-4">
+                        <u>Request Description:</u>
+                    </div>
+
+                    <div class= "col-md-8">
+                        {{helpRequest.requestDescription}}
+                    </div>
+                </div>
+
+                <div class = "row">
+                    <div class= "col-md-4">
+                        <u>Requestor Name:</u>
+                    </div>
+                    <div class= "col-md-8">
+                        {{helpRequest.recipient.firstName}} {{helpRequest.recipient.lastName}} 
+                    </div>
+                </div>
+
+                <div class = "row">
+                    <div class= "col-md-4">
+                        <u>Requestor Phone Number:</u>
+                    </div>
+                    <div class= "col-md-8">
+                        {{helpRequest.recipient.phoneNum}}
+                    </div>
+                </div>
+
+                <div class = "row">
+                    <div class= "col-md-4">
+                        <u>Requestor Email:</u>
+                    </div>
+                    <div class= "col-md-8">
+                        {{helpRequest.recipient.email}}
+                    </div>
+                </div>
+
+                <div class = "row">
+                    <div class= "col-md-4">
+                        <u>Requestor Social Media Site:</u>
+                    </div>
+
+                    <div class= "col-md-8">
+                        {{helpRequest.link}}
+                    </div>
+                </div> 
+                
+                <div class = "row">
+                    <div class= "col-md-4">
+                        <u>Request Status:</u>
+                    </div>
+
+                    <div class= "col-md-8">
+                        {{helpRequest.requestStatus}}
+                    </div>
+                </div> 
             </div>
-            <div class="cantHelp">
-                **Please note, if you click the Delete Request button, . 
+
+            <div class="card-footer">
+                <div id="backBtn">
+                    <a type="button" class="btn btn-primary" [routerLink]="['/view-profile']">Profile</a>
+                </div>
+                <div id="freeBtn">
+                    <button type="button" class="btn btn-success" (click)="deleteRequest(helpRequest.id)">
+                        Mark As Completed
+                    </button>
+                </div>
+                <div class="cantHelp">
+                    **Please note, if you click the Delete Request button, . 
+                </div>
             </div>
         </div>
     </div>
-</div>
+</ng-template>

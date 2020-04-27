@@ -24,6 +24,8 @@ export class RecipRequestsComponent implements OnInit {
     // this.recipientService.getRecipientByEmail(sessionStorage.getItem('recipUsername')).subscribe(data => this.currentRecipient$ = data);
     // console.log(this.currentRecipient$);
     
+    this.recipientService.getRecipientById(id).subscribe(data => this.currentRecipient$ = data);
+    
     this.recipientService.getThisRecipientRequests(id).subscribe(data => {this.helpRequests = data;
     if(this.helpRequests.length === 0){
         this.noHelpRequests = true;
@@ -35,7 +37,7 @@ export class RecipRequestsComponent implements OnInit {
   }
 
   // ngOnDestroy(){
-  //   this.helpRequests.unsubscribe();
+  //   this.recipientService.getRecipientById(id).unsubscribe();
 
   // }
 
