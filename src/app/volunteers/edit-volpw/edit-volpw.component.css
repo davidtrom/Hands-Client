@@ -12,6 +12,7 @@
 #backBtn{
     display: inline;
     color: white;
+    text-align: center;
 }
 
 .buttons{
@@ -21,4 +22,14 @@
 
 h2{
     padding-bottom: 1%;
+}
+
+#col1{
+    padding-left: 5%;
+    padding-right: 3%;
+}
+
+#col2{
+    padding-right: 5%;
+    padding-left: 3%;
 }

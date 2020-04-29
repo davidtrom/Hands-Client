@@ -23,6 +23,9 @@ export class EditVolunteerComponent implements OnInit {
   ngOnInit() {
     this.loginService.getCurrentVolunteer().subscribe(data => {this.volunteer$ = data});
     //this.loginService.getVolunteerByEmail(sessionStorage.getItem('username')).subscribe(data => this.volunteer$ = data);
+    // this.loginService.getVolunteerByEmail(sessionStorage.getItem('username')).subscribe(volData => {
+    //   this.currentVolunteer = volData;
+    
     this.editVolunteerForm = this.fb.group({
       firstName: [this.volunteer$.firstName, [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
       lastName: [this.volunteer$.lastName, [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],

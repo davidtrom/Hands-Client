@@ -47,9 +47,12 @@ export class RequestDetailComponent implements OnInit {
     
   }
 
+  
+
   changeStatus(id:number){
     console.log(this.volunteer$);
     this.helpRequestService.changeRequestStatus(id, sessionStorage.getItem('username')).subscribe(data => {console.log("update request status; emailing requestor...")});
+    alert('Thank you for agreeing to help this Requestor. \n Together we can all make a difference!');
     location.reload();
   }
   //view all requests

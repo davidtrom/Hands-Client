@@ -95,6 +95,16 @@ export class LoginService {
       )
   }
 
+  updateVolunteerEMail(currentEmail: string, newEmail: string): Observable<Volunteer> {
+    let reqData: Object = {"currentEmail": currentEmail, "newEmail": newEmail};
+    return this.http.post<Volunteer>(this.baseUrl + "/volunteers/update-email", reqData, this.httpOptions)
+      .pipe(tap(data => {console.log("updating volunteer email");
+      this.currentVolunteer$.next(data);}),
+      catchError(this.handleError<Volunteer>('error updating email', null))
+      )
+  }
+
+
   verifyVolunteer(email:string, password:string) : Observable<Volunteer>{
     let reqData: Object = {"email": email, "password": password};
     return this.http.post<Volunteer>(this.baseUrl+"/volunteers/verify", reqData, this.httpOptions)
@@ -112,7 +122,9 @@ export class LoginService {
 
   getVolunteerById(id:number) : Observable<Volunteer>{
     return this.http.get<Volunteer>(this.baseUrl + "/volunteers/get/" +id, this.httpOptions)
-    .pipe(tap(data => {this.currentVolunteer$.next(data);}),
+    .pipe(tap(data => {
+      this.updateCurrentVolunteer(data);
+    console.log(data);}),
     catchError(this.handleError<Volunteer>('error getting volunteer by Id', null)))
   }
 

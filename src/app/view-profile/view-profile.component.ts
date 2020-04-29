@@ -22,7 +22,7 @@ export class ViewProfileComponent implements OnInit {
 
     this.loginService.getVolunteerByEmail(sessionStorage.getItem('username')).subscribe(volData => {
       this.currentVolunteer = volData;
-      if( volData !== null){
+      if( volData != null){
         this.userIsVolunteer = true;
       }
     });
