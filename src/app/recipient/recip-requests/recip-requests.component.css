@@ -2,6 +2,7 @@ h1{
     text-align: center;
     color: rgb(228, 86, 86);
     font-weight: bold;
+    padding-top: 1%;
 }
 
 .flex-container{
@@ -33,3 +34,8 @@ h1{
     margin-left: 8%;
     margin-right: 8%;
 }
+
+.createRequestBtn{
+    padding-top: 2%;
+}
+

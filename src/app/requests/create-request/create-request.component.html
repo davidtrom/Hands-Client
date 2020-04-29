@@ -1,13 +1,5 @@
 <p>create-request works!</p>
 
-
-
-
-
-
-
-
-
 <div class="flex-container">
     <div class="container">
         <form [formGroup]="newRequestForm" (ngSubmit)="onSubmit()">
@@ -20,6 +12,7 @@
                         <div class="form-group col-md-6">
                             
                             <!-- <div class="form-group"> -->
+                                <label for="typeOfRequest">Pick the Type of Request:</label>
                                 <select class="custom-select" required>
                                   <option value="" selected>Select a Type Of Request*</option>
                                   <option value="1">Donation</option>
@@ -30,18 +23,15 @@
                                 </select>
                             <!-- </div> -->
 
-                            <!-- <label for="typeOfRequest">First Name:</label>
-                            <input id="typeOfRequest" formControlName="typeOfRequest" type="text" class="form-control" [ngClass]="{ 'is-invalid': form.firstName.errors }" placeholder="First Name">
-                            <div *ngIf="submitted && form.firstName.errors" class="invalid-feedback">
-                                <div *ngIf="form.firstName.errors.pattern">First name not valid</div>
-                                <div *ngIf="form.firstName.errors.required">First Name is required</div>
-                            </div> -->
                         </div>
                         <div class="form-group col-md-6">
                             <label for="description">A Brief Description (255 characters or less) of What You Need:</label>
                             <textarea id="description" formControlName="description" rows="4" type="text" class="form-control" [ngClass]="{ 'is-invalid': form.description.errors }" placeholder="Desccription of Your Need"></textarea>
                             <!-- <div *ngIf="submitted && form.description.errors" class="invalid-feedback"> -->
-                            <div class="invalid-feedback">
+                                <div class="form-row__description">
+                                    You have used {{ descriptionLength$ }} characters.
+                                </div>
+                                <div class="invalid-feedback">
                                 <div *ngIf="form.description.errors.required">A Description is required</div>
                             </div>
                         </div>
@@ -54,3 +44,6 @@
           </form>
     </div>
 </div>
+
+<!-- <input [(ngModel)]="box">
+                                <p>{{box.length}}</p> -->

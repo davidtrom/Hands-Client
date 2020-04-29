@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-request',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateRequestComponent implements OnInit {
 
-  constructor() { }
+  newRequestForm: FormGroup;
+  descriptionLength$: number = 0;
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.newRequestForm = this.fb.group({
+      typeOfRequest: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+    });
+
+    this.newRequestForm.get('description').valueChanges.subscribe(value => this.descriptionLength$ = value);
   }
 
+  get form() { return this.newRequestForm.controls; }
 }

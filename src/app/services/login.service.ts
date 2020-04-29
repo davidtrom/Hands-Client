@@ -86,8 +86,8 @@ export class LoginService {
     )
   }
 
-  updateVolunteerProfile(id: number, firstName:string, lastName: string, phoneNum: string, email: string, link: string): Observable<Volunteer> {
-    let reqData: Object = {"id": id, "firstName": firstName, "lastName": lastName, "phoneNum": phoneNum, "email": email, "link": link}
+  updateVolunteerProfile(id: number, firstName:string, lastName: string, phoneNum: string, link: string): Observable<Volunteer> {
+    let reqData: Object = {"id": id, "firstName": firstName, "lastName": lastName, "phoneNum": phoneNum, "link": link}
     return this.http.post<Volunteer>(this.baseUrl + "/volunteers/update-profile", reqData, this.httpOptions)
       .pipe(tap(data => {console.log("volunteer updating", data);
         this.currentVolunteer$.next(data);}),
