@@ -90,7 +90,8 @@ export class LoginService {
     let reqData: Object = {"id": id, "firstName": firstName, "lastName": lastName, "phoneNum": phoneNum, "link": link}
     return this.http.post<Volunteer>(this.baseUrl + "/volunteers/update-profile", reqData, this.httpOptions)
       .pipe(tap(data => {console.log("volunteer updating", data);
-        this.currentVolunteer$.next(data);}),
+      this.volunteer = data;  
+      this.updateCurrentVolunteer(this.volunteer);}),
       catchError(this.handleError<Volunteer>('error updating', null))
       )
   }
@@ -98,8 +99,10 @@ export class LoginService {
   updateVolunteerEMail(currentEmail: string, newEmail: string): Observable<Volunteer> {
     let reqData: Object = {"currentEmail": currentEmail, "newEmail": newEmail};
     return this.http.post<Volunteer>(this.baseUrl + "/volunteers/update-email", reqData, this.httpOptions)
-      .pipe(tap(data => {console.log("updating volunteer email");
-      this.currentVolunteer$.next(data);}),
+      .pipe(tap(data => {this.volunteer = data;
+        console.log("updating volunteer email");
+        this.updateCurrentVolunteer(this.volunteer);
+      }),
       catchError(this.handleError<Volunteer>('error updating email', null))
       )
   }
@@ -130,7 +133,9 @@ export class LoginService {
 
   getVolunteerByEmail(email:string) : Observable<Volunteer>{
     return this.http.get<Volunteer>(this.baseUrl + `/volunteers/${email}/get-by-email`, this.httpOptions)
-    .pipe(tap(data => {this.currentVolunteer$.next(data);}),
+    .pipe(tap(data => {
+      this.volunteer = data;
+      this.updateCurrentVolunteer(this.volunteer);}),
     catchError(this.handleError<Volunteer>('error getting volunteer by Email', null)))
   }
 

@@ -1,67 +1,48 @@
-<h2>Volunteer: Update Login</h2>
 <div class="flex-container">
-    <div class="row">
-        <!-- <div class="container"> -->
-            
-            
-                <div class="col-md-6" id="col1">
-                    <form [formGroup]="editVolunteerPWForm" (ngSubmit)="submitPW()">
-                        
-                        <label for="currentPassword">Current Password:</label>
-                        <input type="currentPassword" formControlName="currentPassword" class="form-control" id="currentPassword" [ngClass]="{ 'is-invalid': form.currentPassword.errors }" placeholder="Current Password">
-                        <div *ngIf="submitted && form.currentPassword.errors" class="invalid-feedback">
-                            <div *ngIf="form.currentPassword.errors.required">Password is required</div>
-                        </div>
+    <div class="container">
+        
+        <div class="row" >
+            <div class="col-md-6">
+                <h2>Volunteer: Update Password</h2>
+            </div>
+            <div class="col-md-6" id="editEmailBtn">
+                <a type="button" class="btn btn-primary" [routerLink]="['/update-volEmail']">Update Username/Email Address</a>
+            </div>
+        </div>
 
-                        <label for="newPassword">New Password:</label>
-                        <input type="newPassword" formControlName="newPassword" class="form-control" id="newPassword" [ngClass]="{ 'is-invalid': form.newPassword.errors }" placeholder="New Password">
-                        <div *ngIf="submitted && form.newPassword.errors" class="invalid-feedback">
-                            <div *ngIf="form.newPassword.errors.pattern">Password needs lowercase, uppercase, number, and symbol: 8 characters minimum</div>
-                            <div *ngIf="form.newPassword.errors.required">Password is required</div>
-                        </div>
+        <form [formGroup]="editVolunteerPWForm" (ngSubmit)="submitPW()">        
+            <label for="currentPassword">Current Password:</label>
+            <input type="currentPassword" formControlName="currentPassword" class="form-control" id="currentPassword" [ngClass]="{ 'is-invalid': form.currentPassword.errors }" placeholder="Current Password">
+            <div *ngIf="submitted && form.currentPassword.errors" class="invalid-feedback">
+                <div *ngIf="form.currentPassword.errors.required">Password is required</div>
+            </div>
 
-                        <label for="confirmPassword">Confirm Password:</label>
-                        <input type="confirmPassword" formControlName="confirmPassword" class="form-control" id="confirmPassword" [ngClass]="{ 'is-invalid': form.confirmPassword.errors }" placeholder="Confirm Password">
-                        <div *ngIf="submitted && form.confirmPassword.errors" class="invalid-feedback">
-                            <div *ngIf="form.confirmPassword.errors.pattern">Password needs lowercase, uppercase, number, and symbol: 8 characters minimum</div>
-                            <div *ngIf="form.confirmPassword.errors.required">Password is required</div>
-                        </div>
+            <label for="newPassword">New Password:</label>
+            <input type="newPassword" formControlName="newPassword" class="form-control" id="newPassword" [ngClass]="{ 'is-invalid': form.newPassword.errors }" placeholder="New Password">
+            <div *ngIf="submitted && form.newPassword.errors" class="invalid-feedback">
+                <div *ngIf="form.newPassword.errors.pattern">Password needs lowercase, uppercase, number, and symbol: 8 characters minimum</div>
+                <div *ngIf="form.newPassword.errors.required">Password is required</div>
+            </div>
 
-                        <div class="buttons">
-                            <div class="form-group" id="btnSubmit">                 
-                                <button type="submit" class="btn btn-primary">Update Password</button>
-                            </div>   
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-6" id="col2">
-                    <form [formGroup]="editVolunteerEmailForm" (ngSubmit)="submitEmail()">
-                        
-                        <label for="currentEmail">Current Email:</label>
-                        <input type="currentEmail" formControlName="currentEmail" class="form-control" id="currentEmail" [ngClass]="{ 'is-invalid': form.currentEmail.errors }">
-                        <div *ngIf="submitted && form.currentEmail.errors" class="invalid-feedback">
-                            <div *ngIf="form.currentEmail.errors.required">New Email is required</div>
-                        </div>
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="confirmPassword" formControlName="confirmPassword" class="form-control" id="confirmPassword" [ngClass]="{ 'is-invalid': form.confirmPassword.errors }" placeholder="Confirm Password">
+            <div *ngIf="submitted && form.confirmPassword.errors" class="invalid-feedback">
+                <div *ngIf="form.confirmPassword.errors.pattern">Password needs lowercase, uppercase, number, and symbol: 8 characters minimum</div>
+                <div *ngIf="form.confirmPassword.errors.required">Password is required</div>
+            </div>
 
-                        <label for="newEmail">New Email:</label>
-                        <input type="newEmail" formControlName="newEmail" class="form-control" id="newEmail" [ngClass]="{ 'is-invalid': form.newPassword.errors }" placeholder="New Email">
-                        <div *ngIf="submitted && form.newEmail.errors" class="invalid-feedback">
-                            <div *ngIf="form.newEmail.errors.pattern">Please Enter a valid Email</div>
-                            <div *ngIf="form.newEmail.errors.required">New Email is required</div>
-                        </div>
-
-                        <div class="buttons">
-                            <div class="form-group" id="btnSubmit">                 
-                                <button type="submit" class="btn btn-primary">Update Email</button>
-                            </div>    
-                        </div>
-                    </form>
-                </div>
-        <!-- </div> -->
+            <div class="buttons">
+                <div class="form-group" id="btnSubmit">                 
+                    <button type="submit" class="btn btn-primary">Update Password</button>
+                </div>   
+            </div>
+        </form>
+   
+        <div id="backBtn">
+            <a type="button" class="btn btn-primary" [routerLink]="['/view-profile']">Back</a>
+        </div>
     </div>
 </div>
 
 
-<div id="backBtn">
-    <a type="button" class="btn btn-primary" [routerLink]="['/view-profile']">Back</a>
-</div>
+

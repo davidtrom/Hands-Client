@@ -17,6 +17,7 @@ import { RequestorDashboardComponent } from './recipient/requestor-dashboard/req
 import { VolRequestsComponent } from './volunteers/vol-requests/vol-requests.component';
 import { CreateRequestComponent } from './requests/create-request/create-request.component';
 import { RecipRequestsComponent } from './recipient/recip-requests/recip-requests.component';
+import { UpdateVolEmailComponent } from './update-vol-email/update-vol-email.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'vol-requests/:id', component: VolRequestsComponent},
   { path: 'create-request', component: CreateRequestComponent},
   { path: 'req-requests/:id', component: RecipRequestsComponent},
+  { path: 'update-volEmail', component: UpdateVolEmailComponent},
 
 
   
