@@ -30,12 +30,13 @@ export class VolRequestsComponent implements OnInit {
         this.noHelpRequests = false;
       }
     });
-    
+
     this.loginService.getVolunteerByEmail(sessionStorage.getItem('username')).subscribe(data => this.volunteer$ = data);
   }
 
   freeRequest(id: number){
     this.helpRequestService.freeRequest(id).subscribe(data => console.log("freeing request..."));
+    alert('Request successfully declined. \nPlease view all requests and consider helping however you can.')
     location.reload();
   }
 }

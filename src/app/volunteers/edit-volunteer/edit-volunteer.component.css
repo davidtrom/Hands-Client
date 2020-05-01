@@ -6,6 +6,11 @@
 
 #btnSubmit{
     padding-top: 2%;
+   
+}
+
+#backBtn{
+    display: inline;
 }
 
 

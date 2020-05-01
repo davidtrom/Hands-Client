@@ -1,3 +1,12 @@
-#editPWbuton{
+.flex-container{
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+#editPWBtn, #backBtn{
     color: white;
+}
+
+#btnSubmit{
+    padding-top: 2%;
 }

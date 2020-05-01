@@ -107,6 +107,15 @@ export class LoginService {
       )
   }
 
+  updatePassword(volunteerId: number, password: string, newPassword: string): Observable<boolean>{
+    let reqData: Object = {"id": volunteerId, "password": password, "newPassword": newPassword}
+    console.log(volunteerId, password, newPassword);
+    return this.http.post<boolean>(this.baseUrl + "/volunteers/update-password", reqData, this.httpOptions)
+      .pipe(tap(data => console.log("password updated: ", data)),
+      catchError(this.handleError<boolean>('error updating password', null))
+      )
+  }
+
 
   verifyVolunteer(email:string, password:string) : Observable<Volunteer>{
     let reqData: Object = {"email": email, "password": password};
@@ -126,7 +135,8 @@ export class LoginService {
   getVolunteerById(id:number) : Observable<Volunteer>{
     return this.http.get<Volunteer>(this.baseUrl + "/volunteers/get/" +id, this.httpOptions)
     .pipe(tap(data => {
-      this.updateCurrentVolunteer(data);
+      this.volunteer = data;
+      this.updateCurrentVolunteer(this.volunteer);
     console.log(data);}),
     catchError(this.handleError<Volunteer>('error getting volunteer by Id', null)))
   }

@@ -16,7 +16,7 @@ export class UpdateVolEmailComponent implements OnInit {
   constructor(private loginService: LoginService, private fb: FormBuilder) { }
 
   ngOnInit() {
-
+    this.loginService.getCurrentVolunteer().subscribe(data => this.volunteer$ = data);
 
     this.editVolunteerEmailForm = this.fb.group({
       currentEmail: [this.volunteer$.email, [Validators.required]],

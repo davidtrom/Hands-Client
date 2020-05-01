@@ -22,15 +22,11 @@ export class EditVolunteerComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.getCurrentVolunteer().subscribe(data => {this.volunteer$ = data});
-    //this.loginService.getVolunteerByEmail(sessionStorage.getItem('username')).subscribe(data => this.volunteer$ = data);
-    // this.loginService.getVolunteerByEmail(sessionStorage.getItem('username')).subscribe(volData => {
-    //   this.currentVolunteer = volData;
     
     this.editVolunteerForm = this.fb.group({
       firstName: [this.volunteer$.firstName, [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
       lastName: [this.volunteer$.lastName, [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
       phoneNum: [this.volunteer$.phoneNum, [Validators.required, Validators.minLength(10)]],
-      //email: [this.volunteer$.email, [Validators.required, Validators.pattern('^[a-zA-Z0-9._%$!#+\-]+@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$')]],
       link: [this.volunteer$.link]
     });
 
@@ -58,28 +54,6 @@ export class EditVolunteerComponent implements OnInit {
   get form() { return this.editVolunteerForm.controls; }
 
   onSubmitProfile(){
-    // console.log(this.volunteer$.email, " ", this.editVolunteerForm.controls.email.value);
-    // if(this.volunteer$.email !== this.editVolunteerForm.controls.email.value){
-    //   this.loginService.checkVolunteerEmailAvailability(this.editVolunteerForm.controls.email.value).subscribe(
-    //     data => {this.isEmailAvailable = data;
-    //       console.log("email available? ", this.isEmailAvailable);
-    //       if(this.isEmailAvailable){
-    //           this.loginService.updateVolunteerProfile(this.volunteer$.id, this.editVolunteerForm.controls.firstName.value, this.editVolunteerForm.controls.lastName.value, this.editVolunteerForm.controls.phoneNum.value, this.editVolunteerForm.controls.email.value, this.editVolunteerForm.controls.link.value).subscribe(
-    //             data => {console.log("in update component", data);
-    //               alert('Your profile has been successfully updated')
-    //               this.editVolunteerForm.reset();
-    //               this.router.navigate(['/view-profile']);
-    //               this.isEmailAvailable = false;
-    //             }); 
-    //       }
-    //       else {
-    //         //this.isEmailAvailable = false;
-    //         alert('This email is already taken. \n Please choose another or continue using your current email.')
-    //       }
-    //     });
-    
-    // if (this.volunteer$.email === this.editVolunteerForm.controls.email.value && this.editVolunteerForm.controls.email.pristine && this.editVolunteerForm.controls.email.untouched){
-     
       this.loginService.updateVolunteerProfile(this.volunteer$.id, this.editVolunteerForm.controls.firstName.value, this.editVolunteerForm.controls.lastName.value, this.editVolunteerForm.controls.phoneNum.value, this.editVolunteerForm.controls.link.value).subscribe(
           data => {console.log("updating volunteer", data);
                 if(data !== null){
@@ -92,11 +66,4 @@ export class EditVolunteerComponent implements OnInit {
                 }
               });
       }
-  // onSubmitProfile(){
-  //   console.log(this.volunteer$.email, " ", this.editVolunteerForm.controls.email.value);
-  //   if(this.volunteer$.email !== this.editVolunteerForm.controls.email.value){
-  //     this.loginService.checkVolunteerEmailAvailability(this.editVolunteerForm.controls.email.value).subscribe(
-  //       data => {this.isEmailAvailable = data;
-  //         console.log("email available? ", this.isEmailAvailable);
-  // })}}
 }
