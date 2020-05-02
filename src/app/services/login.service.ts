@@ -83,7 +83,7 @@ export class LoginService {
     return this.http.post<Volunteer>(this.baseUrl+"/volunteers/create", volunteerToCreate, this.httpOptions)
       .pipe(tap(data => {console.log("volunteer created");}), 
       catchError(this.handleError<Volunteer>('error creating volunteer', null))
-    )
+    );
   }
 
   updateVolunteerProfile(id: number, firstName:string, lastName: string, phoneNum: string, link: string): Observable<Volunteer> {
@@ -96,7 +96,7 @@ export class LoginService {
       )
   }
 
-  updateVolunteerEMail(currentEmail: string, newEmail: string): Observable<Volunteer> {
+  updateVolunteerEmail(currentEmail: string, newEmail: string): Observable<Volunteer> {
     let reqData: Object = {"currentEmail": currentEmail, "newEmail": newEmail};
     return this.http.post<Volunteer>(this.baseUrl + "/volunteers/update-email", reqData, this.httpOptions)
       .pipe(tap(data => {this.volunteer = data;

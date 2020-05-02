@@ -32,8 +32,6 @@ export class EditVolpwComponent implements OnInit {
     this.loginService.getCurrentVolunteer().subscribe(data => this.volunteer$ = data);
     console.log(this.volunteer$);
     console.log(this.volunteer$.id);
-    
-    
   }
 
   get form() { return this.editVolunteerPWForm.controls; }
@@ -46,7 +44,7 @@ export class EditVolpwComponent implements OnInit {
     if(this.editVolunteerPWForm.controls.newPassword.value !== this.editVolunteerPWForm.controls.currentPassword.value){
       this.passwordsDontMatch = true;
     }
-    else if (this.editVolunteerPWForm.controls.newPassword.value === this.editVolunteerPWForm.controls.currentPassword.value) {
+    else {
       this.loginService.updatePassword(this.volunteer$.id, this.editVolunteerPWForm.controls.currentPassword.value, this.editVolunteerPWForm.controls.newPassword.value)
         .subscribe(data => {console.log("password updated");
         this.passwordUpdated = data;

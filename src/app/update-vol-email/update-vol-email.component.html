@@ -1,34 +1,40 @@
 <div class="flex-container">
     <div class="container">
-        <h2>Volunteer: Update Email Address</h2>
-            
-        <form [formGroup]="editVolunteerEmailForm" (ngSubmit)="onSubmit()">
-                        
-            <label for="currentEmail">Current Email:</label>
-            <input type="text" formControlName="currentEmail" class="form-control" id="currentEmail" [ngClass]="{ 'is-invalid': form.currentEmail.errors }">
-            <div *ngIf="form.touched && form.dirty" class="invalid-feedback">
-                <div *ngIf="form.currentEmail.errors.required">New Email is required</div>
-            </div>
+        <h1>Volunteer: Update Email Address</h1>
 
-            <label for="newEmail">New Email:</label>
-            <input type="text" formControlName="newEmail" class="form-control" id="newEmail" [ngClass]="{ 'is-invalid': form.newPassword.errors }" placeholder="New Email">
-            <div *ngIf="submitted && form.newEmail.errors" class="invalid-feedback">
-                <div *ngIf="form.newEmail.errors.pattern">Please Enter a valid Email</div>
-                <div *ngIf="form.newEmail.errors.required">New Email is required</div>
-            </div>
-
-            <div class="form-group" id="btnSubmit">                 
-                <button type="submit" class="btn btn-primary">Update Email</button>
-            </div>    
-           
-        </form>
-        <div class="row">
-            <div class="col-md-2" id="backBtn">
-                <a type="button" class="btn btn-primary" [routerLink]="['/view-profile']">View Profile</a>
-            </div>
-            <div class="col-md-2" id="editPWBtn">
-                <a type="button" class="btn btn-primary" [routerLink]="['/update-volpw', volunteer$.id]">Edit Password</a>
-            </div>
+        <div id="currentEmail"><strong><u>Current Email:</u></strong></div>
+        <div id="userEmail">
+            {{volunteer$.email}}
         </div>
-    </div>
+
+        <form [formGroup]="editVolEmail" (ngSubmit)="onSubmit()">
+            <div class="form-group"> 
+                
+                <label for="email"><strong><u>Updated Email address:</u></strong></label>
+                <input type="email" formControlName = "newEmail" class="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="New email">
+                
+                <!-- <div *ngIf="form.get('quantity').hasError('required')" class="alert alert-danger"> 
+                    *The username or password you have entered is invalid!
+                </div>  -->
+        
+                       
+            
+            <div class="row">
+                <div class="col-md-3" id="btnSubmit">
+                    <button type="submit" class="btn btn-primary">Update Email</button>
+                </div>  
+                <div class="col-md-3" id="backBtn">
+                    <a type="button" class="btn btn-primary" [routerLink]="['/view-profile']">Cancel</a>
+                </div>
+                <!-- <div class="col-md-3" id="editPWBtn">
+                    <a type="button" class="btn btn-primary" [routerLink]="['/update-volpw', volunteer$.id]">Edit Password</a>
+                </div> -->
+            </div>
+            </div>
+        </form>
+
+       
+        
+    </div> 
+
 </div>

@@ -35,7 +35,7 @@ export class NewVolunteerComponent implements OnInit {
     this.loginService.checkVolunteerEmailAvailability(this.volunteerForm.controls.email.value).subscribe(
       data =>{
     
-      if(data){
+      if(!data){
         
         let volunteer: Volunteer = new Volunteer(
           null,

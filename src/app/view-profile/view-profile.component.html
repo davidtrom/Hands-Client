@@ -1,74 +1,74 @@
 
 <div *ngIf="userIsVolunteer; else recipient"> 
     <div class="flex-container">
-    <div class="card w-75 p-3 mx-auto">
-        <div class="card-header">
-        Volunteer Profile:
-        </div>
-        <div class="card-body">
-            <div class = "row">
-                <div class= "col-md-4">
-                    <u>Name:</u>
+        <div class="card w-75 p-3 mx-auto">
+            <div class="card-header">
+            Volunteer Profile:
+            </div>
+            <div class="card-body">
+                <div class = "row">
+                    <div class= "col-md-4">
+                        <u>Name:</u>
+                    </div>
+                    <div class= "col-md-8">
+                        {{currentVolunteer.firstName}} {{currentVolunteer.lastName}}
+                    </div>
                 </div>
-                <div class= "col-md-8">
-                    {{currentVolunteer.firstName}} {{currentVolunteer.lastName}}
+
+                <div class = "row">
+                    <div class= "col-md-4">
+                        <u>Phone Number:</u>
+                    </div>
+                    <div class= "col-md-8">
+                        {{currentVolunteer.phoneNum}}
+                    </div>
+                </div>
+
+                <div class = "row">
+                    <div class= "col-md-4">
+                        <u>Email:</u>
+                    </div>
+                    <div class= "col-md-8">
+                        {{currentVolunteer.email}}
+                    </div>
+                </div>
+
+                <div class = "row" id="bottomRow">
+                    <div class= "col-md-4">
+                        <u>Social Media Link:</u>
+                    </div>
+                    <div class= "col-md-8">
+                        {{currentVolunteer.link}}
+                    </div>
                 </div>
             </div>
 
-            <div class = "row">
-                <div class= "col-md-4">
-                    <u>Phone Number:</u>
-                </div>
-                <div class= "col-md-8">
-                    {{currentVolunteer.phoneNum}}
-                </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div id="myReqBtn">
+                            <a [routerLink]="['/vol-requests', currentVolunteer.id]" type="button" class="btn btn-info">My Requests</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div id="allReqBtn">
+                            <a [routerLink]="['/display-requests']" type="button" class="btn btn-info">All Requests</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div id="editProfBtn">
+                            <a [routerLink]="['/edit-volunteer', currentVolunteer.id]" type="button" class="btn btn-info ">Edit Profile</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div id="editLoginBtn">
+                            <a [routerLink]="['/edit-volpw', currentVolunteer.id]" type="button" class="btn btn-info">Edit Login</a>
+                        </div>
+                    </div>
+                </div>   
             </div>
-
-            <div class = "row">
-                <div class= "col-md-4">
-                    <u>Email:</u>
-                </div>
-                <div class= "col-md-8">
-                    {{currentVolunteer.email}}
-                </div>
-            </div>
-
-            <div class = "row" id="bottomRow">
-                <div class= "col-md-4">
-                    <u>Social Media Link:</u>
-                </div>
-                <div class= "col-md-8">
-                    {{currentVolunteer.link}}
-                </div>
-            </div>
-        </div>
-
-        <div class="card-footer">
-            <div class="row">
-                <div class="col-md-3">
-                    <div id="myReqBtn">
-                        <a [routerLink]="['/vol-requests', currentVolunteer.id]" type="button" class="btn btn-info">My Requests</a>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div id="allReqBtn">
-                        <a [routerLink]="['/display-requests']" type="button" class="btn btn-info">All Requests</a>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div id="editProfBtn">
-                        <a [routerLink]="['/edit-volunteer', currentVolunteer.id]" type="button" class="btn btn-info ">Edit Profile</a>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div id="editLoginBtn">
-                        <a [routerLink]="['/edit-volpw', currentVolunteer.id]" type="button" class="btn btn-info">Edit Login</a>
-                    </div>
-                </div>
-            </div>   
         </div>
     </div>
-</div>
 </div>
 
 

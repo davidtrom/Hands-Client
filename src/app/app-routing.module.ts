@@ -38,7 +38,7 @@ const routes: Routes = [
   { path: 'vol-requests/:id', component: VolRequestsComponent},
   { path: 'create-request', component: CreateRequestComponent},
   { path: 'req-requests/:id', component: RecipRequestsComponent},
-  { path: 'update-volEmail', component: UpdateVolEmailComponent},
+  { path: 'update-volEmail/:id', component: UpdateVolEmailComponent},
 
 
   

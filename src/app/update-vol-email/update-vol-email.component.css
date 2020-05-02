@@ -1,12 +1,30 @@
 .flex-container{
     padding-top: 2%;
     padding-bottom: 2%;
+    font-size: 13pt;
 }
 
 #editPWBtn, #backBtn{
     color: white;
 }
 
-#btnSubmit{
+/* #btnSubmit{
+    padding-top: 2%;
+} */
+
+.container{
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+h1{
+    color: rgb(228, 86, 86);
+}
+
+#userEmail{
+    padding-bottom: 6%;
+}
+
+.row{
     padding-top: 2%;
 }
