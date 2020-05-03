@@ -27,7 +27,6 @@ export class UpdateVolEmailComponent implements OnInit {
     // console.log(this.volunteer$);
 
     this.editVolEmail = this.fb.group({
-      //currentEmail: [this.volunteer$.email, [Validators.required]],
       newEmail: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%$!#+\-]+@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$')]]
     });
 
@@ -42,24 +41,35 @@ export class UpdateVolEmailComponent implements OnInit {
   //get form() {return this.editVolEmail.controls;}
 
   onSubmit(){
-    this.loginService.updateVolunteerEmail(this.volunteer$.email, this.editVolEmail.controls.newEmail.value).subscribe(data => {
-      this.loginService.updateCurrentVolunteer(data);
-    });
-  }
-  //   this.loginService.checkVolunteerEmailAvailability(this.editVolunteerEmailForm.controls.newEmail.value).subscribe(data=> {this.emailTaken = data;
-  //     console.log(data);
-  //     if(data){
-  //       alert('This username/email is already taken. \nPlease try again.');
+  //   this.loginService.updateVolunteerEmail(this.volunteer$.email, this.editVolEmail.controls.newEmail.value).subscribe(data => {
+  //     this.loginService.updateCurrentVolunteer(data);
+  //     if(data === null){
   //       this.emailTaken = true;
-  //       this.editVolunteerEmailForm.reset();
+  //       alert('This email address is already taken.\nPlease try again.')
   //     }
-  //     else{
-  //     this.loginService.updateVolunteerEMail(this.editVolunteerEmailForm.controls.currentEmail.value, this.editVolunteerEmailForm.controls.newEmail.value).subscribe(data => console.log(data));
-  //     alert('Your username/email address have been updated.');
-  //     this.editVolunteerEmailForm.reset();
-  //     this.router.navigate(['/view-profile']);
-  //     //this.emailTaken = false;
+  //     else {
+  //       alert('Your email has been updated.')
+  //       this.editVolEmail.reset();
+  //       this.router.navigate(['/view-profile']);
   //     }
   //   });
   // }
+    this.loginService.checkVolunteerEmailAvailability(this.editVolEmail.controls.newEmail.value).subscribe(data=> {this.emailTaken = data;
+      console.log(data);
+      if(data){
+        alert('This username/email is already taken. \nPlease try again.');
+        this.emailTaken = true;
+        //this.editVolEmail.reset();
+      }
+      else{
+      this.loginService.updateVolunteerEmail(this.volunteer$.email, this.editVolEmail.controls.newEmail.value).subscribe(data =>{
+        console.log(data);
+      } );
+      alert('Your username/email address have been updated.');
+      this.editVolEmail.reset();
+      this.router.navigate(['/view-profile']);
+      //this.emailTaken = false;
+      }
+    });
+  }
 }

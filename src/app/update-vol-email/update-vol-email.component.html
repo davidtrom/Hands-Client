@@ -12,8 +12,11 @@
                 
                 <label for="email"><strong><u>Updated Email address:</u></strong></label>
                 <input type="email" formControlName = "newEmail" class="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="New email">
+                <div *ngIf="emailTaken" class="invalid-feedback">
+                    **This email is already taken, please try again.
+                </div>
                 
-                <!-- <div *ngIf="form.get('quantity').hasError('required')" class="alert alert-danger"> 
+                <!-- <div *ngIf="form.get('newEmail').hasError('pattern')" class="alert alert-danger"> 
                     *The username or password you have entered is invalid!
                 </div>  -->
         

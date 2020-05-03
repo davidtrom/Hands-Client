@@ -4,8 +4,9 @@
     font-size: 13pt;
 }
 
-#editPWBtn, #backBtn{
+#backBtn{
     color: white;
+    padding-top: 2%;
 }
 
 /* #btnSubmit{

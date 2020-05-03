@@ -102,6 +102,7 @@ export class LoginService {
       .pipe(tap(data => {this.volunteer = data;
         console.log("updating volunteer email");
         this.updateCurrentVolunteer(this.volunteer);
+        sessionStorage.setItem('username', newEmail);
       }),
       catchError(this.handleError<Volunteer>('error updating email', null))
       )
