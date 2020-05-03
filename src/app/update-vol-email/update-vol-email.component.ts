@@ -57,9 +57,9 @@ export class UpdateVolEmailComponent implements OnInit {
     this.loginService.checkVolunteerEmailAvailability(this.editVolEmail.controls.newEmail.value).subscribe(data=> {this.emailTaken = data;
       console.log(data);
       if(data){
-        alert('This username/email is already taken. \nPlease try again.');
+        //alert('This username/email is already taken. \nPlease try again.');
         this.emailTaken = true;
-        //this.editVolEmail.reset();
+        this.editVolEmail.reset();
       }
       else{
       this.loginService.updateVolunteerEmail(this.volunteer$.email, this.editVolEmail.controls.newEmail.value).subscribe(data =>{
@@ -67,8 +67,7 @@ export class UpdateVolEmailComponent implements OnInit {
       } );
       alert('Your username/email address have been updated.');
       this.editVolEmail.reset();
-      this.router.navigate(['/view-profile']);
-      //this.emailTaken = false;
+      //location.reload();
       }
     });
   }
