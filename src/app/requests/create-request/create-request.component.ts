@@ -9,7 +9,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class CreateRequestComponent implements OnInit {
 
   newRequestForm: FormGroup;
-  descriptionLength$: number = 0;
+  descriptionLength: number = 0;
 
   constructor(private fb: FormBuilder) { }
 
@@ -19,7 +19,7 @@ export class CreateRequestComponent implements OnInit {
       description: ['', [Validators.required]],
     });
 
-    this.newRequestForm.get('description').valueChanges.subscribe(value => this.descriptionLength$ = value);
+    this.newRequestForm.get('description').valueChanges.subscribe((value: string) => this.descriptionLength = value.length );
   }
 
   get form() { return this.newRequestForm.controls; }

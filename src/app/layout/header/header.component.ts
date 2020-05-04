@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   recipIsLoggedIn: boolean;
   volunteer$: Volunteer;
   recipient$: Recipient;
+  loggedIn: boolean;
 
   constructor(private loginService: LoginService, private recipientService: RecipientService) { }
 
@@ -28,6 +29,10 @@ export class HeaderComponent implements OnInit {
   
     this.loginService.getVolunteerByEmail(sessionStorage.getItem('username')).subscribe(data => this.volunteer$ = data);
     this.recipientService.getRecipientByEmail(sessionStorage.getItem('recipUsername')).subscribe(data => this.recipient$ = data);
+
+    if(this.volIsLoggedIn === true || this.recipIsLoggedIn === true){
+      this.loggedIn = true;
+    }
   }
 
   ngOnDestroy(){

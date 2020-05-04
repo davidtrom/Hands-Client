@@ -29,7 +29,7 @@
                             <textarea id="description" formControlName="description" rows="4" type="text" class="form-control" [ngClass]="{ 'is-invalid': form.description.errors }" placeholder="Desccription of Your Need"></textarea>
                             <!-- <div *ngIf="submitted && form.description.errors" class="invalid-feedback"> -->
                                 <div class="form-row__description">
-                                    You have used {{ descriptionLength$ }} characters.
+                                    You have used {{ descriptionLength }} characters.
                                 </div>
                                 <div class="invalid-feedback">
                                 <div *ngIf="form.description.errors.required">A Description is required</div>

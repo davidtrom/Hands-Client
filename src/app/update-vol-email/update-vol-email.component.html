@@ -12,7 +12,7 @@
                 
                 <label for="email"><strong><u>Updated Email address:</u></strong></label>
                 <input type="email" formControlName = "newEmail" class="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="New email">
-                <div *ngIf="emailTaken">
+                <div *ngIf="emailTaken" id="emailTaken">
                     **This email is already taken, please try again.
                 </div>
                 

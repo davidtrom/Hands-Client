@@ -29,13 +29,13 @@
                         </a>
                     </li>
 
-                    <!-- <div *ngIf="!volIsLoggedIn && !recipIsLoggedIn"> -->
+                    <div *ngIf="!loggedIn">
                         <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right" id="volNotLoggedIn">
                             <a class="nav-link" a [routerLink]="['/volunteer-login']" routerLinkActive="router-link-active" style="color:white"  role="button">
                                 Volunteers 
                             </a>
                         </li>
-                    <!-- </div> -->
+                    </div>
                     <!-- <div *ngIf="!volIsLoggedIn && !recipIsLoggedIn">
                         <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right" id="recipNotLoggedIn">
                             <a class="nav-link" a [routerLink]="['/requestor-login']" routerLinkActive="router-link-active" style="color:white"  role="button">
