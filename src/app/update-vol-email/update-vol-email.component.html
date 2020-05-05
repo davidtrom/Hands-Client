@@ -7,13 +7,23 @@
             {{volunteer$.email}}
         </div>
 
-        <form [formGroup]="editVolEmail" (ngSubmit)="onSubmit()">
-            <div class="form-group"> 
+        <form [formGroup]="editVolEmailForm" (ngSubmit)="onSubmit()">
+            <!-- <div class="form-group">  -->
                 
-                <label for="email"><strong><u>Updated Email address:</u></strong></label>
+                <div class="form-group" [ngClass]="{'has-error' : editVolEmailForm.get('newEmail').errors && 
+                    (editVolEmailForm.get('newEmail').touched || editVolEmailForm.get('newEmail').dirty)}">
+                <label for="newEmail"><strong><u>Updated Email address:</u></strong></label>
                 <input type="email" formControlName = "newEmail" class="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="New email">
-                <div *ngIf="emailTaken" id="emailTaken">
-                    **This email is already taken, please try again.
+                <div class="help-block" *ngIf="editVolEmailForm.get('newEmail').errors && 
+                (editVolEmailForm.get('newEmail').touched || editVolEmailForm.get('newEmail').dirty)">
+                    <div *ngIf="editVolEmailForm.get('newEmail').errors.required">
+                        You must provide a valid email address to update your account. 
+                    </div>
+                </div>
+                
+                    <div *ngIf="emailTaken" id="emailTaken">
+                        **This email is already taken, please try again.
+                    </div>
                 </div>
                 
                 <!-- <div *ngIf="form.get('newEmail').hasError('pattern')" class="alert alert-danger"> 
@@ -29,11 +39,8 @@
                 <div class="col-md-3" id="backBtn">
                     <a type="button" class="btn btn-primary" [routerLink]="['/view-profile']">Profile</a>
                 </div>
-                <!-- <div class="col-md-3" id="editPWBtn">
-                    <a type="button" class="btn btn-primary" [routerLink]="['/update-volpw', volunteer$.id]">Edit Password</a>
-                </div> -->
             </div>
-            </div>
+            <!-- </div> -->
         </form>
 
        

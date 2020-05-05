@@ -9,18 +9,32 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class CreateRequestComponent implements OnInit {
 
   newRequestForm: FormGroup;
-  descriptionLength: number = 0;
+  descriptionLength = 0;
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.newRequestForm = this.fb.group({
       typeOfRequest: ['', [Validators.required]],
-      description: ['', [Validators.required]],
+      description: ['']
     });
 
-    this.newRequestForm.get('description').valueChanges.subscribe((value: string) => this.descriptionLength = value.length );
+    this.newRequestForm.get('description').valueChanges.subscribe((value: string) => {
+      this.descriptionLength = value.length;
+      console.log(this.descriptionLength);
+     }
+      );
   }
 
-  get form() { return this.newRequestForm.controls; }
+ get typeOfRequest(){
+   return this.newRequestForm.get('typeOfRequest');
+ }
+
+ get description(){
+   return this.newRequestForm.get('description');
+ }
+ 
+  // get form() { return this.newRequestForm.controls; }
 }
+
+//, [Validators.required]

@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./update-vol-email.component.css']
 })
 export class UpdateVolEmailComponent implements OnInit {
-  editVolEmail: FormGroup;
+  editVolEmailForm: FormGroup;
   volunteer$: Volunteer;
   emailTaken: boolean;
 
@@ -26,7 +26,7 @@ export class UpdateVolEmailComponent implements OnInit {
     //   this.loginService.getCurrentVolunteer().subscribe(data => this.volunteer$ = data);
     // console.log(this.volunteer$);
 
-    this.editVolEmail = this.fb.group({
+    this.editVolEmailForm = this.fb.group({
       newEmail: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%$!#+\-]+@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$')]]
     });
 
@@ -35,21 +35,21 @@ export class UpdateVolEmailComponent implements OnInit {
   }
 
   get email() {
-    return this.editVolEmail.get('email');
+    return this.editVolEmailForm.get('email');
   } 
 
   onSubmit(){
-    this.loginService.checkVolunteerEmailAvailability(this.editVolEmail.controls.newEmail.value).subscribe(data=> {this.emailTaken = data;
+    this.loginService.checkVolunteerEmailAvailability(this.editVolEmailForm.controls.newEmail.value).subscribe(data=> {this.emailTaken = data;
       console.log(data);
       if(data){
         this.emailTaken = true;
       }
       else{
-      this.loginService.updateVolunteerEmail(this.volunteer$.email, this.editVolEmail.controls.newEmail.value).subscribe(data =>{
+      this.loginService.updateVolunteerEmail(this.volunteer$.email, this.editVolEmailForm.controls.newEmail.value).subscribe(data =>{
         console.log(data);
       } );
       alert('Your username/email address have been updated.');
-      this.editVolEmail.reset();
+      this.editVolEmailForm.reset();
       }
     });
   }
